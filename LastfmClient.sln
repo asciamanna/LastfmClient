@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LastfmClient", "LastfmClient\LastfmClient.csproj", "{4DA2791C-1BCB-48B8-A144-68346DE0AEA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LastfmClientTests", "LastfmClientTests\LastfmClientTests.csproj", "{898B166A-EA70-4F8F-B7FD-53406F35E27D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DA2791C-1BCB-48B8-A144-68346DE0AEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DA2791C-1BCB-48B8-A144-68346DE0AEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DA2791C-1BCB-48B8-A144-68346DE0AEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DA2791C-1BCB-48B8-A144-68346DE0AEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{898B166A-EA70-4F8F-B7FD-53406F35E27D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{898B166A-EA70-4F8F-B7FD-53406F35E27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{898B166A-EA70-4F8F-B7FD-53406F35E27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{898B166A-EA70-4F8F-B7FD-53406F35E27D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
