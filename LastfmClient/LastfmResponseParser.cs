@@ -22,10 +22,10 @@ namespace LastfmClient {
         Tracks = BuildTracks(tracks.Descendants("track")).ToList(),
       };
     }
-
+    
     IEnumerable<LastfmLibraryTrack> BuildTracks(IEnumerable<XElement> tracks) {
       var libraryTracks = new List<LastfmLibraryTrack>();
-      foreach (var track in tracks) {
+      foreach (var track in tracks.Where(t => t.Element("album") != null)) {
         libraryTracks.Add(new LastfmLibraryTrack {
           Name = track.Element("name").Value,
           Album = track.Element("album").Element("name").Value,
