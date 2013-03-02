@@ -56,7 +56,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lastfmResponse.xml">
+    <Content Include="lastfmAlbumResponse.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lastfmTrackResponse.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

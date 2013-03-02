@@ -24,12 +24,12 @@ namespace LastfmClientTests {
       var response2 = new XElement("Response2");
       var lastfmResponse1 = new LastfmLibraryTrackResponse { TotalPages = 2, Tracks = new List<LastfmLibraryTrack> { new LastfmLibraryTrack { Name = "Tracky1" } } };
       var lastfmResponse2 = new LastfmLibraryTrackResponse { TotalPages = 2, Tracks = new List<LastfmLibraryTrack> { new LastfmLibraryTrack { Name = "Tracky2" } } };
-      
+
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response1);
       restClient.Expect(rc => rc.DownloadData(secondUri)).Return(response2);
-      parser.Expect(p => p.Parse(response1)).Return(lastfmResponse1);
-      parser.Expect(p => p.Parse(response2)).Return(lastfmResponse2);
-      
+      parser.Expect(p => p.ParseTracks(response1)).Return(lastfmResponse1);
+      parser.Expect(p => p.ParseTracks(response2)).Return(lastfmResponse2);
+
       var tracks = new LastfmService("key", restClient, parser).FindAllTracks("me");
 
       restClient.VerifyAllExpectations();

@@ -1,12 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace LastfmClient {
-  public class LastfmLibraryTrackResponse {
-    public string Status;
-    public int Page = 0;
-    public int PerPage = 0;
-    public int TotalPages = 0;
-    public int TotalRecords = 0;
+  public class LastfmLibraryTrackResponse : LastfmLibraryResponse {
     public List<LastfmLibraryTrack> Tracks = new List<LastfmLibraryTrack>();
   }
 
