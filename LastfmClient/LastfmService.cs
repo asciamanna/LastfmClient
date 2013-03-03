@@ -5,7 +5,7 @@ using System.Linq;
 namespace LastfmClient {
   public interface ILastfmService {
     List<LastfmLibraryTrack> FindAllTracks(string user);
-    //List<LastfmLibraryAlbum> FindAllAlbums(string user);
+    List<LastfmLibraryAlbum> FindAllAlbums(string user);
   }
 
   public class LastfmService : ILastfmService {
@@ -43,6 +43,25 @@ namespace LastfmClient {
 
     string BuildLibraryTrackUri(string user, int page) {
       return string.Format(libraryTracksUri, apiKey, user, page);
+    }
+
+
+    public List<LastfmLibraryAlbum> FindAllAlbums(string user) {
+      var page = 1;
+      var albums = new List<LastfmLibraryAlbum>();
+      var uri = BuildLibraryAlbumUri(user, page);
+      var response = parser.ParseAlbums(restClient.DownloadData(uri));
+      albums.AddRange(response.Albums);
+      var totalPages = response.TotalPages;
+      foreach (var pageNum in Enumerable.Range(2, totalPages - 1)) {
+        uri = BuildLibraryAlbumUri(user, pageNum);
+        albums.AddRange(parser.ParseAlbums(restClient.DownloadData(uri)).Albums);
+      }
+      return albums;
+    }
+
+    string BuildLibraryAlbumUri(string user, int page) {
+      return string.Format(libraryAlbumsUri, apiKey, user, page);
     }
   }
 }

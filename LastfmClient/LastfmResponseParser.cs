@@ -37,7 +37,6 @@ namespace LastfmClient {
       return libraryTracks;
     }
 
-
     public LastfmLibraryAlbumResponse ParseAlbums(XElement xmlResponse) {
       var albums = xmlResponse.DescendantsAndSelf("albums");
       var albumsElement = albums.First();
