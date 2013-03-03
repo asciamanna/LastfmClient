@@ -2,8 +2,9 @@ LastFM Client
 ===================
 A .NET client for the Last.FM REST API.
 
-Currently it only supports finding all track information for a given
-user utilizing the Last FM library API.
+It supports the following API methods:
+* Finding all Last.fm tracks for a given user
+* Finding all Last.fm albums for a given user
 
 Anthony Sciamanna
 asciamanna@gmail.com

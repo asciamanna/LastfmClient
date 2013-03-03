@@ -45,7 +45,6 @@ namespace LastfmClient {
       return string.Format(libraryTracksUri, apiKey, user, page);
     }
 
-
     public List<LastfmLibraryAlbum> FindAllAlbums(string user) {
       var page = 1;
       var albums = new List<LastfmLibraryAlbum>();
