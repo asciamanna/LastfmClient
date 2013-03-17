@@ -26,6 +26,8 @@ namespace LastfmClient {
       }
       this.apiKey = apiKey;
     }
+    
+    //TODO refactor commonality out of the FindAll methods
 
     public List<LastfmLibraryTrack> FindAllTracks(string user) {
       var page = 1;

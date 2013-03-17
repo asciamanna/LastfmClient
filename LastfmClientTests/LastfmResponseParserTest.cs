@@ -47,6 +47,7 @@ namespace LastfmClientTests {
       var album = result.Albums.First();
       Assert.AreEqual("OSI", album.Artist);
       Assert.AreEqual("Blood", album.Name);
+      Assert.AreEqual("http://userserve-ak.last.fm/serve/300x300/82850719.jpg", album.ArtworkLocation);
       Assert.AreEqual(520, album.PlayCount);
     }
   }

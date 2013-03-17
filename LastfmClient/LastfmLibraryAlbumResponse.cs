@@ -13,5 +13,6 @@ namespace LastfmClient {
     public string Name;
     public string Artist;
     public int PlayCount;
+    public string ArtworkLocation;
   }
 }

@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
+using System.Drawing;
 using System.Text;
 using System.Xml.Linq;
 

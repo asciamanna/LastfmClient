@@ -40,7 +40,7 @@ namespace LastfmClient {
     public LastfmLibraryAlbumResponse ParseAlbums(XElement xmlResponse) {
       var albums = xmlResponse.DescendantsAndSelf("albums");
       var albumsElement = albums.First();
-
+    
       return new LastfmLibraryAlbumResponse {
         Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(albumsElement.Attribute("page").Value),
@@ -58,6 +58,7 @@ namespace LastfmClient {
           Name = album.Element("name").Value,
           Artist = album.Element("artist").Element("name").Value,
           PlayCount = Int32.Parse(album.Element("playcount").Value),
+          ArtworkLocation = album.Elements("image").Where(e => e.Attribute("size").Value == "extralarge").FirstOrDefault().Value
         });
       }
       return libraryAlbums;
