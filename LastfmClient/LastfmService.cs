@@ -32,37 +32,33 @@ namespace LastfmClient {
     public List<LastfmLibraryTrack> FindAllTracks(string user) {
       var page = 1;
       var tracks = new List<LastfmLibraryTrack>();
-      var uri = BuildLibraryTrackUri(user, page);
+      var uri = BuildUri(libraryTracksUri, user, page);
       var response = parser.ParseTracks(restClient.DownloadData(uri));
       tracks.AddRange(response.Tracks);
       var totalPages = response.TotalPages;
       foreach (var pageNum in Enumerable.Range(2, totalPages - 1)) {
-        uri = BuildLibraryTrackUri(user, pageNum);
+        uri = BuildUri(libraryTracksUri, user, pageNum);
         tracks.AddRange(parser.ParseTracks(restClient.DownloadData(uri)).Tracks);
       }
       return tracks;
     }
 
-    string BuildLibraryTrackUri(string user, int page) {
-      return string.Format(libraryTracksUri, apiKey, user, page);
-    }
-
     public List<LastfmLibraryAlbum> FindAllAlbums(string user) {
       var page = 1;
       var albums = new List<LastfmLibraryAlbum>();
-      var uri = BuildLibraryAlbumUri(user, page);
+      var uri = BuildUri(libraryAlbumsUri, user, page);
       var response = parser.ParseAlbums(restClient.DownloadData(uri));
       albums.AddRange(response.Albums);
       var totalPages = response.TotalPages;
       foreach (var pageNum in Enumerable.Range(2, totalPages - 1)) {
-        uri = BuildLibraryAlbumUri(user, pageNum);
+        uri = BuildUri(libraryAlbumsUri, user, pageNum);
         albums.AddRange(parser.ParseAlbums(restClient.DownloadData(uri)).Albums);
       }
       return albums;
     }
 
-    string BuildLibraryAlbumUri(string user, int page) {
-      return string.Format(libraryAlbumsUri, apiKey, user, page);
+    string BuildUri(string baseUri, string user, int page) {
+      return string.Format(baseUri, apiKey, user, page);
     }
   }
 }
