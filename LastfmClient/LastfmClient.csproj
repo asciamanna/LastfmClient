@@ -42,9 +42,11 @@
   <ItemGroup>
     <Compile Include="LastfmLibraryAlbumResponse.cs" />
     <Compile Include="LastfmLibraryResponse.cs" />
+    <Compile Include="LastfmUserRecentTracksResponse.cs" />
     <Compile Include="LastfmLibraryTrackResponse.cs" />
     <Compile Include="LastfmResponseParser.cs" />
     <Compile Include="LastfmService.cs" />
+    <Compile Include="PageCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestClient.cs" />
   </ItemGroup>

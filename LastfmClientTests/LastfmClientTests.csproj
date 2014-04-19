@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="LastfmResponseParserTest.cs" />
     <Compile Include="LastfmServiceTest.cs" />
+    <Compile Include="PageCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +63,9 @@
     </Content>
     <Content Include="lastfmTrackResponse.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lastfmUserRecentTracksResponse.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

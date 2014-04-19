@@ -7,6 +7,7 @@ namespace LastfmClient {
   public interface ILastfmResponseParser {
     LastfmLibraryTrackResponse ParseTracks(XElement xmlResponse);
     LastfmLibraryAlbumResponse ParseAlbums(XElement xmlResponse);
+    LastfmUserRecentTracksResponse ParseRecentTracks(XElement xmlResponse);
   }
 
   public class LastfmResponseParser : ILastfmResponseParser {
@@ -63,5 +64,51 @@ namespace LastfmClient {
       }
       return libraryAlbums;
     }
+
+    public LastfmUserRecentTracksResponse ParseRecentTracks(XElement xmlResponse) {
+      var tracks = xmlResponse.DescendantsAndSelf("recenttracks");
+      var tracksElement = tracks.First();
+
+      return new LastfmUserRecentTracksResponse {
+        Status = xmlResponse.Attribute("status").Value,
+        Page = Int32.Parse(tracksElement.Attribute("page").Value),
+        PerPage = Int32.Parse(tracksElement.Attribute("perPage").Value),
+        TotalPages = Int32.Parse(tracksElement.Attribute("totalPages").Value),
+        TotalRecords = Int32.Parse(tracksElement.Attribute("total").Value),
+        Tracks = BuildRecentTracks(tracksElement.Descendants("track")).ToList(),
+      };
+    
+    }
+
+    IEnumerable<LastfmUserRecentTrack> BuildRecentTracks(IEnumerable<XElement> tracks) {
+      var recentTracks = new List<LastfmUserRecentTrack>();
+      foreach (var track in tracks) {
+        recentTracks.Add(new LastfmUserRecentTrack {
+          Name = track.Element("name").Value,
+          Album = track.Element("album").Value,
+          Artist = track.Element("artist").Value,
+          AlbumArtLocation = track.Elements("image").Where(e => e.Attribute("size").Value == "extralarge").FirstOrDefault().Value.Trim(),
+          LastPlayed = ParseDateAsUTC(track)
+        });
+      }
+      return recentTracks;
+    }
+
+    static DateTime? ParseDateAsUTC(XElement track) {
+      if (track.Element("date") == null) {
+        return null;
+      }
+      var date = DateTime.Parse(track.Element("date").Value);
+      return DateTime.SpecifyKind(date, DateTimeKind.Utc);
+    }
+    //static DateTime? ParseDateAsLocal(XElement track) {
+    //  if (track.Element("date") == null) {
+    //    return null;
+    //  }
+    //  var date = DateTime.Parse(track.Element("date").Value);
+    //  var easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+    //  return TimeZoneInfo.ConvertTimeFromUtc(DateTime.SpecifyKind(date, DateTimeKind.Utc), easternZone);
+
+    //}
   }
 }
