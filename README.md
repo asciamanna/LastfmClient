@@ -1,10 +1,17 @@
-LastFM Client
-===================
+#Last.fm Client
+
 A .NET client for the Last.FM REST API.
 
-It supports the following API methods:
-* Finding all Last.fm tracks for a given user
-* Finding all Last.fm albums for a given user
+##Currently Supported
 
-Anthony Sciamanna
-asciamanna@gmail.com
+* Retreiving all Last.fm tracks for a user
+* Retreiving all Last.fm albums for a user
+* Retreiving recent Last.fm tracks for a user
+
+##Coming Soon
+* Retreiving top artists for a user
+* Examples using the API
+
+**Anthony Sciamanna**
+<br/>
+**asciamanna@gmail.com**
