@@ -7,9 +7,10 @@ A .NET client for the Last.FM REST API.
 * Retrieving all Last.fm tracks for a user
 * Retrieving all Last.fm albums for a user
 * Retrieving recent Last.fm tracks for a user
+* Retrieving top artists for a user
 
 ##Coming Soon
-* Retrieving top artists for a user
+* Console Application to test the API
 * Examples using the API
 
 ##Suggestions
