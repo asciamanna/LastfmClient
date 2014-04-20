@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using LastfmClient.Responses;
 
 namespace LastfmClient {
   public interface ILastfmResponseParser {
@@ -77,7 +78,6 @@ namespace LastfmClient {
         TotalRecords = Int32.Parse(tracksElement.Attribute("total").Value),
         Tracks = BuildRecentTracks(tracksElement.Descendants("track")).ToList(),
       };
-    
     }
 
     IEnumerable<LastfmUserRecentTrack> BuildRecentTracks(IEnumerable<XElement> tracks) {
@@ -92,6 +92,33 @@ namespace LastfmClient {
         });
       }
       return recentTracks;
+    }
+
+    public LastfmUserTopArtistsResponse ParseTopArtists(XElement xmlResponse) {
+      var artists = xmlResponse.DescendantsAndSelf("topartists");
+      var artistsElement = artists.First();
+
+      return new LastfmUserTopArtistsResponse {
+        Status = xmlResponse.Attribute("status").Value,
+        Page = Int32.Parse(artistsElement.Attribute("page").Value),
+        PerPage = Int32.Parse(artistsElement.Attribute("perPage").Value),
+        TotalPages = Int32.Parse(artistsElement.Attribute("totalPages").Value),
+        TotalRecords = Int32.Parse(artistsElement.Attribute("total").Value),
+        TopArtists = BuildTopArtists(artistsElement.Descendants("artist")).ToList(),
+      };
+    }
+
+    IEnumerable<LastfmUserTopArtist> BuildTopArtists(IEnumerable<XElement> topArtistsElement) {
+      var topArtists = new List<LastfmUserTopArtist>();
+      foreach (var artistElement in topArtistsElement) {
+        topArtists.Add(new LastfmUserTopArtist {
+          Rank = Int32.Parse(artistElement.Attribute("rank").Value),
+          Name = artistElement.Element("name").Value,
+          PlayCount = Int32.Parse(artistElement.Element("playcount").Value),
+          ArtistImageLocation = artistElement.Elements("image").Where(e => e.Attribute("size").Value == "extralarge").FirstOrDefault().Value,
+        });
+      }
+      return topArtists;
     }
 
     static DateTime? ParseDateAsUTC(XElement track) {

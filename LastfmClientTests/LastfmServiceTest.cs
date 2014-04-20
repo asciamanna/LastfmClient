@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using LastfmClient.Responses;
 
 namespace LastfmClientTests {
   [TestFixture]
@@ -111,7 +112,6 @@ namespace LastfmClientTests {
       var pageCalculator = MockRepository.GenerateStub<IPageCalculator>();
 
       var firstUri = @"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=me&api_key=key&page=1";
-      var secondUri = @"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=me&api_key=key&page=2";
       var response = new XElement("Response1");
       var firstTrack = "My Favorite Things";
       var secondTrack = "But Not For Me";

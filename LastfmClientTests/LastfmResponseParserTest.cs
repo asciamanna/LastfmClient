@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Linq;
 using System.Xml.Linq;
 using System;
+using LastfmClient.Responses;
 
 namespace LastfmClientTests {
   [TestFixture]
@@ -70,6 +71,18 @@ namespace LastfmClientTests {
       Assert.That(recentTrack.Album, Is.EqualTo("Thelonious Monk Plays Duke Ellington"));
       Assert.That(recentTrack.AlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/300x300/94649493.png"));
       Assert.That(recentTrack.LastPlayed, Is.EqualTo(new DateTime(2014, 4, 12, 2, 36, 0)));
+    }
+
+    [Test]
+    public void ParseTopArtists() {
+      var xelement = XElement.Load(@"lastfmUserTopArtistsResponse.xml");
+      var result = new LastfmResponseParser().ParseTopArtists(xelement);
+      var topArtist = result.TopArtists.First();
+
+      Assert.That(topArtist.Name, Is.EqualTo("Miles Davis"));
+      Assert.That(topArtist.PlayCount, Is.EqualTo(3247));
+      Assert.That(topArtist.Rank, Is.EqualTo(1));
+      Assert.That(topArtist.ArtistImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/252/11251985.jpg"));
     }
   }
 }

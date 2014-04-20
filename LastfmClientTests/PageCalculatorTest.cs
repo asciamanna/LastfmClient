@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LastfmClient;
+using LastfmClient.Responses;
 using NUnit.Framework;
 
 namespace LastfmClientTests {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LastfmClient {
+namespace LastfmClient.Responses {
   public abstract class LastfmLibraryResponse {
     public string Status;
     public int Page = 0;
