@@ -5,11 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LastfmClient.Responses {
-  public abstract class LastfmLibraryResponse {
-    public string Status;
-    public int Page = 0;
-    public int PerPage = 0;
-    public int TotalPages = 0;
-    public int TotalRecords = 0;
+  public interface ILastfmResponse {
+    string Status { get; set;}
+    int Page { get; set; }
+    int PerPage { get; set; }
+    int TotalPages { get; set; }
+    int TotalRecords { get; set; }
+  }
+
+  public abstract class LastfmResponse  {
+    public string Status { get; set; }
+    public int Page { get; set; }
+    public int PerPage { get; set; }
+    public int TotalPages { get; set; }
+    public int TotalRecords { get; set; }
   }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LastfmClient.Responses {
-  public class LastfmLibraryAlbumResponse : LastfmLibraryResponse {
+  public class LastfmLibraryAlbumResponse : LastfmResponse, ILastfmResponse {
     public List<LastfmLibraryAlbum> Albums = new List<LastfmLibraryAlbum>();
   }
 

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FailFast.cs" />
     <Compile Include="Responses\LastfmLibraryAlbumResponse.cs" />
     <Compile Include="Responses\LastfmLibraryResponse.cs" />
     <Compile Include="Responses\LastfmUserRecentTracksResponse.cs" />

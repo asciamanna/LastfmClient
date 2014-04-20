@@ -8,6 +8,7 @@ namespace LastfmClient {
     List<LastfmLibraryTrack> FindAllTracks(string user);
     List<LastfmLibraryAlbum> FindAllAlbums(string user);
     List<LastfmUserRecentTrack> FindRecentTracks(string user, int numberOfTracks);
+    List<LastfmUserTopArtist> FindTopArtists(string user, int numberOfArtists);
   }
 
   public class LastfmService : ILastfmService {
@@ -18,6 +19,7 @@ namespace LastfmClient {
     const string libraryTracksUri = @"http://ws.audioscrobbler.com/2.0/?method=library.gettracks&api_key={0}&user={1}&page={2}";
     const string libraryAlbumsUri = @"http://ws.audioscrobbler.com/2.0/?method=library.getalbums&api_key={0}&user={1}&page={2}";
     const string userRecentTracksUri = @"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={1}&api_key={0}&page={2}";
+    const string userTopArtistsUri = @"http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user={1}&api_key={0}&page={2}";
 
     public LastfmService(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser(), new PageCalculator()) { }
 
@@ -61,10 +63,7 @@ namespace LastfmClient {
     }
 
     public List<LastfmUserRecentTrack> FindRecentTracks(string user, int numberOfTracks) {
-      if (numberOfTracks < 1) {
-        throw new ArgumentException("numberOfTracks must be greater than 0");
-      }
-
+      FailFast.IfNotPositive(numberOfTracks, "numberOfTracks");
       var page = 1;
       var recentTracks = new List<LastfmUserRecentTrack>();
       var uri = BuildUri(userRecentTracksUri, user, page);
@@ -78,6 +77,23 @@ namespace LastfmClient {
         recentTracks.AddRange(parser.ParseRecentTracks(restClient.DownloadData(uri)).Tracks);
       }
       return recentTracks.Take(numberOfTracks).ToList();
+    }
+
+    public List<LastfmUserTopArtist> FindTopArtists(string user, int numberOfArtists) {
+      FailFast.IfNotPositive(numberOfArtists, "numberOfArtists");
+      var page = 1;
+      var topArtists = new List<LastfmUserTopArtist>();
+      var uri = BuildUri(userTopArtistsUri, user, page);
+      var response = parser.ParseTopArtists(restClient.DownloadData(uri));
+
+      var numberOfPagesToRetrieve = pageCalculator.Calculate(response, numberOfArtists);
+      topArtists.AddRange(response.TopArtists);
+
+      foreach (var pageNum in Enumerable.Range(2, numberOfPagesToRetrieve - 1)) {
+        uri = BuildUri(userTopArtistsUri, user, pageNum);
+        topArtists.AddRange(parser.ParseTopArtists(restClient.DownloadData(uri)).TopArtists);
+      }
+      return topArtists.Take(numberOfArtists).ToList();
     }
 
     string BuildUri(string baseUri, string user, int page) {

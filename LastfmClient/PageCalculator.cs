@@ -7,11 +7,11 @@ using LastfmClient.Responses;
 
 namespace LastfmClient {
   public interface IPageCalculator {
-    int Calculate(LastfmUserRecentTracksResponse response, int numberOfTracks);
+    int Calculate(ILastfmResponse response, int numberOfTracks);
   }
 
   public class PageCalculator : IPageCalculator {
-    public int Calculate(LastfmUserRecentTracksResponse response, int numberOfTracks) {
+    public int Calculate(ILastfmResponse response, int numberOfTracks) {
       if (numberOfTracks > response.TotalRecords) {
         return response.TotalPages;
       }

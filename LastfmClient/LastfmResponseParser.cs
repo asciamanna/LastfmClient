@@ -9,6 +9,7 @@ namespace LastfmClient {
     LastfmLibraryTrackResponse ParseTracks(XElement xmlResponse);
     LastfmLibraryAlbumResponse ParseAlbums(XElement xmlResponse);
     LastfmUserRecentTracksResponse ParseRecentTracks(XElement xmlResponse);
+    LastfmUserTopArtistsResponse ParseTopArtists(XElement xmlResponse);
   }
 
   public class LastfmResponseParser : ILastfmResponseParser {

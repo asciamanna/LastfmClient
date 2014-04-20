@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace LastfmClient.Responses {
-  public class LastfmUserRecentTracksResponse : LastfmLibraryResponse {
+  public class LastfmUserRecentTracksResponse : LastfmResponse, ILastfmResponse {
     public List<LastfmUserRecentTrack> Tracks = new List<LastfmUserRecentTrack>();
   }
 
