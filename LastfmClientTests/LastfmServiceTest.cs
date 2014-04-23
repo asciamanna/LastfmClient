@@ -12,7 +12,8 @@ namespace LastfmClientTests {
   public class LastfmServiceTest {
     [Test]
     public void Object_Constructed_Without_An_API_Key_Throws_Exception() {
-      Assert.Throws<ArgumentException>(() => new LastfmService(string.Empty, null, null, null), "An API key is required");
+      var exception = Assert.Throws<ArgumentException>(() => new LastfmService(string.Empty, null, null, null));
+      Assert.That(exception.Message, Is.EqualTo("An API key is required"));
     }
 
     [Test]

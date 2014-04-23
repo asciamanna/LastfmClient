@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FailFast.cs" />
+    <Compile Include="LastfmUri.cs" />
     <Compile Include="Responses\LastfmLibraryAlbumResponse.cs" />
     <Compile Include="Responses\LastfmLibraryResponse.cs" />
     <Compile Include="Responses\LastfmUserRecentTracksResponse.cs" />
