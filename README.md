@@ -18,6 +18,11 @@ The last.fm api is quite large and I'm barely scratching the surface, implementi
 <p>
 If you have any requests for parts of the API that you would like implemented drop me a line or go ahead and fork and send pull requests.
 </p>
+##Contact
 **Anthony Sciamanna**
 <br/>
-**asciamanna@gmail.com**
+**Email:** asciamanna@gmail.com  
+**Web:** [http://www.anthonysciamanna.com](http://www.anthonysciamanna.com)  
+**Twitter:** @asciamanna
+
+
