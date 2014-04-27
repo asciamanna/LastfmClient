@@ -129,14 +129,5 @@ namespace LastfmClient {
       var date = DateTime.Parse(track.Element("date").Value);
       return DateTime.SpecifyKind(date, DateTimeKind.Utc);
     }
-    //static DateTime? ParseDateAsLocal(XElement track) {
-    //  if (track.Element("date") == null) {
-    //    return null;
-    //  }
-    //  var date = DateTime.Parse(track.Element("date").Value);
-    //  var easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-    //  return TimeZoneInfo.ConvertTimeFromUtc(DateTime.SpecifyKind(date, DateTimeKind.Utc), easternZone);
-
-    //}
   }
 }
