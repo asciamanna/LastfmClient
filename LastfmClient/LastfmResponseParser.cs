@@ -85,6 +85,7 @@ namespace LastfmClient {
       var recentTracks = new List<LastfmUserRecentTrack>();
       foreach (var track in tracks) {
         recentTracks.Add(new LastfmUserRecentTrack {
+          IsNowPlaying = ParseNowPlayingAttribute(track),
           Name = track.Element("name").Value,
           Album = track.Element("album").Value,
           Artist = track.Element("artist").Value,
@@ -96,6 +97,13 @@ namespace LastfmClient {
         });
       }
       return recentTracks;
+    }
+
+    private static bool ParseNowPlayingAttribute(XElement track) {
+      if (track.Attribute("nowplaying") != null) {
+        return track.Attribute("nowplaying").Value == "true";
+      }
+      return false;
     }
 
     private static string ParseImageLocation(XElement element, string sizeAttribute) {

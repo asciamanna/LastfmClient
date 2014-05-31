@@ -7,6 +7,7 @@ namespace LastfmClient.Responses {
   }
 
   public class LastfmUserRecentTrack {
+    public bool IsNowPlaying = false;
     public string Name;
     public string Artist;
     public string Album;

@@ -76,6 +76,7 @@ namespace LastfmClientTests {
       var xelement = XElement.Load(@"lastfmUserRecenttracksResponse.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
       var recentTrack = result.Tracks.First();
+      Assert.That(recentTrack.IsNowPlaying, Is.False);
       Assert.That(recentTrack.Name, Is.EqualTo("Sophisticated Lady"));
       Assert.That(recentTrack.Album, Is.EqualTo("Thelonious Monk Plays Duke Ellington"));
       Assert.That(recentTrack.ExtraLargeAlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/300x300/94649493.png"));
@@ -83,6 +84,14 @@ namespace LastfmClientTests {
       Assert.That(recentTrack.MediumAlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/64s/94649493.png"));
       Assert.That(recentTrack.SmallAlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/34s/94649493.png"));
       Assert.That(recentTrack.LastPlayed, Is.EqualTo(new DateTime(2014, 4, 12, 2, 36, 0)));
+    }
+
+    [Test]
+    public void ParseRecentTracks_Parses_NowPlaying() {
+      var xelement = XElement.Load(@"lastfmRecentTracksResponseNowPlaying.xml");
+      var result = new LastfmResponseParser().ParseRecentTracks(xelement);
+      var recentTrack = result.Tracks.First();
+      Assert.That(recentTrack.IsNowPlaying, Is.True);
     }
 
     [Test]
