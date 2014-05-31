@@ -11,6 +11,9 @@ namespace LastfmClient.Responses {
     public string Artist;
     public string Album;
     public DateTime? LastPlayed;
-    public string AlbumArtLocation;
+    public string ExtraLargeAlbumArtLocation;
+    public string LargeAlbumArtLocation;
+    public string MediumAlbumArtLocation;
+    public string SmallAlbumArtLocation;
   }
 }

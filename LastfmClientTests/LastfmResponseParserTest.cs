@@ -54,12 +54,21 @@ namespace LastfmClientTests {
     }
 
     [Test]
-    public void ParseRecentTracks_Removes_Whitespace_from_Artwork_Location_URL() {
+    public void ParseRecentTracks_Removes_Whitespace_from_Artwork_Location_URLs() {
       var xelement = XElement.Load(@"lastfmUserRecenttracksResponse.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
       var recentTrack = result.Tracks.First();
-      Assert.That(recentTrack.AlbumArtLocation, Is.Not.StringMatching("^\\s+"));
-      Assert.That(recentTrack.AlbumArtLocation, Is.Not.StringMatching("\\s+$"));
+      Assert.That(recentTrack.ExtraLargeAlbumArtLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(recentTrack.ExtraLargeAlbumArtLocation, Is.Not.StringMatching("\\s+$"));
+
+      Assert.That(recentTrack.LargeAlbumArtLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(recentTrack.LargeAlbumArtLocation, Is.Not.StringMatching("\\s+$"));
+
+      Assert.That(recentTrack.MediumAlbumArtLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(recentTrack.MediumAlbumArtLocation, Is.Not.StringMatching("\\s+$"));
+
+      Assert.That(recentTrack.SmallAlbumArtLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(recentTrack.SmallAlbumArtLocation, Is.Not.StringMatching("\\s+$"));
     }
 
     [Test]
@@ -69,8 +78,32 @@ namespace LastfmClientTests {
       var recentTrack = result.Tracks.First();
       Assert.That(recentTrack.Name, Is.EqualTo("Sophisticated Lady"));
       Assert.That(recentTrack.Album, Is.EqualTo("Thelonious Monk Plays Duke Ellington"));
-      Assert.That(recentTrack.AlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/300x300/94649493.png"));
+      Assert.That(recentTrack.ExtraLargeAlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/300x300/94649493.png"));
+      Assert.That(recentTrack.LargeAlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/126/94649493.png"));
+      Assert.That(recentTrack.MediumAlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/64s/94649493.png"));
+      Assert.That(recentTrack.SmallAlbumArtLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/34s/94649493.png"));
       Assert.That(recentTrack.LastPlayed, Is.EqualTo(new DateTime(2014, 4, 12, 2, 36, 0)));
+    }
+
+    [Test]
+    public void ParseTopArtists_Removes_Whitespace_from_Artwork_Location_URLs() {
+      var xelement = XElement.Load(@"lastfmUserTopArtistsResponse.xml");
+      var result = new LastfmResponseParser().ParseTopArtists(xelement);
+      var topArtist = result.TopArtists.First();
+      Assert.That(topArtist.MegaArtistImageLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(topArtist.MegaArtistImageLocation, Is.Not.StringMatching("\\s+$"));
+
+      Assert.That(topArtist.ExtraLargeArtistImageLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(topArtist.ExtraLargeArtistImageLocation, Is.Not.StringMatching("\\s+$"));
+
+      Assert.That(topArtist.LargeArtistImageLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(topArtist.LargeArtistImageLocation, Is.Not.StringMatching("\\s+$"));
+
+      Assert.That(topArtist.MediumArtistImageLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(topArtist.MediumArtistImageLocation, Is.Not.StringMatching("\\s+$"));
+
+      Assert.That(topArtist.SmallArtistImageLocation, Is.Not.StringMatching("^\\s+"));
+      Assert.That(topArtist.SmallArtistImageLocation, Is.Not.StringMatching("\\s+$"));
     }
 
     [Test]
@@ -82,7 +115,11 @@ namespace LastfmClientTests {
       Assert.That(topArtist.Name, Is.EqualTo("Miles Davis"));
       Assert.That(topArtist.PlayCount, Is.EqualTo(3247));
       Assert.That(topArtist.Rank, Is.EqualTo(1));
-      Assert.That(topArtist.ArtistImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/252/11251985.jpg"));
+      Assert.That(topArtist.MegaArtistImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/500/11251985/Miles+Davis+Miles.jpg"));
+      Assert.That(topArtist.ExtraLargeArtistImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/252/11251985.jpg"));
+      Assert.That(topArtist.LargeArtistImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/126/11251985.jpg"));
+      Assert.That(topArtist.MediumArtistImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/64/11251985.jpg"));
+      Assert.That(topArtist.SmallArtistImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/34/11251985.jpg"));
     }
   }
 }

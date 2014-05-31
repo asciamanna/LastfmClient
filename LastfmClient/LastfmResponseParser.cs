@@ -88,11 +88,18 @@ namespace LastfmClient {
           Name = track.Element("name").Value,
           Album = track.Element("album").Value,
           Artist = track.Element("artist").Value,
-          AlbumArtLocation = track.Elements("image").Where(e => e.Attribute("size").Value == "extralarge").FirstOrDefault().Value.Trim(),
+          ExtraLargeAlbumArtLocation = ParseImageLocation(track, "extralarge"),
+          LargeAlbumArtLocation = ParseImageLocation(track, "large"),
+          MediumAlbumArtLocation = ParseImageLocation(track, "medium"),
+          SmallAlbumArtLocation = ParseImageLocation(track, "small"),
           LastPlayed = ParseDateAsUTC(track)
         });
       }
       return recentTracks;
+    }
+
+    private static string ParseImageLocation(XElement element, string sizeAttribute) {
+      return element.Elements("image").Where(e => e.Attribute("size").Value == sizeAttribute).FirstOrDefault().Value.Trim();
     }
 
     public LastfmUserTopArtistsResponse ParseTopArtists(XElement xmlResponse) {
@@ -116,7 +123,11 @@ namespace LastfmClient {
           Rank = Int32.Parse(artistElement.Attribute("rank").Value),
           Name = artistElement.Element("name").Value,
           PlayCount = Int32.Parse(artistElement.Element("playcount").Value),
-          ArtistImageLocation = artistElement.Elements("image").Where(e => e.Attribute("size").Value == "extralarge").FirstOrDefault().Value,
+          MegaArtistImageLocation = ParseImageLocation(artistElement, "mega"),
+          ExtraLargeArtistImageLocation = ParseImageLocation(artistElement, "extralarge"),
+          LargeArtistImageLocation = ParseImageLocation(artistElement, "large"),
+          MediumArtistImageLocation = ParseImageLocation(artistElement, "medium"),
+          SmallArtistImageLocation = ParseImageLocation(artistElement, "small"),
         });
       }
       return topArtists;

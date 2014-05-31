@@ -13,6 +13,10 @@ namespace LastfmClient.Responses {
     public string Name;
     public int Rank;
     public int PlayCount;
-    public string ArtistImageLocation;
+    public string MegaArtistImageLocation;
+    public string ExtraLargeArtistImageLocation;
+    public string LargeArtistImageLocation;
+    public string MediumArtistImageLocation;
+    public string SmallArtistImageLocation;
   }
 }
