@@ -1,6 +1,8 @@
 #Last.fm Client
 
 A .NET client for the Last.FM REST API.
+## Build Status
+[![Build status](https://ci.appveyor.com/api/projects/status/e703ayk1nydyngqm)](https://ci.appveyor.com/project/asciamanna/lastfmclient)
 
 ##Currently Supported
 
