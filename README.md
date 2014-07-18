@@ -10,9 +10,9 @@ A .NET client for the Last.FM REST API.
 * Retrieve all Last.fm albums for a user
 * Retrieve recent Last.fm tracks for a user
 * Retrieve top artists for a user
+* Retrieve Currently Playing from Service information for a user (scrapes last.fm user page)
 
 ##Coming Soon
-* Retrieve what service name and logo the user is listening from (this isn't currently supported by the Last.fm API but can be easily found via screen scraping).
 * Page the all tracks and all albums query results
 * Console Application to test the API
 * Examples using the API
@@ -22,6 +22,11 @@ The last.fm API is quite large and I'm barely scratching the surface of it, impl
 <p>
 If you have any requests for parts of the API that you would like implemented drop me a line or go ahead and fork and send pull requests.
 </p>
+##Project Dependencies
+HtmlAgilityPack 1.4.6  
+NUnit 2.6.3  
+RhinoMocks 3.6.1
+
 ##Contact
 **Anthony Sciamanna**
 <br/>
