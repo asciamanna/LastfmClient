@@ -9,20 +9,24 @@ namespace LastfmClient {
     List<LastfmLibraryAlbum> FindAllAlbums(string user);
     List<LastfmUserRecentTrack> FindRecentTracks(string user, int numberOfTracks);
     List<LastfmUserTopArtist> FindTopArtists(string user, int numberOfArtists);
+    LastfmPlayingFrom FindCurrentlyPlayingFrom(string user);
   }
 
   public class LastfmService : ILastfmService {
     readonly IRestClient restClient;
     readonly ILastfmResponseParser parser;
     readonly IPageCalculator pageCalculator;
+    readonly ILastfmPageScraper pageScraper;
     readonly string apiKey;
+    const string lastfmUserPageUrl = @"http://www.last.fm/user/";
 
-    public LastfmService(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser(), new PageCalculator()) { }
+    public LastfmService(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser(), new PageCalculator(), new LastfmPageScraper()) { }
 
-    public LastfmService(string apiKey, IRestClient restClient, ILastfmResponseParser parser, IPageCalculator pageCalculator) {
+    public LastfmService(string apiKey, IRestClient restClient, ILastfmResponseParser parser, IPageCalculator pageCalculator, ILastfmPageScraper pageScraper) {
       this.restClient = restClient;
       this.parser = parser;
       this.pageCalculator = pageCalculator;
+      this.pageScraper = pageScraper;
 
       if (string.IsNullOrEmpty(apiKey)) {
         throw new ArgumentException("An API key is required");
@@ -90,6 +94,10 @@ namespace LastfmClient {
         topArtists.AddRange(parser.ParseTopArtists(restClient.DownloadData(uri)).TopArtists);
       }
       return topArtists.Take(numberOfArtists).ToList();
+    }
+
+    public LastfmPlayingFrom FindCurrentlyPlayingFrom(string user) {
+      return pageScraper.GetLastfmPlayingFromInfo(lastfmUserPageUrl + user);
     }
 
     string BuildUri(string baseUri, string user, int page) {

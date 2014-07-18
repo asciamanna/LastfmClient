@@ -12,7 +12,7 @@ namespace LastfmClientTests {
   public class LastfmServiceTest {
     [Test]
     public void Object_Constructed_Without_An_API_Key_Throws_Exception() {
-      var exception = Assert.Throws<ArgumentException>(() => new LastfmService(string.Empty, null, null, null));
+      var exception = Assert.Throws<ArgumentException>(() => new LastfmService(string.Empty, null, null, null, null));
       Assert.That(exception.Message, Is.EqualTo("An API key is required"));
     }
 
@@ -32,7 +32,7 @@ namespace LastfmClientTests {
       parser.Expect(p => p.ParseTracks(response1)).Return(lastfmResponse1);
       parser.Expect(p => p.ParseTracks(response2)).Return(lastfmResponse2);
 
-      var tracks = new LastfmService("key", restClient, parser, null).FindAllTracks("me");
+      var tracks = new LastfmService("key", restClient, parser, null, null).FindAllTracks("me");
 
       restClient.VerifyAllExpectations();
       parser.VerifyAllExpectations();
@@ -59,7 +59,7 @@ namespace LastfmClientTests {
       parser.Expect(p => p.ParseAlbums(response1)).Return(lastfmResponse1);
       parser.Expect(p => p.ParseAlbums(response2)).Return(lastfmResponse2);
 
-      var albums = new LastfmService("key", restClient, parser, null).FindAllAlbums("me");
+      var albums = new LastfmService("key", restClient, parser, null, null).FindAllAlbums("me");
 
       restClient.VerifyAllExpectations();
       parser.VerifyAllExpectations();
@@ -90,7 +90,7 @@ namespace LastfmClientTests {
       parser.Expect(p => p.ParseRecentTracks(response1)).Return(lastfmResponse1);
       parser.Expect(p => p.ParseRecentTracks(response2)).Return(lastfmResponse2);
 
-      var recentTracks = new LastfmService("key", restClient, parser, pageCalculator).FindRecentTracks("me", 2);
+      var recentTracks = new LastfmService("key", restClient, parser, pageCalculator, null).FindRecentTracks("me", 2);
 
       restClient.VerifyAllExpectations();
       parser.VerifyAllExpectations();
@@ -103,7 +103,7 @@ namespace LastfmClientTests {
     [TestCase(-5)]
     [TestCase(0)]
     public void FindRecentTracks_Only_Takes_Positive_Values_For_Number_Of_Recent_Tracks(int numberOfTracks) {
-      var exception = Assert.Throws<ArgumentException>(() => new LastfmService("key", null, null, null).FindRecentTracks("me", numberOfTracks));
+      var exception = Assert.Throws<ArgumentException>(() => new LastfmService("key", null, null, null, null).FindRecentTracks("me", numberOfTracks));
       Assert.That(exception.Message, Is.EqualTo("numberOfTracks must be a positive integer."));
     }
 
@@ -127,7 +127,7 @@ namespace LastfmClientTests {
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response);
       parser.Expect(p => p.ParseRecentTracks(response)).Return(lastfmResponse);
 
-      var recentTracks = new LastfmService("key", restClient, parser, pageCalculator).FindRecentTracks("me", 1);
+      var recentTracks = new LastfmService("key", restClient, parser, pageCalculator, null).FindRecentTracks("me", 1);
 
       Assert.That(recentTracks.Count(), Is.EqualTo(1));
       Assert.That(recentTracks.First().Name, Is.EqualTo(firstTrack));
@@ -136,7 +136,7 @@ namespace LastfmClientTests {
     [TestCase(-11)]
     [TestCase(0)]
     public void FindTopArtists_Only_Takes_Positive_Values_For_Number_Of_Top_Artists(int numberOfArtists) {
-      var exception = Assert.Throws<ArgumentException>(() => new LastfmService("key", null, null, null).FindTopArtists("me", numberOfArtists));
+      var exception = Assert.Throws<ArgumentException>(() => new LastfmService("key", null, null, null, null).FindTopArtists("me", numberOfArtists));
       Assert.That(exception.Message, Is.EqualTo("numberOfArtists must be a positive integer."));
     }
 
@@ -162,7 +162,7 @@ namespace LastfmClientTests {
       parser.Expect(p => p.ParseTopArtists(response1)).Return(lastfmResponse1);
       parser.Expect(p => p.ParseTopArtists(response2)).Return(lastfmResponse2);
 
-      var topArtists = new LastfmService("key", restClient, parser, pageCalculator).FindTopArtists("me", 2);
+      var topArtists = new LastfmService("key", restClient, parser, pageCalculator, null).FindTopArtists("me", 2);
 
       restClient.VerifyAllExpectations();
       parser.VerifyAllExpectations();
@@ -192,10 +192,24 @@ namespace LastfmClientTests {
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response);
       parser.Expect(p => p.ParseTopArtists(response)).Return(lastfmResponse);
 
-      var topArtists = new LastfmService("key", restClient, parser, pageCalculator).FindTopArtists("me", 1);
+      var topArtists = new LastfmService("key", restClient, parser, pageCalculator, null).FindTopArtists("me", 1);
 
       Assert.That(topArtists.Count(), Is.EqualTo(1));
       Assert.That(topArtists.First().Name, Is.EqualTo(firstArtist));
+    }
+
+    [Test]
+    public void FindCurrentlyPlayingFrom_Delegates_To_PageScraper() {
+      var pageScraper = MockRepository.GenerateStub<ILastfmPageScraper>();
+      var service = new LastfmService("key", null, null, null, pageScraper);
+      var user = "testingUser";
+      var scraperResult = new LastfmPlayingFrom { MusicServiceName = "Spotify", MusicServiceUrl = @"http://www.spotify.com"};
+
+      pageScraper.Stub(ps => ps.GetLastfmPlayingFromInfo("http://www.last.fm/user/" + user)).Return(scraperResult);
+
+      var response = service.FindCurrentlyPlayingFrom(user);
+      Assert.That(response.MusicServiceName, Is.EqualTo(scraperResult.MusicServiceName));
+      Assert.That(response.MusicServiceUrl, Is.EqualTo(scraperResult.MusicServiceUrl));
     }
   }
 }
