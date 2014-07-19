@@ -25,7 +25,7 @@ namespace LastfmClientTests {
     }
 
     [Test]
-    public void GetLastfmPlayingFromInfoFromFile_While_User_Is_Not_Playing_Returns_Emtpy_Result() {
+    public void GetLastfmPlayingFromInfoFromFile_While_User_Is_Not_Playing_Returns_Empty_Result() {
       var listeningFrom = scraper.GetLastfmPlayingFromInfoFromFile("lastfmUserPageNotCurrentlyPlaying.html");
       Assert.That(String.IsNullOrWhiteSpace(listeningFrom.MusicServiceName), Is.True);
       Assert.That(String.IsNullOrWhiteSpace(listeningFrom.MusicServiceUrl), Is.True);
