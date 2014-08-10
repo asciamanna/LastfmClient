@@ -47,9 +47,11 @@
     <Compile Include="LastfmPageScraper.cs" />
     <Compile Include="LastfmUri.cs" />
     <Compile Include="Responses\LastfmLibaryAlbum.cs" />
+    <Compile Include="Responses\LastfmLibraryItem.cs" />
     <Compile Include="Responses\LastfmResponse.cs" />
     <Compile Include="Responses\LastfmLibraryTrack.cs" />
     <Compile Include="Responses\LastfmPlayingFrom.cs" />
+    <Compile Include="Responses\LastfmUserItem.cs" />
     <Compile Include="Responses\LastfmUserRecentTrack.cs" />
     <Compile Include="LastfmResponseParser.cs" />
     <Compile Include="LastfmService.cs" />

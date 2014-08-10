@@ -5,10 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LastfmClient.Responses {
-  public class LastfmLibraryTrack {
-    public string Name { get; set; }
-    public string Artist { get; set; }
+  public class LastfmLibraryTrack : LastfmLibraryItem{
     public string Album { get; set; }
-    public int PlayCount { get; set; }
   }
 }

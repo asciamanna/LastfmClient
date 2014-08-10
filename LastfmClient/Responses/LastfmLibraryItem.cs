@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LastfmClient.Responses {
-  public class LastfmUserRecentTrack : LastfmUserItem {
-    public bool IsNowPlaying = false;
+  public class LastfmLibraryItem {
+    public string Name;
+    public int PlayCount;
     public string Artist;
-    public string Album;
-    public DateTime? LastPlayed;
   }
 }

@@ -89,10 +89,10 @@ namespace LastfmClient {
           Name = track.Element("name").Value,
           Album = track.Element("album").Value,
           Artist = track.Element("artist").Value,
-          ExtraLargeAlbumArtLocation = ParseImageLocation(track, "extralarge"),
-          LargeAlbumArtLocation = ParseImageLocation(track, "large"),
-          MediumAlbumArtLocation = ParseImageLocation(track, "medium"),
-          SmallAlbumArtLocation = ParseImageLocation(track, "small"),
+          ExtraLargeImageLocation = ParseImageLocation(track, "extralarge"),
+          LargeImageLocation = ParseImageLocation(track, "large"),
+          MediumImageLocation = ParseImageLocation(track, "medium"),
+          SmallImageLocation = ParseImageLocation(track, "small"),
           LastPlayed = ParseDateAsUTC(track)
         });
       }
@@ -131,11 +131,11 @@ namespace LastfmClient {
           Rank = Int32.Parse(artistElement.Attribute("rank").Value),
           Name = artistElement.Element("name").Value,
           PlayCount = Int32.Parse(artistElement.Element("playcount").Value),
-          MegaArtistImageLocation = ParseImageLocation(artistElement, "mega"),
-          ExtraLargeArtistImageLocation = ParseImageLocation(artistElement, "extralarge"),
-          LargeArtistImageLocation = ParseImageLocation(artistElement, "large"),
-          MediumArtistImageLocation = ParseImageLocation(artistElement, "medium"),
-          SmallArtistImageLocation = ParseImageLocation(artistElement, "small"),
+          MegaImageLocation = ParseImageLocation(artistElement, "mega"),
+          ExtraLargeImageLocation = ParseImageLocation(artistElement, "extralarge"),
+          LargeImageLocation = ParseImageLocation(artistElement, "large"),
+          MediumImageLocation = ParseImageLocation(artistElement, "medium"),
+          SmallImageLocation = ParseImageLocation(artistElement, "small"),
         });
       }
       return topArtists;
