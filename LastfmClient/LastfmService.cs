@@ -39,11 +39,11 @@ namespace LastfmClient {
       var tracks = new List<LastfmLibraryTrack>();
       var uri = BuildUri(LastfmUri.LibraryTracks, user, page);
       var response = parser.ParseTracks(restClient.DownloadData(uri));
-      tracks.AddRange(response.Tracks);
+      tracks.AddRange(response.Items);
       var totalPages = response.TotalPages;
       foreach (var pageNum in Enumerable.Range(2, totalPages - 1)) {
         uri = BuildUri(LastfmUri.LibraryTracks, user, pageNum);
-        tracks.AddRange(parser.ParseTracks(restClient.DownloadData(uri)).Tracks);
+        tracks.AddRange(parser.ParseTracks(restClient.DownloadData(uri)).Items);
       }
       return tracks;
     }
@@ -53,11 +53,11 @@ namespace LastfmClient {
       var albums = new List<LastfmLibraryAlbum>();
       var uri = BuildUri(LastfmUri.LibraryAlbums, user, page);
       var response = parser.ParseAlbums(restClient.DownloadData(uri));
-      albums.AddRange(response.Albums);
+      albums.AddRange(response.Items);
       var totalPages = response.TotalPages;
       foreach (var pageNum in Enumerable.Range(2, totalPages - 1)) {
         uri = BuildUri(LastfmUri.LibraryAlbums, user, pageNum);
-        albums.AddRange(parser.ParseAlbums(restClient.DownloadData(uri)).Albums);
+        albums.AddRange(parser.ParseAlbums(restClient.DownloadData(uri)).Items);
       }
       return albums;
     }
@@ -70,11 +70,11 @@ namespace LastfmClient {
       var response = parser.ParseRecentTracks(restClient.DownloadData(uri));
 
       var numberOfPagesToRetrieve = pageCalculator.Calculate(response, numberOfTracks);
-      recentTracks.AddRange(response.Tracks);
+      recentTracks.AddRange(response.Items);
 
       foreach (var pageNum in Enumerable.Range(2, numberOfPagesToRetrieve - 1)) {
         uri = BuildUri(LastfmUri.UserRecentTracks, user, pageNum);
-        recentTracks.AddRange(parser.ParseRecentTracks(restClient.DownloadData(uri)).Tracks);
+        recentTracks.AddRange(parser.ParseRecentTracks(restClient.DownloadData(uri)).Items);
       }
       return recentTracks.Take(numberOfTracks).ToList();
     }
@@ -87,11 +87,11 @@ namespace LastfmClient {
       var response = parser.ParseTopArtists(restClient.DownloadData(uri));
 
       var numberOfPagesToRetrieve = pageCalculator.Calculate(response, numberOfArtists);
-      topArtists.AddRange(response.TopArtists);
+      topArtists.AddRange(response.Items);
 
       foreach (var pageNum in Enumerable.Range(2, numberOfPagesToRetrieve - 1)) {
         uri = BuildUri(LastfmUri.UserTopArtists, user, pageNum);
-        topArtists.AddRange(parser.ParseTopArtists(restClient.DownloadData(uri)).TopArtists);
+        topArtists.AddRange(parser.ParseTopArtists(restClient.DownloadData(uri)).Items);
       }
       return topArtists.Take(numberOfArtists).ToList();
     }

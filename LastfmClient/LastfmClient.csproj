@@ -46,16 +46,16 @@
     <Compile Include="FailFast.cs" />
     <Compile Include="LastfmPageScraper.cs" />
     <Compile Include="LastfmUri.cs" />
-    <Compile Include="Responses\LastfmLibraryAlbumResponse.cs" />
-    <Compile Include="Responses\LastfmLibraryResponse.cs" />
+    <Compile Include="Responses\LastfmLibaryAlbum.cs" />
+    <Compile Include="Responses\LastfmResponse.cs" />
+    <Compile Include="Responses\LastfmLibraryTrack.cs" />
     <Compile Include="Responses\LastfmPlayingFrom.cs" />
-    <Compile Include="Responses\LastfmUserRecentTracksResponse.cs" />
-    <Compile Include="Responses\LastfmLibraryTrackResponse.cs" />
+    <Compile Include="Responses\LastfmUserRecentTrack.cs" />
     <Compile Include="LastfmResponseParser.cs" />
     <Compile Include="LastfmService.cs" />
     <Compile Include="PageCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Responses\LastfmUserTopArtistsResponse.cs" />
+    <Compile Include="Responses\LastfmUserTopArtist.cs" />
     <Compile Include="RestClient.cs" />
   </ItemGroup>
   <ItemGroup>

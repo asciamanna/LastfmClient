@@ -10,11 +10,11 @@ using NUnit.Framework;
 namespace LastfmClientTests {
   [TestFixture]
   public class PageCalculatorTest {
-    LastfmUserRecentTracksResponse response;
+    LastfmResponse<LastfmUserRecentTrack> response;
     
     [SetUp]
     public void Setup() {
-      response = new LastfmUserRecentTracksResponse { PerPage = 25, TotalPages = 4, TotalRecords = 100 };
+      response = new LastfmResponse<LastfmUserRecentTrack> { PerPage = 25, TotalPages = 4, TotalRecords = 100 };
     }
 
     [Test]

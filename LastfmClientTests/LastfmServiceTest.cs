@@ -24,8 +24,8 @@ namespace LastfmClientTests {
       var secondUri = @"http://ws.audioscrobbler.com/2.0/?method=library.gettracks&api_key=key&user=me&page=2";
       var response1 = new XElement("Response1");
       var response2 = new XElement("Response2");
-      var lastfmResponse1 = new LastfmLibraryTrackResponse { TotalPages = 2, Tracks = new List<LastfmLibraryTrack> { new LastfmLibraryTrack { Name = "Tracky1" } } };
-      var lastfmResponse2 = new LastfmLibraryTrackResponse { TotalPages = 2, Tracks = new List<LastfmLibraryTrack> { new LastfmLibraryTrack { Name = "Tracky2" } } };
+      var lastfmResponse1 = new LastfmResponse<LastfmLibraryTrack> { TotalPages = 2, Items = new List<LastfmLibraryTrack> { new LastfmLibraryTrack { Name = "Tracky1" } } };
+      var lastfmResponse2 = new LastfmResponse<LastfmLibraryTrack> { TotalPages = 2, Items = new List<LastfmLibraryTrack> { new LastfmLibraryTrack { Name = "Tracky2" } } };
 
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response1);
       restClient.Expect(rc => rc.DownloadData(secondUri)).Return(response2);
@@ -51,8 +51,8 @@ namespace LastfmClientTests {
       var response2 = new XElement("Response2");
       var firstAlbum = "Dexter Calling...";
       var secondAlbum = "Our Man In Paris";
-      var lastfmResponse1 = new LastfmLibraryAlbumResponse { TotalPages = 2, Albums = new List<LastfmLibraryAlbum> { new LastfmLibraryAlbum { Name = firstAlbum } } };
-      var lastfmResponse2 = new LastfmLibraryAlbumResponse { TotalPages = 2, Albums = new List<LastfmLibraryAlbum> { new LastfmLibraryAlbum { Name = secondAlbum } } };
+      var lastfmResponse1 = new LastfmResponse<LastfmLibraryAlbum> { TotalPages = 2, Items = new List<LastfmLibraryAlbum> { new LastfmLibraryAlbum { Name = firstAlbum } } };
+      var lastfmResponse2 = new LastfmResponse<LastfmLibraryAlbum> { TotalPages = 2, Items = new List<LastfmLibraryAlbum> { new LastfmLibraryAlbum { Name = secondAlbum } } };
 
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response1);
       restClient.Expect(rc => rc.DownloadData(secondUri)).Return(response2);
@@ -80,8 +80,8 @@ namespace LastfmClientTests {
       var response2 = new XElement("Response2");
       var firstTrack = "My Favorite Things";
       var secondTrack = "But Not For Me";
-      var lastfmResponse1 = new LastfmUserRecentTracksResponse { Tracks = new List<LastfmUserRecentTrack> { new LastfmUserRecentTrack { Name = firstTrack } } };
-      var lastfmResponse2 = new LastfmUserRecentTracksResponse { Tracks = new List<LastfmUserRecentTrack> { new LastfmUserRecentTrack { Name = secondTrack } } };
+      var lastfmResponse1 = new LastfmResponse<LastfmUserRecentTrack> { Items = new List<LastfmUserRecentTrack> { new LastfmUserRecentTrack { Name = firstTrack } } };
+      var lastfmResponse2 = new LastfmResponse<LastfmUserRecentTrack> { Items = new List<LastfmUserRecentTrack> { new LastfmUserRecentTrack { Name = secondTrack } } };
       pageCalculator.Stub(pc => pc.Calculate(lastfmResponse1, 2)).Return(2);
 
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response1);
@@ -117,8 +117,8 @@ namespace LastfmClientTests {
       var response = new XElement("Response1");
       var firstTrack = "My Favorite Things";
       var secondTrack = "But Not For Me";
-      var lastfmResponse = new LastfmUserRecentTracksResponse { 
-        Tracks = new List<LastfmUserRecentTrack> { 
+      var lastfmResponse = new LastfmResponse<LastfmUserRecentTrack> { 
+        Items = new List<LastfmUserRecentTrack> { 
           new LastfmUserRecentTrack { Name = firstTrack }, 
           new LastfmUserRecentTrack { Name = secondTrack } 
         } 
@@ -152,8 +152,8 @@ namespace LastfmClientTests {
       var response2 = new XElement("Response2");
       var firstArtist = "Miles Davis";
       var secondArtist = "Devo";
-      var lastfmResponse1 = new LastfmUserTopArtistsResponse { TopArtists= new List<LastfmUserTopArtist> { new LastfmUserTopArtist { Name = firstArtist } } };
-      var lastfmResponse2 = new LastfmUserTopArtistsResponse { TopArtists = new List<LastfmUserTopArtist> { new LastfmUserTopArtist { Name = secondArtist } } };
+      var lastfmResponse1 = new LastfmResponse<LastfmUserTopArtist> { Items = new List<LastfmUserTopArtist> { new LastfmUserTopArtist { Name = firstArtist } } };
+      var lastfmResponse2 = new LastfmResponse<LastfmUserTopArtist> { Items = new List<LastfmUserTopArtist> { new LastfmUserTopArtist { Name = secondArtist } } };
       pageCalculator.Stub(pc => pc.Calculate(lastfmResponse1, 2)).Return(2);
 
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response1);
@@ -182,8 +182,8 @@ namespace LastfmClientTests {
       var response = new XElement("Response1");
       var firstArtist = "Ramones";
       var secondArtist = "Misfits";
-      var lastfmResponse = new LastfmUserTopArtistsResponse {
-        TopArtists = new List<LastfmUserTopArtist> { 
+      var lastfmResponse = new LastfmResponse<LastfmUserTopArtist> {
+        Items = new List<LastfmUserTopArtist> { 
           new LastfmUserTopArtist { Name = firstArtist }, 
           new LastfmUserTopArtist { Name = secondArtist } 
         }

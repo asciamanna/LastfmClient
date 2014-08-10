@@ -6,24 +6,24 @@ using LastfmClient.Responses;
 
 namespace LastfmClient {
   public interface ILastfmResponseParser {
-    LastfmLibraryTrackResponse ParseTracks(XElement xmlResponse);
-    LastfmLibraryAlbumResponse ParseAlbums(XElement xmlResponse);
-    LastfmUserRecentTracksResponse ParseRecentTracks(XElement xmlResponse);
-    LastfmUserTopArtistsResponse ParseTopArtists(XElement xmlResponse);
+    LastfmResponse<LastfmLibraryTrack> ParseTracks(XElement xmlResponse);
+    LastfmResponse<LastfmLibraryAlbum> ParseAlbums(XElement xmlResponse);
+    LastfmResponse<LastfmUserRecentTrack> ParseRecentTracks(XElement xmlResponse);
+    LastfmResponse<LastfmUserTopArtist> ParseTopArtists(XElement xmlResponse);
   }
 
   public class LastfmResponseParser : ILastfmResponseParser {
-    public LastfmLibraryTrackResponse ParseTracks(XElement xmlResponse) {
+    public LastfmResponse<LastfmLibraryTrack> ParseTracks(XElement xmlResponse) {
       var tracks = xmlResponse.DescendantsAndSelf("tracks");
       var tracksElement = tracks.First();
 
-      return new LastfmLibraryTrackResponse {
+      return new LastfmResponse<LastfmLibraryTrack> {
         Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(tracksElement.Attribute("page").Value),
         PerPage = Int32.Parse(tracksElement.Attribute("perPage").Value),
         TotalPages = Int32.Parse(tracksElement.Attribute("totalPages").Value),
         TotalRecords = Int32.Parse(tracksElement.Attribute("total").Value),
-        Tracks = BuildTracks(tracks.Descendants("track")).ToList(),
+        Items = BuildTracks(tracks.Descendants("track")).ToList(),
       };
     }
     
@@ -40,17 +40,17 @@ namespace LastfmClient {
       return libraryTracks;
     }
 
-    public LastfmLibraryAlbumResponse ParseAlbums(XElement xmlResponse) {
+    public LastfmResponse<LastfmLibraryAlbum> ParseAlbums(XElement xmlResponse) {
       var albums = xmlResponse.DescendantsAndSelf("albums");
       var albumsElement = albums.First();
     
-      return new LastfmLibraryAlbumResponse {
+      return new LastfmResponse<LastfmLibraryAlbum> {
         Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(albumsElement.Attribute("page").Value),
         PerPage = Int32.Parse(albumsElement.Attribute("perPage").Value),
         TotalPages = Int32.Parse(albumsElement.Attribute("totalPages").Value),
         TotalRecords = Int32.Parse(albumsElement.Attribute("total").Value),
-        Albums = BuildAlbums(albumsElement.Descendants("album")).ToList(),
+        Items = BuildAlbums(albumsElement.Descendants("album")).ToList(),
       };
     }
 
@@ -67,17 +67,17 @@ namespace LastfmClient {
       return libraryAlbums;
     }
 
-    public LastfmUserRecentTracksResponse ParseRecentTracks(XElement xmlResponse) {
+    public LastfmResponse<LastfmUserRecentTrack> ParseRecentTracks(XElement xmlResponse) {
       var tracks = xmlResponse.DescendantsAndSelf("recenttracks");
       var tracksElement = tracks.First();
 
-      return new LastfmUserRecentTracksResponse {
+      return new LastfmResponse<LastfmUserRecentTrack> {
         Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(tracksElement.Attribute("page").Value),
         PerPage = Int32.Parse(tracksElement.Attribute("perPage").Value),
         TotalPages = Int32.Parse(tracksElement.Attribute("totalPages").Value),
         TotalRecords = Int32.Parse(tracksElement.Attribute("total").Value),
-        Tracks = BuildRecentTracks(tracksElement.Descendants("track")).ToList(),
+        Items = BuildRecentTracks(tracksElement.Descendants("track")).ToList(),
       };
     }
 
@@ -110,17 +110,17 @@ namespace LastfmClient {
       return element.Elements("image").Where(e => e.Attribute("size").Value == sizeAttribute).FirstOrDefault().Value.Trim();
     }
 
-    public LastfmUserTopArtistsResponse ParseTopArtists(XElement xmlResponse) {
+    public LastfmResponse<LastfmUserTopArtist> ParseTopArtists(XElement xmlResponse) {
       var artists = xmlResponse.DescendantsAndSelf("topartists");
       var artistsElement = artists.First();
 
-      return new LastfmUserTopArtistsResponse {
+      return new LastfmResponse<LastfmUserTopArtist> {
         Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(artistsElement.Attribute("page").Value),
         PerPage = Int32.Parse(artistsElement.Attribute("perPage").Value),
         TotalPages = Int32.Parse(artistsElement.Attribute("totalPages").Value),
         TotalRecords = Int32.Parse(artistsElement.Attribute("total").Value),
-        TopArtists = BuildTopArtists(artistsElement.Descendants("artist")).ToList(),
+        Items = BuildTopArtists(artistsElement.Descendants("artist")).ToList(),
       };
     }
 

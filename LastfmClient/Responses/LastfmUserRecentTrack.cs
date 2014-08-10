@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LastfmClient.Responses {
-  public class LastfmUserRecentTracksResponse : LastfmResponse, ILastfmResponse {
-    public List<LastfmUserRecentTrack> Tracks = new List<LastfmUserRecentTrack>();
-  }
-
   public class LastfmUserRecentTrack {
     public bool IsNowPlaying = false;
     public string Name;

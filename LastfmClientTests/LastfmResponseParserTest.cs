@@ -17,14 +17,14 @@ namespace LastfmClientTests {
       Assert.That(result.PerPage, Is.EqualTo(50));
       Assert.That(result.TotalPages, Is.EqualTo(120));
       Assert.That(result.TotalRecords, Is.EqualTo(5980));
-      Assert.That(result.Tracks.Count(), Is.EqualTo(31));
+      Assert.That(result.Items.Count(), Is.EqualTo(31));
     }
 
     [Test]
     public void ParseTracks_TrackInfo() {
       var xelement = XElement.Load(@"lastfmTrackResponse.xml");
       var result = new LastfmResponseParser().ParseTracks(xelement);
-      var firstTrack = result.Tracks.First();
+      var firstTrack = result.Items.First();
       Assert.That(firstTrack.Name, Is.EqualTo("Terminal"));
       Assert.That(firstTrack.Artist, Is.EqualTo("OSI"));
       Assert.That(firstTrack.Album, Is.EqualTo("Blood"));
@@ -46,7 +46,7 @@ namespace LastfmClientTests {
     public void ParseAlbums_AlbumInfo() {
       var xelement = XElement.Load(@"lastfmAlbumResponse.xml");
       var result = new LastfmResponseParser().ParseAlbums(xelement);
-      var album = result.Albums.First();
+      var album = result.Items.First();
       Assert.That(album.Artist, Is.EqualTo("OSI"));
       Assert.That(album.Name, Is.EqualTo("Blood"));
       Assert.That(album.ArtworkLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/300x300/82850719.jpg"));
@@ -57,7 +57,7 @@ namespace LastfmClientTests {
     public void ParseRecentTracks_Removes_Whitespace_from_Artwork_Location_URLs() {
       var xelement = XElement.Load(@"lastfmUserRecenttracksResponse.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
-      var recentTrack = result.Tracks.First();
+      var recentTrack = result.Items.First();
       Assert.That(recentTrack.ExtraLargeAlbumArtLocation, Is.Not.StringMatching("^\\s+"));
       Assert.That(recentTrack.ExtraLargeAlbumArtLocation, Is.Not.StringMatching("\\s+$"));
 
@@ -75,7 +75,7 @@ namespace LastfmClientTests {
     public void ParseRecentTracks_TrackInfo() {
       var xelement = XElement.Load(@"lastfmUserRecenttracksResponse.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
-      var recentTrack = result.Tracks.First();
+      var recentTrack = result.Items.First();
       Assert.That(recentTrack.IsNowPlaying, Is.False);
       Assert.That(recentTrack.Name, Is.EqualTo("Sophisticated Lady"));
       Assert.That(recentTrack.Album, Is.EqualTo("Thelonious Monk Plays Duke Ellington"));
@@ -90,7 +90,7 @@ namespace LastfmClientTests {
     public void ParseRecentTracks_Parses_NowPlaying() {
       var xelement = XElement.Load(@"lastfmRecentTracksResponseNowPlaying.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
-      var recentTrack = result.Tracks.First();
+      var recentTrack = result.Items.First();
       Assert.That(recentTrack.IsNowPlaying, Is.True);
     }
 
@@ -98,7 +98,7 @@ namespace LastfmClientTests {
     public void ParseTopArtists_Removes_Whitespace_from_Artwork_Location_URLs() {
       var xelement = XElement.Load(@"lastfmUserTopArtistsResponse.xml");
       var result = new LastfmResponseParser().ParseTopArtists(xelement);
-      var topArtist = result.TopArtists.First();
+      var topArtist = result.Items.First();
       Assert.That(topArtist.MegaArtistImageLocation, Is.Not.StringMatching("^\\s+"));
       Assert.That(topArtist.MegaArtistImageLocation, Is.Not.StringMatching("\\s+$"));
 
@@ -119,7 +119,7 @@ namespace LastfmClientTests {
     public void ParseTopArtists() {
       var xelement = XElement.Load(@"lastfmUserTopArtistsResponse.xml");
       var result = new LastfmResponseParser().ParseTopArtists(xelement);
-      var topArtist = result.TopArtists.First();
+      var topArtist = result.Items.First();
 
       Assert.That(topArtist.Name, Is.EqualTo("Miles Davis"));
       Assert.That(topArtist.PlayCount, Is.EqualTo(3247));
