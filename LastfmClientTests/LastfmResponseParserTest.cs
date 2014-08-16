@@ -18,13 +18,14 @@ namespace LastfmClientTests {
       Assert.That(result.TotalPages, Is.EqualTo(120));
       Assert.That(result.TotalRecords, Is.EqualTo(5980));
       Assert.That(result.Items.Count(), Is.EqualTo(31));
+      Assert.That(result.Items.First(), Is.InstanceOf<LastfmLibraryTrack>());
     }
 
     [Test]
     public void ParseTracks_TrackInfo() {
       var xelement = XElement.Load(@"lastfmTrackResponse.xml");
       var result = new LastfmResponseParser().ParseTracks(xelement);
-      var firstTrack = result.Items.First();
+      var firstTrack = result.Items.First() as LastfmLibraryTrack;
       Assert.That(firstTrack.Name, Is.EqualTo("Terminal"));
       Assert.That(firstTrack.Artist, Is.EqualTo("OSI"));
       Assert.That(firstTrack.Album, Is.EqualTo("Blood"));
@@ -46,7 +47,7 @@ namespace LastfmClientTests {
     public void ParseAlbums_AlbumInfo() {
       var xelement = XElement.Load(@"lastfmAlbumResponse.xml");
       var result = new LastfmResponseParser().ParseAlbums(xelement);
-      var album = result.Items.First();
+      var album = result.Items.First() as LastfmLibraryAlbum;
       Assert.That(album.Artist, Is.EqualTo("OSI"));
       Assert.That(album.Name, Is.EqualTo("Blood"));
       Assert.That(album.ArtworkLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/300x300/82850719.jpg"));

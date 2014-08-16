@@ -6,18 +6,18 @@ using LastfmClient.Responses;
 
 namespace LastfmClient {
   public interface ILastfmResponseParser {
-    LastfmResponse<LastfmLibraryTrack> ParseTracks(XElement xmlResponse);
-    LastfmResponse<LastfmLibraryAlbum> ParseAlbums(XElement xmlResponse);
+    LastfmResponse<LastfmLibraryItem> ParseTracks(XElement xmlResponse);
+    LastfmResponse<LastfmLibraryItem> ParseAlbums(XElement xmlResponse);
     LastfmResponse<LastfmUserRecentTrack> ParseRecentTracks(XElement xmlResponse);
     LastfmResponse<LastfmUserTopArtist> ParseTopArtists(XElement xmlResponse);
   }
 
   public class LastfmResponseParser : ILastfmResponseParser {
-    public LastfmResponse<LastfmLibraryTrack> ParseTracks(XElement xmlResponse) {
+    public LastfmResponse<LastfmLibraryItem> ParseTracks(XElement xmlResponse) {
       var tracks = xmlResponse.DescendantsAndSelf("tracks");
       var tracksElement = tracks.First();
 
-      return new LastfmResponse<LastfmLibraryTrack> {
+      return new LastfmResponse<LastfmLibraryItem> {
         Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(tracksElement.Attribute("page").Value),
         PerPage = Int32.Parse(tracksElement.Attribute("perPage").Value),
@@ -27,7 +27,7 @@ namespace LastfmClient {
       };
     }
     
-    IEnumerable<LastfmLibraryTrack> BuildTracks(IEnumerable<XElement> tracks) {
+    IEnumerable<LastfmLibraryItem> BuildTracks(IEnumerable<XElement> tracks) {
       var libraryTracks = new List<LastfmLibraryTrack>();
       foreach (var track in tracks.Where(t => t.Element("album") != null)) {
         libraryTracks.Add(new LastfmLibraryTrack {
@@ -40,11 +40,11 @@ namespace LastfmClient {
       return libraryTracks;
     }
 
-    public LastfmResponse<LastfmLibraryAlbum> ParseAlbums(XElement xmlResponse) {
+    public LastfmResponse<LastfmLibraryItem> ParseAlbums(XElement xmlResponse) {
       var albums = xmlResponse.DescendantsAndSelf("albums");
       var albumsElement = albums.First();
     
-      return new LastfmResponse<LastfmLibraryAlbum> {
+      return new LastfmResponse<LastfmLibraryItem> {
         Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(albumsElement.Attribute("page").Value),
         PerPage = Int32.Parse(albumsElement.Attribute("perPage").Value),
@@ -54,8 +54,8 @@ namespace LastfmClient {
       };
     }
 
-    IEnumerable<LastfmLibraryAlbum> BuildAlbums(IEnumerable<XElement> albums) {
-      var libraryAlbums = new List<LastfmLibraryAlbum>();
+    IEnumerable<LastfmLibraryItem> BuildAlbums(IEnumerable<XElement> albums) {
+      var libraryAlbums = new List<LastfmLibraryItem>();
       foreach (var album in albums) {
         libraryAlbums.Add(new LastfmLibraryAlbum {
           Name = album.Element("name").Value,
