@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace LastfmClient.Repositories {
   public interface IRepositoryFactory {
-    ILibraryRepository CreateLibraryTracksRepository(string apiKey);
-    ILibraryRepository CreateLibraryAlbumsRepository(string apiKey);
+    ILibraryRepository CreateLibraryTrackRepository(string apiKey);
+    ILibraryRepository CreateLibraryAlbumRepository(string apiKey);
   }
   public class RepositoryFactory : IRepositoryFactory {
-    public ILibraryRepository CreateLibraryTracksRepository(string apiKey) {
+    public ILibraryRepository CreateLibraryTrackRepository(string apiKey) {
       return new LibraryTrackRepository(apiKey);
     }
 
-    public ILibraryRepository CreateLibraryAlbumsRepository(string apiKey) {
+    public ILibraryRepository CreateLibraryAlbumRepository(string apiKey) {
       return new LibraryAlbumRepository(apiKey);
     }
   }

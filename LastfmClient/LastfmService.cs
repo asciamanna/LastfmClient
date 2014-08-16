@@ -28,7 +28,6 @@ namespace LastfmClient {
       if (string.IsNullOrEmpty(apiKey)) {
         throw new ArgumentException("An API key is required");
       }
-
       this.apiKey = apiKey;
       this.restClient = restClient;
       this.parser = parser;
@@ -38,12 +37,12 @@ namespace LastfmClient {
     }
 
     public List<LastfmLibraryTrack> FindAllTracks(string user) {
-      var libraryTracksRepository = repositoryFactory.CreateLibraryTracksRepository(apiKey);
+      var libraryTracksRepository = repositoryFactory.CreateLibraryTrackRepository(apiKey);
       return libraryTracksRepository.GetItems(user).Cast<LastfmLibraryTrack>().ToList();
     }
 
     public List<LastfmLibraryAlbum> FindAllAlbums(string user) {
-      var libraryAlbumsRepository = repositoryFactory.CreateLibraryAlbumsRepository(apiKey);
+      var libraryAlbumsRepository = repositoryFactory.CreateLibraryAlbumRepository(apiKey);
       return libraryAlbumsRepository.GetItems(user).Cast<LastfmLibraryAlbum>().ToList();
     }
 

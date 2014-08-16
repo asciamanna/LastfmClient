@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LastfmClient.Responses {
-  public class LastfmUserItem {
+  public abstract class LastfmUserItem {
     public string Name;
     public string ExtraLargeImageLocation;
     public string LargeImageLocation;
