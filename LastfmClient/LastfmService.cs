@@ -37,47 +37,25 @@ namespace LastfmClient {
     }
 
     public List<LastfmLibraryTrack> FindAllTracks(string user) {
-      var libraryTracksRepository = repositoryFactory.CreateLibraryTrackRepository(apiKey);
-      return libraryTracksRepository.GetItems(user).Cast<LastfmLibraryTrack>().ToList();
+      var libraryTrackRepository = repositoryFactory.CreateLibraryTrackRepository(apiKey);
+      return libraryTrackRepository.GetItems(user).Cast<LastfmLibraryTrack>().ToList();
     }
 
     public List<LastfmLibraryAlbum> FindAllAlbums(string user) {
-      var libraryAlbumsRepository = repositoryFactory.CreateLibraryAlbumRepository(apiKey);
-      return libraryAlbumsRepository.GetItems(user).Cast<LastfmLibraryAlbum>().ToList();
+      var libraryAlbumRepository = repositoryFactory.CreateLibraryAlbumRepository(apiKey);
+      return libraryAlbumRepository.GetItems(user).Cast<LastfmLibraryAlbum>().ToList();
     }
 
     public List<LastfmUserRecentTrack> FindRecentTracks(string user, int numberOfTracks) {
       FailFast.IfNotPositive(numberOfTracks, "numberOfTracks");
-      var page = 1;
-      var recentTracks = new List<LastfmUserRecentTrack>();
-      var uri = BuildUri(LastfmUri.UserRecentTracks, user, page);
-      var response = parser.ParseRecentTracks(restClient.DownloadData(uri));
-
-      var numberOfPagesToRetrieve = pageCalculator.Calculate(response, numberOfTracks);
-      recentTracks.AddRange(response.Items);
-
-      foreach (var pageNum in Enumerable.Range(2, numberOfPagesToRetrieve - 1)) {
-        uri = BuildUri(LastfmUri.UserRecentTracks, user, pageNum);
-        recentTracks.AddRange(parser.ParseRecentTracks(restClient.DownloadData(uri)).Items);
-      }
-      return recentTracks.Take(numberOfTracks).ToList();
+      var userRecentTrackRepository = repositoryFactory.CreateUserRecentTrackRepository(apiKey);
+      return userRecentTrackRepository.GetItems(user, numberOfTracks).Cast<LastfmUserRecentTrack>().ToList();
     }
 
     public List<LastfmUserTopArtist> FindTopArtists(string user, int numberOfArtists) {
       FailFast.IfNotPositive(numberOfArtists, "numberOfArtists");
-      var page = 1;
-      var topArtists = new List<LastfmUserTopArtist>();
-      var uri = BuildUri(LastfmUri.UserTopArtists, user, page);
-      var response = parser.ParseTopArtists(restClient.DownloadData(uri));
-
-      var numberOfPagesToRetrieve = pageCalculator.Calculate(response, numberOfArtists);
-      topArtists.AddRange(response.Items);
-
-      foreach (var pageNum in Enumerable.Range(2, numberOfPagesToRetrieve - 1)) {
-        uri = BuildUri(LastfmUri.UserTopArtists, user, pageNum);
-        topArtists.AddRange(parser.ParseTopArtists(restClient.DownloadData(uri)).Items);
-      }
-      return topArtists.Take(numberOfArtists).ToList();
+      var userTopArtistRepository = repositoryFactory.CreateUserTopArtistRepository(apiKey);
+      return userTopArtistRepository.GetItems(user, numberOfArtists).Cast<LastfmUserTopArtist>().ToList();
     }
 
     public LastfmPlayingFrom FindCurrentlyPlayingFrom(string user) {

@@ -47,6 +47,9 @@
     <Compile Include="Repositories\LibraryRepository.cs" />
     <Compile Include="LastfmPageScraper.cs" />
     <Compile Include="LastfmUri.cs" />
+    <Compile Include="Repositories\UserRecentTrackRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\UserTopArtistRepository.cs" />
     <Compile Include="Responses\LastfmLibaryAlbum.cs" />
     <Compile Include="Responses\LastfmLibraryItem.cs" />
     <Compile Include="Responses\LastfmResponse.cs" />

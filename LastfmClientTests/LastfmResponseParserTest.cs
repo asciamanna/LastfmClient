@@ -76,7 +76,7 @@ namespace LastfmClientTests {
     public void ParseRecentTracks_TrackInfo() {
       var xelement = XElement.Load(@"lastfmUserRecenttracksResponse.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
-      var recentTrack = result.Items.First();
+      var recentTrack = result.Items.First() as LastfmUserRecentTrack;
       Assert.That(recentTrack.IsNowPlaying, Is.False);
       Assert.That(recentTrack.Name, Is.EqualTo("Sophisticated Lady"));
       Assert.That(recentTrack.Album, Is.EqualTo("Thelonious Monk Plays Duke Ellington"));
@@ -91,7 +91,7 @@ namespace LastfmClientTests {
     public void ParseRecentTracks_Parses_NowPlaying() {
       var xelement = XElement.Load(@"lastfmRecentTracksResponseNowPlaying.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
-      var recentTrack = result.Items.First();
+      var recentTrack = result.Items.First() as LastfmUserRecentTrack;
       Assert.That(recentTrack.IsNowPlaying, Is.True);
     }
 
@@ -99,7 +99,7 @@ namespace LastfmClientTests {
     public void ParseTopArtists_Removes_Whitespace_from_Artwork_Location_URLs() {
       var xelement = XElement.Load(@"lastfmUserTopArtistsResponse.xml");
       var result = new LastfmResponseParser().ParseTopArtists(xelement);
-      var topArtist = result.Items.First();
+      var topArtist = result.Items.First() as LastfmUserTopArtist;
       Assert.That(topArtist.MegaImageLocation, Is.Not.StringMatching("^\\s+"));
       Assert.That(topArtist.MegaImageLocation, Is.Not.StringMatching("\\s+$"));
 
@@ -120,7 +120,7 @@ namespace LastfmClientTests {
     public void ParseTopArtists() {
       var xelement = XElement.Load(@"lastfmUserTopArtistsResponse.xml");
       var result = new LastfmResponseParser().ParseTopArtists(xelement);
-      var topArtist = result.Items.First();
+      var topArtist = result.Items.First() as LastfmUserTopArtist;
 
       Assert.That(topArtist.Name, Is.EqualTo("Miles Davis"));
       Assert.That(topArtist.PlayCount, Is.EqualTo(3247));
