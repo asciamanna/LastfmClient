@@ -42,10 +42,10 @@ namespace LastfmClient.Repositories {
       return items.Take(numberOfItems).ToList();
     }
 
-    //LastfmUri.UserRecentTracks
     protected abstract string BaseUri { get; }
 
     protected abstract LastfmResponse<LastfmUserItem> ParseItems(string uri);
+    
     //refactor buildUri -- move to URI class.
     string BuildUri(string baseUri, string user, int page) {
       return string.Format(baseUri, apiKey, user, page);
