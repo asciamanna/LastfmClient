@@ -42,6 +42,7 @@
       <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,6 +53,7 @@
   <ItemGroup>
     <Compile Include="LastfmPageScraperTests.cs" />
     <Compile Include="LastfmResponseParserTest.cs" />
+    <Compile Include="LastfmServiceEndToEndTest.cs" />
     <Compile Include="LastfmServiceTest.cs" />
     <Compile Include="PageCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +94,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

@@ -15,7 +15,7 @@ namespace LastfmClient.Repositories {
     protected readonly ILastfmResponseParser parser;
     private readonly IPageCalculator pageCalculator;
 
-    public UserRepository(string apiKey) {
+    public UserRepository(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser(), new PageCalculator()) {
       this.apiKey = apiKey;
     }
 
