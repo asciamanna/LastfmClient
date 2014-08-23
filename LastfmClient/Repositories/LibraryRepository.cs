@@ -15,9 +15,9 @@ namespace LastfmClient.Repositories {
     protected readonly IRestClient restClient;
     protected readonly ILastfmResponseParser parser;
 
-    public LibraryRepository(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser()) { }
+    protected LibraryRepository(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser()) { }
 
-    public LibraryRepository(string apiKey, IRestClient restClient, ILastfmResponseParser parser) {
+    protected LibraryRepository(string apiKey, IRestClient restClient, ILastfmResponseParser parser) {
       this.apiKey = apiKey;
       this.restClient = restClient;
       this.parser = parser;
