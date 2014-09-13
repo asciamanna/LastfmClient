@@ -23,7 +23,7 @@ The last.fm API is quite large and I'm barely scratching the surface of it, impl
 If you have any requests for parts of the API that you would like implemented drop me a line or go ahead and fork and send pull requests.
 </p>
 ##Project Dependencies
-HtmlAgilityPack 1.4.6  
+HtmlAgilityPack 1.4.8  
 NUnit 2.6.3  
 RhinoMocks 3.6.1
 
