@@ -16,7 +16,7 @@ namespace LastfmClientTests {
     [SetUp]
     public void SetUp() {
       apiKey = ConfigurationManager.AppSettings["LastfmApiKey"];
-      Assert.That(apiKey, Is.Not.Empty);
+      Assert.That(apiKey, Is.Not.Empty, "The End To End tests require a Last fm API key to be defined in the user.config");
     }
 
     [Test]
