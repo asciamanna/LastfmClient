@@ -34,5 +34,13 @@ namespace LastfmClientTests {
       Assert.That(results.Count, Is.EqualTo(2));
       Assert.That(results.First(), Is.TypeOf<LastfmUserTopArtist>());
     }
+
+    [Test]
+    public void FindCurrentlyPlayingFrom_EndToEnd() {
+      var service = new LastfmService(apiKey);
+      var result = service.FindCurrentlyPlayingFrom("asciamanna");
+      Assert.That(result.MusicServiceName, Is.Not.Null);
+      Assert.That(result.MusicServiceUrl, Is.Not.Null);
+    }
   }
 }
