@@ -31,6 +31,12 @@ namespace LastfmClientTests {
       Assert.That(String.IsNullOrWhiteSpace(listeningFrom.MusicServiceUrl), Is.True);
     }
 
+    [Test]
+    public void GetLastfmPlayingFromInfoFromFile_Translates_Lastfm_Relative_URLs() {
+      var listeningFrom = scraper.GetLastfmPlayingFromInfoFromFile("lastfmUserPageWithRelativeUrl.html");
+      Assert.That(listeningFrom.MusicServiceUrl, Is.EqualTo(@"http://www.last.fm/download"));
+    }
+
     [Test, Category("Integration")]
     public void GetLastfmPlayingFromInfo_User_Page_Exists() {
       var pageUrl = @"http://www.last.fm/user/asciamanna";

@@ -14,6 +14,8 @@ namespace LastfmClient {
   }
 
   public class LastfmPageScraper : ILastfmPageScraper {
+    private const string lastfmBaseUrl = "http://www.last.fm";
+
     public LastfmPlayingFrom GetLastfmPlayingFromInfo(string url) {
       var doc = new HtmlWeb().Load(url);
       return ScrapePlayingFromInfo(doc);
@@ -32,13 +34,17 @@ namespace LastfmClient {
       var span = doc.DocumentNode.SelectSingleNode("//span[@class='source']");
 
       if (span != null) {
-        musicServiceUrl = span.FirstChild.Attributes.Where(a => a.Name == "href").Single().Value;
+        musicServiceUrl = FormatUrl(span.FirstChild.Attributes.Where(a => a.Name == "href").Single().Value);
         musicServiceName = span.FirstChild.InnerText;
       }
       return new LastfmPlayingFrom {
         MusicServiceName = musicServiceName,
         MusicServiceUrl = musicServiceUrl
       };
+    }
+
+    private static string FormatUrl(string url) {
+      return url.StartsWith("/") ? lastfmBaseUrl + url : url;
     }
   }
 }
