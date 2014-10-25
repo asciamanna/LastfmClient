@@ -5,17 +5,19 @@ A .NET client for the Last.FM REST API.
 [![Build status](https://ci.appveyor.com/api/projects/status/e703ayk1nydyngqm)](https://ci.appveyor.com/project/asciamanna/lastfmclient)
 
 ##Currently Supported
+These are the parts of the Last.FM REST API that are currently implemented:  
 
-* Retrieve all Last.fm tracks for a user
-* Retrieve all Last.fm albums for a user
-* Retrieve recent Last.fm tracks for a user
-* Retrieve top artists for a user
-* Retrieve Currently Playing from Service information for a user (scrapes last.fm user page)
+* [library.getTracks](http://www.last.fm/api/show/library.getTracks "library.getTracks")
+* [library.getAlbums](http://www.last.fm/api/show/library.getAlbums "library.getAlbums")
+* [user.getRecentTracks](http://www.last.fm/api/show/user.getRecentTracks "user.getRecentTracks")
+* [user.getTopArtists](http://http://www.last.fm/api/show/user.getTopArtists "user.getTopArtists")
+* Currently Playing from Service information for a user (scrapes last.fm user page)
 
 ##Coming Soon
-* Page the all tracks and all albums query results
-* Console Application to test the API
-* Examples using the API
+* Get album summary from [album.getInfo](http://www.last.fm/api/show/album.getInfo "album.getInfo") 
+* Page the library API method (getTracks & getAlbums) results
+* Console Application to run end-to-end testing of the client
+* Example usage of the client
 
 ##Suggestions
 The last.fm API is quite large and I'm barely scratching the surface of it, implementing the parts of the API that I am currently using. 
