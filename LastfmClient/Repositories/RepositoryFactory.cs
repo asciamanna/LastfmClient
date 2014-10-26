@@ -10,6 +10,7 @@ namespace LastfmClient.Repositories {
     ILibraryRepository CreateLibraryAlbumRepository(string apiKey);
     IUserRepository CreateUserRecentTrackRepository(string apiKey);
     IUserRepository CreateUserTopArtistRepository(string apiKey);
+    IAlbumRepository CreateAlbumRepository(string apiKey);
   }
   public class RepositoryFactory : IRepositoryFactory {
     public ILibraryRepository CreateLibraryTrackRepository(string apiKey) {
@@ -26,6 +27,10 @@ namespace LastfmClient.Repositories {
 
     public IUserRepository CreateUserTopArtistRepository(string apiKey) {
       return new UserTopArtistRepository(apiKey);
+    }
+
+    public IAlbumRepository CreateAlbumRepository(string apiKey) {
+      return new AlbumRepository(apiKey);
     }
   }
 }

@@ -11,10 +11,11 @@ These are the parts of the Last.FM REST API that are currently implemented:
 * [library.getAlbums](http://www.last.fm/api/show/library.getAlbums "library.getAlbums")
 * [user.getRecentTracks](http://www.last.fm/api/show/user.getRecentTracks "user.getRecentTracks")
 * [user.getTopArtists](http://http://www.last.fm/api/show/user.getTopArtists "user.getTopArtists")
+* [album.getInfo](http://www.last.fm/api/show/album.getInfo  "album.getInfo")
 * Currently Playing from Service information for a user (scrapes last.fm user page)
 
 ##Coming Soon
-* Get album summary from [album.getInfo](http://www.last.fm/api/show/album.getInfo "album.getInfo") 
+* Get artist summary from [artist.getInfo](http://www.last.fm/api/show/artist.getInfo "artist.getInfo") 
 * Page the library API method (getTracks & getAlbums) results
 * Console Application to run end-to-end testing of the client
 * Example usage of the client

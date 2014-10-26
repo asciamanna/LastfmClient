@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FailFast.cs" />
+    <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\LibraryRepository.cs" />
     <Compile Include="LastfmPageScraper.cs" />
     <Compile Include="LastfmUri.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\UserTopArtistRepository.cs" />
     <Compile Include="Responses\LastfmLibaryAlbum.cs" />
+    <Compile Include="Responses\LastfmAlbumItem.cs" />
     <Compile Include="Responses\LastfmLibraryItem.cs" />
     <Compile Include="Responses\LastfmResponse.cs" />
     <Compile Include="Responses\LastfmLibraryTrack.cs" />

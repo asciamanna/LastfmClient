@@ -11,6 +11,7 @@ namespace LastfmClient {
     List<LastfmUserRecentTrack> FindRecentTracks(string user, int numberOfTracks);
     List<LastfmUserTopArtist> FindTopArtists(string user, int numberOfArtists);
     LastfmPlayingFrom FindCurrentlyPlayingFrom(string user);
+    LastfmAlbumInfo FindAlbumInfo(string artist, string album);
   }
 
   public class LastfmService : ILastfmService {
@@ -54,6 +55,11 @@ namespace LastfmClient {
 
     public LastfmPlayingFrom FindCurrentlyPlayingFrom(string user) {
       return pageScraper.GetLastfmPlayingFromInfo(lastfmUserPageUrl + user);
+    }
+
+    public LastfmAlbumInfo FindAlbumInfo(string artist, string album) {
+      var albumInfoRepository = repositoryFactory.CreateAlbumRepository(apiKey);
+      return albumInfoRepository.GetInfo(artist, album);
     }
   }
 }

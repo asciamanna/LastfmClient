@@ -10,6 +10,7 @@ namespace LastfmClient {
     LastfmResponse<LastfmLibraryItem> ParseAlbums(XElement xmlResponse);
     LastfmResponse<LastfmUserItem> ParseRecentTracks(XElement xmlResponse);
     LastfmResponse<LastfmUserItem> ParseTopArtists(XElement xmlResponse);
+    LastfmAlbumInfo ParseAlbumInfo(XElement xmlResponse);
   }
 
   public class LastfmResponseParser : ILastfmResponseParser {
@@ -26,8 +27,8 @@ namespace LastfmClient {
         Items = BuildTracks(tracks.Descendants("track")).ToList(),
       };
     }
-    
-    IEnumerable<LastfmLibraryItem> BuildTracks(IEnumerable<XElement> tracks) {
+
+    private IEnumerable<LastfmLibraryItem> BuildTracks(IEnumerable<XElement> tracks) {
       var libraryTracks = new List<LastfmLibraryTrack>();
       foreach (var track in tracks.Where(t => t.Element("album") != null)) {
         libraryTracks.Add(new LastfmLibraryTrack {
@@ -43,7 +44,7 @@ namespace LastfmClient {
     public LastfmResponse<LastfmLibraryItem> ParseAlbums(XElement xmlResponse) {
       var albums = xmlResponse.DescendantsAndSelf("albums");
       var albumsElement = albums.First();
-    
+
       return new LastfmResponse<LastfmLibraryItem> {
         Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(albumsElement.Attribute("page").Value),
@@ -54,7 +55,7 @@ namespace LastfmClient {
       };
     }
 
-    IEnumerable<LastfmLibraryItem> BuildAlbums(IEnumerable<XElement> albums) {
+    private IEnumerable<LastfmLibraryItem> BuildAlbums(IEnumerable<XElement> albums) {
       var libraryAlbums = new List<LastfmLibraryItem>();
       foreach (var album in albums) {
         libraryAlbums.Add(new LastfmLibraryAlbum {
@@ -81,7 +82,7 @@ namespace LastfmClient {
       };
     }
 
-    IEnumerable<LastfmUserItem> BuildRecentTracks(IEnumerable<XElement> tracks) {
+    private IEnumerable<LastfmUserItem> BuildRecentTracks(IEnumerable<XElement> tracks) {
       var recentTracks = new List<LastfmUserRecentTrack>();
       foreach (var track in tracks) {
         recentTracks.Add(new LastfmUserRecentTrack {
@@ -97,6 +98,17 @@ namespace LastfmClient {
         });
       }
       return recentTracks;
+    }
+
+    public LastfmAlbumInfo ParseAlbumInfo(XElement xmlResponse) {
+      var albumInfo = xmlResponse.DescendantsAndSelf("album").First();
+      return new LastfmAlbumInfo {
+        Name = albumInfo.Element("name").Value,
+        Artist = albumInfo.Element("artist").Value,
+        Mbid = albumInfo.Element("mbid").Value,
+        ReleaseDate = ParseDateString(albumInfo.Element("releasedate").Value),
+        WikiSummary = albumInfo.Descendants("wiki").First().Element("summary").Value.Trim()
+      };
     }
 
     private static bool ParseNowPlayingAttribute(XElement track) {
@@ -124,7 +136,7 @@ namespace LastfmClient {
       };
     }
 
-    IEnumerable<LastfmUserItem> BuildTopArtists(IEnumerable<XElement> topArtistsElement) {
+    private IEnumerable<LastfmUserItem> BuildTopArtists(IEnumerable<XElement> topArtistsElement) {
       var topArtists = new List<LastfmUserItem>();
       foreach (var artistElement in topArtistsElement) {
         topArtists.Add(new LastfmUserTopArtist {
@@ -141,12 +153,19 @@ namespace LastfmClient {
       return topArtists;
     }
 
-    static DateTime? ParseDateAsUTC(XElement track) {
+    private static DateTime? ParseDateAsUTC(XElement track) {
       if (track.Element("date") == null) {
         return null;
       }
       var date = DateTime.Parse(track.Element("date").Value);
       return DateTime.SpecifyKind(date, DateTimeKind.Utc);
+    }
+
+    private static DateTime? ParseDateString(string date) {
+      if (string.IsNullOrWhiteSpace(date)) {
+        return null;
+      }
+      return DateTime.Parse(date);
     }
   }
 }

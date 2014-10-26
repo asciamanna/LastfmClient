@@ -131,5 +131,26 @@ namespace LastfmClientTests {
       Assert.That(topArtist.MediumImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/64/11251985.jpg"));
       Assert.That(topArtist.SmallImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/34/11251985.jpg"));
     }
+
+    [Test]
+    public void ParseAlbumInfo() {
+      var xelement = XElement.Load(@"lastfmAlbumInfoResponse.xml");
+
+      var result = new LastfmResponseParser().ParseAlbumInfo(xelement);
+
+      Assert.That(result.Name, Is.EqualTo("San Francisco"));
+      Assert.That(result.Artist, Is.EqualTo("Bobby Hutcherson"));
+      Assert.That(result.Mbid, Is.Empty);
+      Assert.That(result.ReleaseDate.Value.Date, Is.EqualTo(new DateTime(1994, 2, 28).Date));
+      Assert.That(result.WikiSummary, Is.StringStarting("Bobby Hutcherson - Vibraphone, Marimba, Percussion"));
+    }
+
+    [Test]
+    public void ParseAlbumInfo_When_No_Release_Date() {
+      var xelement = XElement.Load(@"lastfmAlbumInfoResponseNoReleaseDate.xml");
+
+      var result = new LastfmResponseParser().ParseAlbumInfo(xelement);
+      Assert.That(result.ReleaseDate, Is.Null);
+    }
   }
 }

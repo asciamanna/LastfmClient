@@ -1,0 +1,214 @@
+﻿<lfm status="ok">
+  <album>
+    <name>Freedom of Choice</name>
+    <artist>Devo</artist>
+    <id>1418883</id>
+    <mbid>5e3ebd8e-d135-434d-8fef-11f5bc75f3c1</mbid>
+    <url>http://www.last.fm/music/Devo/Freedom+of+Choice</url>
+    <releasedate></releasedate>
+    <image size="small">http://userserve-ak.last.fm/serve/34s/92709079.png</image>
+    <image size="medium">http://userserve-ak.last.fm/serve/64s/92709079.png</image>
+    <image size="large">
+      http://userserve-ak.last.fm/serve/174s/92709079.png
+    </image>
+    <image size="extralarge">
+      http://userserve-ak.last.fm/serve/300x300/92709079.png
+    </image>
+    <image size="mega">
+      http://userserve-ak.last.fm/serve/_/92709079/Freedom+of+Choice.png
+    </image>
+    <listeners>197841</listeners>
+    <playcount>1369047</playcount>
+    <tracks>
+      <track rank="1">
+        <name>Girl U Want</name>
+        <duration>177</duration>
+        <mbid>37643d7b-a58d-4846-a3c3-8c4316104fc4</mbid>
+        <url>http://www.last.fm/music/Devo/_/Girl+U+Want</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="2">
+        <name>It's Not Right</name>
+        <duration>145</duration>
+        <mbid>00a66657-c7b0-4f0b-9382-1c7390d71467</mbid>
+        <url>http://www.last.fm/music/Devo/_/It%27s+Not+Right</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="3">
+        <name>Whip It</name>
+        <duration>160</duration>
+        <mbid>0692ca19-f270-4405-bd78-fb8492d7dbd6</mbid>
+        <url>http://www.last.fm/music/Devo/_/Whip+It</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="4">
+        <name>Snowball</name>
+        <duration>170</duration>
+        <mbid>46c87a79-2314-46af-b463-a9f08444df38</mbid>
+        <url>http://www.last.fm/music/Devo/_/Snowball</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="5">
+        <name>Ton o' Love</name>
+        <duration>150</duration>
+        <mbid>4c3d75c2-98ad-4d7c-899e-f08da4a37a15</mbid>
+        <url>http://www.last.fm/music/Devo/_/Ton+o%27+Love</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="6">
+        <name>Freedom of Choice</name>
+        <duration>207</duration>
+        <mbid>0bde1d57-a165-4f6d-8857-224e5ca07de2</mbid>
+        <url>http://www.last.fm/music/Devo/_/Freedom+of+Choice</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="7">
+        <name>Gates of Steel</name>
+        <duration>207</duration>
+        <mbid>3ca57723-6b82-42e1-aa4f-ac1121ac2e99</mbid>
+        <url>http://www.last.fm/music/Devo/_/Gates+of+Steel</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="8">
+        <name>Cold War</name>
+        <duration>151</duration>
+        <mbid>189a4299-f02f-41f3-8c56-b54b0c1b848b</mbid>
+        <url>http://www.last.fm/music/Devo/_/Cold+War</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="9">
+        <name>Don't You Know</name>
+        <duration>135</duration>
+        <mbid>1ca10381-1052-4dc1-a7bb-dac48b0d6f94</mbid>
+        <url>http://www.last.fm/music/Devo/_/Don%27t+You+Know</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="10">
+        <name>That's Pep!</name>
+        <duration>137</duration>
+        <mbid>126d3469-fbd5-48fe-a739-242e23a319ac</mbid>
+        <url>http://www.last.fm/music/Devo/_/That%27s+Pep!</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="11">
+        <name>Mr. B's Ballroom</name>
+        <duration>167</duration>
+        <mbid>156bee2e-2b90-4a40-b92b-50c5f7f2d629</mbid>
+        <url>http://www.last.fm/music/Devo/_/Mr.+B%27s+Ballroom</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+      <track rank="12">
+        <name>Planet Earth</name>
+        <duration>166</duration>
+        <mbid>9b0da06d-1bcd-4984-b7ca-f679bf788a45</mbid>
+        <url>http://www.last.fm/music/Devo/_/Planet+Earth</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Devo</name>
+          <mbid>237aab96-5085-4617-bd3d-81990e46d244</mbid>
+          <url>http://www.last.fm/music/Devo</url>
+        </artist>
+      </track>
+    </tracks>
+    <toptags>
+      <tag>
+        <name>new wave</name>
+        <url>http://www.last.fm/tag/new%20wave</url>
+      </tag>
+      <tag>
+        <name>80s</name>
+        <url>http://www.last.fm/tag/80s</url>
+      </tag>
+      <tag>
+        <name>1980</name>
+        <url>http://www.last.fm/tag/1980</url>
+      </tag>
+      <tag>
+        <name>post-punk</name>
+        <url>http://www.last.fm/tag/post-punk</url>
+      </tag>
+      <tag>
+        <name>industrial</name>
+        <url>http://www.last.fm/tag/industrial</url>
+      </tag>
+    </toptags>
+    <wiki>
+      <published>Sun, 4 Jul 2010 18:36:27 +0000</published>
+      <summary>
+        <![CDATA[
+Freedom of Choice is the third album by New Wave musicians Devo, released in 1980. It saw the band moving in more of an overt synthpop direction, even though guitars still played a prominent role. The album was produced by Robert Margouleff, famous for his synthesizer work in Tonto's Expanding Head Band and with Stevie Wonder. On the Billboard Music Charts, Freedom of Choice peaked at #22 on the Pop Albums chart. It contains Devo's most well-known song, &quot;Whip It&quot;, which hit #8 and #14 on the Club Play Singles and Pop Singles charts, respectively.
+]]>
+      </summary>
+      <content>
+        <![CDATA[
+Freedom of Choice is the third album by New Wave musicians Devo, released in 1980. It saw the band moving in more of an overt synthpop direction, even though guitars still played a prominent role.
+ 
+ The album was produced by Robert Margouleff, famous for his synthesizer work in Tonto's Expanding Head Band and with Stevie Wonder.
+ 
+ On the Billboard Music Charts, Freedom of Choice peaked at #22 on the Pop Albums chart. It contains Devo's most well-known song, &quot;Whip It&quot;, which hit #8 and #14 on the Club Play Singles and Pop Singles charts, respectively.
+ 
+ The group later performed an alternate version of &quot;Girl U Want&quot; that appeared on the Tank Girl soundtrack.
+ 
+ An entire alternate demo version of the album was released in 2000 on the Rhino Handmade two-disc rarities collection Recombo DNA. The demo version lacks &quot;It's Not Right,&quot; &quot;Ton o' Luv&quot;, &quot;Don't You Know&quot; and &quot;Freedom of Choice&quot; but includes demos of the &quot;Whip It&quot; b-side &quot;Turnaround&quot; and three unreleased tracks (&quot;Luv &amp; Such,&quot; &quot;Time Bomb&quot; and &quot;Make Me Move&quot;).
+ 
+ In 2008, the album was digitally remastered and released as part of the box set This is the Devo Box in Japan. On September 16, 2009, Warner Brothers and Devo announced a re-release of Freedom of Choice and Q: Are We Not Men? A: We Are Devo!, with a tour performing both albums. User-contributed text is available under the Creative Commons By-SA License and may also be available under the GNU FDL.
+]]>
+      </content>
+    </wiki>
+  </album>
+</lfm>

@@ -42,5 +42,15 @@ namespace LastfmClientTests {
       Assert.That(result.MusicServiceName, Is.Not.Null);
       Assert.That(result.MusicServiceUrl, Is.Not.Null);
     }
+
+    [Test]
+    public void FindAlbumInfo_EndToEnd() {
+      var service = new LastfmService(apiKey);
+      var artist = "Bobby Hutcherson";
+      var album = "Happenings";
+      var result = service.FindAlbumInfo(artist, album);
+      Assert.That(result.Artist, Is.EqualTo(artist));
+      Assert.That(result.Name, Is.EqualTo(album));
+    }
   }
 }

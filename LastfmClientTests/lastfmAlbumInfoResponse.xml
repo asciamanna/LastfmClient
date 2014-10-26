@@ -1,0 +1,154 @@
+﻿<lfm status="ok">
+  <album>
+    <name>San Francisco</name>
+    <artist>Bobby Hutcherson</artist>
+    <id>2075905</id>
+    <mbid/>
+    <url>
+      http://www.last.fm/music/Bobby+Hutcherson/San+Francisco
+    </url>
+    <releasedate>28 Feb 1994, 00:00</releasedate>
+    <image size="small">
+      http://userserve-ak.last.fm/serve/34s/100802001.jpg
+    </image>
+    <image size="medium">
+      http://userserve-ak.last.fm/serve/64s/100802001.jpg
+    </image>
+    <image size="large">
+      http://userserve-ak.last.fm/serve/174s/100802001.jpg
+    </image>
+    <image size="extralarge">
+      http://userserve-ak.last.fm/serve/300x300/100802001.jpg
+    </image>
+    <image size="mega">
+      http://userserve-ak.last.fm/serve/_/100802001/San+Francisco+bhsf.jpg
+    </image>
+    <listeners>10557</listeners>
+    <playcount>37617</playcount>
+    <tracks>
+      <track rank="1">
+        <name>Goin' Down South</name>
+        <duration>408</duration>
+        <mbid>6f2f21ec-0965-40c7-9c5d-2d7433fd2399</mbid>
+        <url>
+          http://www.last.fm/music/Bobby+Hutcherson/_/Goin%27+Down+South
+        </url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Bobby Hutcherson</name>
+          <mbid>edbe5d7f-9511-4dfe-847a-8fe19080caaf</mbid>
+          <url>http://www.last.fm/music/Bobby+Hutcherson</url>
+        </artist>
+      </track>
+      <track rank="2">
+        <name>Prints Tie</name>
+        <duration>449</duration>
+        <mbid/>
+        <url>
+          http://www.last.fm/music/Bobby+Hutcherson/_/Prints+Tie
+        </url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Bobby Hutcherson</name>
+          <mbid>edbe5d7f-9511-4dfe-847a-8fe19080caaf</mbid>
+          <url>http://www.last.fm/music/Bobby+Hutcherson</url>
+        </artist>
+      </track>
+      <track rank="3">
+        <name>Jazz</name>
+        <duration>326</duration>
+        <mbid/>
+        <url>http://www.last.fm/music/Bobby+Hutcherson/_/Jazz</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Bobby Hutcherson</name>
+          <mbid>edbe5d7f-9511-4dfe-847a-8fe19080caaf</mbid>
+          <url>http://www.last.fm/music/Bobby+Hutcherson</url>
+        </artist>
+      </track>
+      <track rank="4">
+        <name>Ummh</name>
+        <duration>392</duration>
+        <mbid>a6ef7957-dfbd-4923-b63a-b2b94ebc3a21</mbid>
+        <url>http://www.last.fm/music/Bobby+Hutcherson/_/Ummh</url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Bobby Hutcherson</name>
+          <mbid>edbe5d7f-9511-4dfe-847a-8fe19080caaf</mbid>
+          <url>http://www.last.fm/music/Bobby+Hutcherson</url>
+        </artist>
+      </track>
+      <track rank="5">
+        <name>Procession</name>
+        <duration>346</duration>
+        <mbid/>
+        <url>
+          http://www.last.fm/music/Bobby+Hutcherson/_/Procession
+        </url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Bobby Hutcherson</name>
+          <mbid>edbe5d7f-9511-4dfe-847a-8fe19080caaf</mbid>
+          <url>http://www.last.fm/music/Bobby+Hutcherson</url>
+        </artist>
+      </track>
+      <track rank="6">
+        <name>A Night In Barcelona</name>
+        <duration>443</duration>
+        <mbid/>
+        <url>
+          http://www.last.fm/music/Bobby+Hutcherson/_/A+Night+In+Barcelona
+        </url>
+        <streamable fulltrack="0">0</streamable>
+        <artist>
+          <name>Bobby Hutcherson</name>
+          <mbid>edbe5d7f-9511-4dfe-847a-8fe19080caaf</mbid>
+          <url>http://www.last.fm/music/Bobby+Hutcherson</url>
+        </artist>
+      </track>
+    </tracks>
+    <toptags>
+      <tag>
+        <name>modern jazz</name>
+        <url>http://www.last.fm/tag/modern%20jazz</url>
+      </tag>
+      <tag>
+        <name>bobby hutcherson</name>
+        <url>http://www.last.fm/tag/bobby%20hutcherson</url>
+      </tag>
+      <tag>
+        <name>jazz</name>
+        <url>http://www.last.fm/tag/jazz</url>
+      </tag>
+      <tag>
+        <name>vibes</name>
+        <url>http://www.last.fm/tag/vibes</url>
+      </tag>
+      <tag>
+        <name>vibesmania</name>
+        <url>http://www.last.fm/tag/vibesmania</url>
+      </tag>
+    </toptags>
+    <wiki>
+      <published>Wed, 7 Nov 2012 17:20:11 +0000</published>
+      <summary>
+        <![CDATA[
+Bobby Hutcherson - Vibraphone, Marimba, Percussion
+ Harold Land - Tenor Sax, Flute, Oboe
+ Joe Sample - Piano, Electric Piano
+ John Williams - Bass, Fender Bass
+ Mickey Roker - Drums
+]]>
+      </summary>
+      <content>
+        <![CDATA[
+Bobby Hutcherson - Vibraphone, Marimba, Percussion
+ Harold Land - Tenor Sax, Flute, Oboe
+ Joe Sample - Piano, Electric Piano
+ John Williams - Bass, Fender Bass
+ Mickey Roker - Drums User-contributed text is available under the Creative Commons By-SA License and may also be available under the GNU FDL.
+]]>
+      </content>
+    </wiki>
+  </album>
+</lfm>

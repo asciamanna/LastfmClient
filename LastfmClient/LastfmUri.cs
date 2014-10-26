@@ -29,5 +29,11 @@ namespace LastfmClient {
         return @"http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user={1}&api_key={0}&page={2}";
       }
     }
+
+    public static string AlbumGetInfo {
+      get {
+        return @"http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key={0}&artist={1}&album={2}";
+      }
+    }
   }
 }
