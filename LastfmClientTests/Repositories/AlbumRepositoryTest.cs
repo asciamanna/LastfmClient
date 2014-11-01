@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
 using LastfmClient;
+using LastfmClient.Parsers;
 using LastfmClient.Repositories;
 using LastfmClient.Responses;
 using NUnit.Framework;

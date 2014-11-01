@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using LastfmClient;
+using LastfmClient.Parsers;
 using LastfmClient.Responses;
 using NUnit.Framework;
 
@@ -9,7 +9,6 @@ namespace LastfmClientTests {
   [TestFixture]
   public class LastfmResponseParserTest {
     private string testFilePath = TestHelper.TestFilePath;
-
     [Test]
     public void ParseTracks_Counts() {
       var xelement = XElement.Load(testFilePath + "lastfmTrackResponse.xml");

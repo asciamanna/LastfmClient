@@ -61,7 +61,7 @@
     <Compile Include="Responses\LastfmPlayingFrom.cs" />
     <Compile Include="Responses\LastfmUserItem.cs" />
     <Compile Include="Responses\LastfmUserRecentTrack.cs" />
-    <Compile Include="LastfmResponseParser.cs" />
+    <Compile Include="Parsers\LastfmResponseParser.cs" />
     <Compile Include="LastfmService.cs" />
     <Compile Include="PageCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

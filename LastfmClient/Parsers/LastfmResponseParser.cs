@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using LastfmClient.Responses;
 
-namespace LastfmClient {
+namespace LastfmClient.Parsers {
   public interface ILastfmResponseParser {
     LastfmResponse<LastfmLibraryItem> ParseTracks(XElement xmlResponse);
     LastfmResponse<LastfmLibraryItem> ParseAlbums(XElement xmlResponse);
