@@ -10,11 +10,9 @@ namespace LastfmClient.Repositories {
 
   public abstract class LibraryRepository : ILibraryRepository {
     private readonly string apiKey;
-    protected readonly IRestClient restClient;
 
-    protected LibraryRepository(string apiKey, IRestClient restClient) {
+    protected LibraryRepository(string apiKey) {
       this.apiKey = apiKey;
-      this.restClient = restClient;
     }
 
     public List<LastfmLibraryItem> GetItems(string user) {

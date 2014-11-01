@@ -3,9 +3,11 @@ using LastfmClient.Responses;
 
 namespace LastfmClient.Repositories {
   public class LibraryAlbumRepository : LibraryRepository {
+    private readonly IRestClient restClient;
     private readonly ILibraryResponseParser parser;
 
-    public LibraryAlbumRepository(string apiKey, IRestClient restClient, ILibraryResponseParser parser) : base(apiKey, restClient) {
+    public LibraryAlbumRepository(string apiKey, IRestClient restClient, ILibraryResponseParser parser) : base(apiKey) {
+      this.restClient = restClient;
       this.parser = parser;
     }
     

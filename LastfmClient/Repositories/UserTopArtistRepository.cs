@@ -3,11 +3,14 @@ using LastfmClient.Responses;
 
 namespace LastfmClient.Repositories {
   public class UserTopArtistRepository : UserRepository {
+    private readonly IRestClient restClient;
     private readonly IUserResponseParser parser;
+
     public UserTopArtistRepository(string apiKey) : this(apiKey, new RestClient(), new UserTopArtistResponseParser(), new PageCalculator()) { }
 
     public UserTopArtistRepository(string apiKey, IRestClient restClient, IUserResponseParser parser, IPageCalculator pageCalculator) :
-      base(apiKey, restClient, pageCalculator) {
+      base(apiKey, pageCalculator) {
+        this.restClient = restClient;
         this.parser = parser;
     }
 
