@@ -3,16 +3,20 @@ using LastfmClient.Responses;
 
 namespace LastfmClient.Repositories {
   public class LibraryAlbumRepository : LibraryRepository {
-    public LibraryAlbumRepository(string apiKey, IRestClient restClient, ILastfmResponseParser parser) : base(apiKey, restClient, parser) { }
+    private readonly ILibraryResponseParser parser;
+
+    public LibraryAlbumRepository(string apiKey, IRestClient restClient, ILibraryResponseParser parser) : base(apiKey, restClient) {
+      this.parser = parser;
+    }
     
-    public LibraryAlbumRepository(string apiKey) : base(apiKey) { }
+    public LibraryAlbumRepository(string apiKey) : this(apiKey, new RestClient(), new LibraryAlbumsResponseParser()) { }
 
     protected override string BaseUri {
       get { return LastfmUri.LibraryAlbums; }
     }
 
     protected override LastfmResponse<LastfmLibraryItem> ParseItems(string uri) {
-      return parser.ParseAlbums(restClient.DownloadData(uri));
+      return parser.Parse(restClient.DownloadData(uri));
     }
   }
 }

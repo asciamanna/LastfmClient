@@ -11,14 +11,10 @@ namespace LastfmClient.Repositories {
   public abstract class LibraryRepository : ILibraryRepository {
     private readonly string apiKey;
     protected readonly IRestClient restClient;
-    protected readonly ILastfmResponseParser parser;
 
-    protected LibraryRepository(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser()) { }
-
-    protected LibraryRepository(string apiKey, IRestClient restClient, ILastfmResponseParser parser) {
+    protected LibraryRepository(string apiKey, IRestClient restClient) {
       this.apiKey = apiKey;
       this.restClient = restClient;
-      this.parser = parser;
     }
 
     public List<LastfmLibraryItem> GetItems(string user) {

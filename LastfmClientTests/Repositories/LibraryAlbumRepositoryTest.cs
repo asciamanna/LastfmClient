@@ -13,7 +13,7 @@ namespace LastfmClientTests.Repositories {
   public class LibraryAlbumRepositoryTest {
     [Test]
     public void GetItems_Calls_Rest_Service_Once_For_Each_Page() {
-      var parser = MockRepository.GenerateMock<ILastfmResponseParser>();
+      var parser = MockRepository.GenerateMock<ILibraryResponseParser>();
       var restClient = MockRepository.GenerateMock<IRestClient>();
       var firstUri = @"http://ws.audioscrobbler.com/2.0/?method=library.getalbums&api_key=key&user=me&page=1";
       var secondUri = @"http://ws.audioscrobbler.com/2.0/?method=library.getalbums&api_key=key&user=me&page=2";
@@ -26,8 +26,8 @@ namespace LastfmClientTests.Repositories {
 
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response1);
       restClient.Expect(rc => rc.DownloadData(secondUri)).Return(response2);
-      parser.Expect(p => p.ParseAlbums(response1)).Return(lastfmResponse1);
-      parser.Expect(p => p.ParseAlbums(response2)).Return(lastfmResponse2);
+      parser.Expect(p => p.Parse(response1)).Return(lastfmResponse1);
+      parser.Expect(p => p.Parse(response2)).Return(lastfmResponse2);
 
       var albums = new LibraryAlbumRepository("key", restClient, parser).GetItems("me");
 
