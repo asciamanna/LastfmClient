@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FailFast.cs" />
+    <Compile Include="LastfmException.cs" />
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\LibraryRepository.cs" />
     <Compile Include="LastfmPageScraper.cs" />
