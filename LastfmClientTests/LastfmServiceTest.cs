@@ -1,11 +1,8 @@
-﻿using LastfmClient;
+﻿using System;
+using LastfmClient;
+using LastfmClient.Responses;
 using NUnit.Framework;
 using Rhino.Mocks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using LastfmClient.Responses;
 
 namespace LastfmClientTests {
   [TestFixture]

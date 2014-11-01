@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LastfmClient.Responses;
 
 namespace LastfmClient.Repositories {
@@ -22,6 +18,7 @@ namespace LastfmClient.Repositories {
       this.restClient = restClient;
       this.parser = parser;
     }
+
     public LastfmAlbumInfo GetInfo(string artist, string album) {
       var encodedArtist = Uri.EscapeDataString(artist);
       var encdodedAlbum = Uri.EscapeDataString(album);

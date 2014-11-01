@@ -1,9 +1,9 @@
-﻿using LastfmClient;
-using NUnit.Framework;
+﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using System;
+using LastfmClient;
 using LastfmClient.Responses;
+using NUnit.Framework;
 
 namespace LastfmClientTests {
   [TestFixture]
