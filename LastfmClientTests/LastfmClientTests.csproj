@@ -63,6 +63,7 @@
     <Compile Include="Repositories\LibraryTrackRepositoryTest.cs" />
     <Compile Include="Repositories\UserRecentTrackRepositoryTest.cs" />
     <Compile Include="Repositories\UserTopArtistRepositoryTest.cs" />
+    <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LastfmClient\LastfmClient.csproj">
@@ -71,38 +72,38 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lastfmAlbumInfoResponseNoReleaseDate.xml">
+    <Content Include="LastfmTestResponses\lastfmAlbumInfoResponseNoReleaseDate.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmAlbumResponse.xml">
+    <Content Include="LastfmTestResponses\lastfmAlbumResponse.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmRecentTracksResponseNowPlaying.xml">
+    <Content Include="LastfmTestResponses\lastfmRecentTracksResponseNowPlaying.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmAlbumInfoResponse.xml">
+    <Content Include="LastfmTestResponses\lastfmAlbumInfoResponse.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmTrackResponse.xml">
+    <Content Include="LastfmTestResponses\lastfmTrackResponse.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmUserPageWithRelativeUrl.html">
+    <Content Include="LastfmTestResponses\lastfmUserPageWithRelativeUrl.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmUserPageCurrentlyPlaying.html">
+    <Content Include="LastfmTestResponses\lastfmUserPageCurrentlyPlaying.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmUserPageNotCurrentlyPlaying.html">
+    <Content Include="LastfmTestResponses\lastfmUserPageNotCurrentlyPlaying.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmUserRecentTracksResponse.xml">
+    <Content Include="LastfmTestResponses\lastfmUserRecentTracksResponse.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="lastfmUserTopArtistsResponse.xml">
+    <Content Include="LastfmTestResponses\lastfmUserTopArtistsResponse.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -8,9 +8,11 @@ using LastfmClient.Responses;
 namespace LastfmClientTests {
   [TestFixture]
   public class LastfmResponseParserTest {
+    private string testFilePath = TestHelper.TestFilePath;
+
     [Test]
     public void ParseTracks_Counts() {
-      var xelement = XElement.Load(@"lastfmTrackResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmTrackResponse.xml");
       var result = new LastfmResponseParser().ParseTracks(xelement);
       Assert.That(result.Status, Is.EqualTo("ok"));
       Assert.That(result.Page, Is.EqualTo(1));
@@ -23,7 +25,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseTracks_TrackInfo() {
-      var xelement = XElement.Load(@"lastfmTrackResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmTrackResponse.xml");
       var result = new LastfmResponseParser().ParseTracks(xelement);
       var firstTrack = result.Items.First() as LastfmLibraryTrack;
       Assert.That(firstTrack.Name, Is.EqualTo("Terminal"));
@@ -34,7 +36,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseAlbums_Counts() {
-      var xelement = XElement.Load(@"lastfmAlbumResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmAlbumResponse.xml");
       var result = new LastfmResponseParser().ParseAlbums(xelement);
       Assert.That(result.Status, Is.EqualTo("ok"));
       Assert.That(result.Page, Is.EqualTo(1));
@@ -45,7 +47,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseAlbums_AlbumInfo() {
-      var xelement = XElement.Load(@"lastfmAlbumResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmAlbumResponse.xml");
       var result = new LastfmResponseParser().ParseAlbums(xelement);
       var album = result.Items.First() as LastfmLibraryAlbum;
       Assert.That(album.Artist, Is.EqualTo("OSI"));
@@ -56,7 +58,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseRecentTracks_Removes_Whitespace_from_Artwork_Location_URLs() {
-      var xelement = XElement.Load(@"lastfmUserRecenttracksResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmUserRecenttracksResponse.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
       var recentTrack = result.Items.First();
       Assert.That(recentTrack.ExtraLargeImageLocation, Is.Not.StringMatching("^\\s+"));
@@ -74,7 +76,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseRecentTracks_TrackInfo() {
-      var xelement = XElement.Load(@"lastfmUserRecenttracksResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmUserRecenttracksResponse.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
       var recentTrack = result.Items.First() as LastfmUserRecentTrack;
       Assert.That(recentTrack.IsNowPlaying, Is.False);
@@ -89,7 +91,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseRecentTracks_Parses_NowPlaying() {
-      var xelement = XElement.Load(@"lastfmRecentTracksResponseNowPlaying.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmRecentTracksResponseNowPlaying.xml");
       var result = new LastfmResponseParser().ParseRecentTracks(xelement);
       var recentTrack = result.Items.First() as LastfmUserRecentTrack;
       Assert.That(recentTrack.IsNowPlaying, Is.True);
@@ -97,7 +99,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseTopArtists_Removes_Whitespace_from_Artwork_Location_URLs() {
-      var xelement = XElement.Load(@"lastfmUserTopArtistsResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmUserTopArtistsResponse.xml");
       var result = new LastfmResponseParser().ParseTopArtists(xelement);
       var topArtist = result.Items.First() as LastfmUserTopArtist;
       Assert.That(topArtist.MegaImageLocation, Is.Not.StringMatching("^\\s+"));
@@ -118,7 +120,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseTopArtists() {
-      var xelement = XElement.Load(@"lastfmUserTopArtistsResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmUserTopArtistsResponse.xml");
       var result = new LastfmResponseParser().ParseTopArtists(xelement);
       var topArtist = result.Items.First() as LastfmUserTopArtist;
 
@@ -134,7 +136,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseAlbumInfo() {
-      var xelement = XElement.Load(@"lastfmAlbumInfoResponse.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmAlbumInfoResponse.xml");
 
       var result = new LastfmResponseParser().ParseAlbumInfo(xelement);
 
@@ -147,7 +149,7 @@ namespace LastfmClientTests {
 
     [Test]
     public void ParseAlbumInfo_When_No_Release_Date() {
-      var xelement = XElement.Load(@"lastfmAlbumInfoResponseNoReleaseDate.xml");
+      var xelement = XElement.Load(testFilePath + "lastfmAlbumInfoResponseNoReleaseDate.xml");
 
       var result = new LastfmResponseParser().ParseAlbumInfo(xelement);
       Assert.That(result.ReleaseDate, Is.Null);
