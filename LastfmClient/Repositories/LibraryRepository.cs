@@ -5,14 +5,18 @@ using LastfmClient.Responses;
 
 namespace LastfmClient.Repositories {
   public interface ILibraryRepository {
-    List<LastfmLibraryItem> GetItems(string user); 
+    List<LastfmLibraryItem> GetItems(string user);
   }
 
   public abstract class LibraryRepository : ILibraryRepository {
     private readonly string apiKey;
+    private readonly IRestClient restClient;
+    private readonly ILibraryResponseParser parser;
 
-    protected LibraryRepository(string apiKey) {
+    protected LibraryRepository(string apiKey, IRestClient restClient, ILibraryResponseParser parser) {
       this.apiKey = apiKey;
+      this.restClient = restClient;
+      this.parser = parser;
     }
 
     public List<LastfmLibraryItem> GetItems(string user) {
@@ -28,13 +32,14 @@ namespace LastfmClient.Repositories {
       }
       return lastfmItems;
     }
+    protected abstract string BaseUri { get; }
 
     private string BuildUri(string baseUri, string user, int page) {
       return string.Format(baseUri, apiKey, user, page);
     }
 
-    protected abstract string BaseUri { get; }
-
-    protected abstract LastfmResponse<LastfmLibraryItem> ParseItems(string uri);
+    private LastfmResponse<LastfmLibraryItem> ParseItems(string uri) {
+      return parser.Parse(restClient.DownloadData(uri));
+    }
   }
 }

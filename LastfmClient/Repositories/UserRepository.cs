@@ -9,10 +9,14 @@ namespace LastfmClient.Repositories {
   }
   public abstract class UserRepository : IUserRepository {
     private readonly string apiKey;
+    private readonly IRestClient restClient;
+    private readonly IUserResponseParser parser;
     private readonly IPageCalculator pageCalculator;
 
-    protected UserRepository(string apiKey, IPageCalculator pageCalculator) {
+    protected UserRepository(string apiKey, IRestClient restClient, IUserResponseParser parser, IPageCalculator pageCalculator) {
       this.apiKey = apiKey;
+      this.restClient = restClient;
+      this.parser = parser;
       this.pageCalculator = pageCalculator;
     }
 
@@ -34,8 +38,9 @@ namespace LastfmClient.Repositories {
 
     protected abstract string BaseUri { get; }
 
-    protected abstract LastfmResponse<LastfmUserItem> ParseItems(string uri);
-    
+    private LastfmResponse<LastfmUserItem> ParseItems(string uri) {
+      return parser.Parse(restClient.DownloadData(uri));
+    }
     //refactor buildUri -- move to URI class.
     string BuildUri(string baseUri, string user, int page) {
       return string.Format(baseUri, apiKey, user, page);
