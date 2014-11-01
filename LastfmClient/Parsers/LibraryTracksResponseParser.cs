@@ -10,7 +10,7 @@ namespace LastfmClient.Parsers {
   public interface ILibraryResponseParser {
     LastfmResponse<LastfmLibraryItem> Parse(XElement xmlResponse);
   }
-  public class LibraryTracksResponseParser : BaseLastfmResponseParser, ILibraryResponseParser {
+  public class LibraryTracksResponseParser : BaseLibraryResponseParser, ILibraryResponseParser {
     protected override string CollectionElementName {
       get { return "tracks"; }
     }

@@ -10,11 +10,11 @@ namespace LastfmClient.Repositories {
   public class AlbumRepository : IAlbumRepository {
     private readonly string apiKey;
     private readonly IRestClient restClient;
-    private readonly ILastfmResponseParser parser;
+    private readonly IAlbumResponseParser parser;
 
-    public AlbumRepository(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser()) { }
+    public AlbumRepository(string apiKey) : this(apiKey, new RestClient(), new AlbumResponseParser()) { }
 
-    public AlbumRepository(string apiKey, IRestClient restClient, ILastfmResponseParser parser) {
+    public AlbumRepository(string apiKey, IRestClient restClient, IAlbumResponseParser parser) {
       this.apiKey = apiKey;
       this.restClient = restClient;
       this.parser = parser;
@@ -24,7 +24,7 @@ namespace LastfmClient.Repositories {
       var encodedArtist = Uri.EscapeDataString(artist);
       var encdodedAlbum = Uri.EscapeDataString(album);
       var uri = string.Format(LastfmUri.AlbumGetInfo, apiKey, encodedArtist, encdodedAlbum);
-      return parser.ParseAlbumInfo(restClient.DownloadData(uri));
+      return parser.Parse(restClient.DownloadData(uri));
     }
   }
 }

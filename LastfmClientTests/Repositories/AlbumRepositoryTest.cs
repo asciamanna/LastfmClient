@@ -13,7 +13,7 @@ namespace LastfmClientTests.Repositories {
     [Test]
     public void GetInfo_Encodes_Album_And_Artist() {
       var restClient = MockRepository.GenerateMock<IRestClient>();
-      var parser = MockRepository.GenerateMock<ILastfmResponseParser>();
+      var parser = MockRepository.GenerateMock<IAlbumResponseParser>();
       var apiKey = "key";
       var artist = "Bobby Hutcherson";
       var album = "San Francisco";
@@ -23,7 +23,7 @@ namespace LastfmClientTests.Repositories {
       var albumInfo = new LastfmAlbumInfo();
       
       restClient.Stub(rc => rc.DownloadData(expectedUri)).Return(response);
-      parser.Stub(p => p.ParseAlbumInfo(response)).Return(albumInfo);
+      parser.Stub(p => p.Parse(response)).Return(albumInfo);
       var repository = new AlbumRepository(apiKey, restClient, parser);
 
       Assert.That(repository.GetInfo(artist, album), Is.SameAs(albumInfo));

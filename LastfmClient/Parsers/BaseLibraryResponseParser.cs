@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using LastfmClient.Responses;
 
 namespace LastfmClient.Parsers {
-  public abstract class BaseLastfmResponseParser {
+  public abstract class BaseLibraryResponseParser {
 
     public LastfmResponse<LastfmLibraryItem> Parse(XElement xmlResponse) {
       var collection = xmlResponse.DescendantsAndSelf(CollectionElementName);
@@ -27,6 +27,6 @@ namespace LastfmClient.Parsers {
 
     protected abstract string ItemElementName { get; }
     
-    protected abstract IEnumerable<LastfmLibraryItem> CreateItems(IEnumerable<XElement> items);
+    protected abstract IEnumerable<LastfmLibraryItem> CreateItems(IEnumerable<XElement> items);  
   }
 }

@@ -10,17 +10,11 @@ namespace LastfmClient.Repositories {
   public abstract class UserRepository : IUserRepository {
     private readonly string apiKey;
     protected readonly IRestClient restClient;
-    protected readonly ILastfmResponseParser parser;
     private readonly IPageCalculator pageCalculator;
 
-    protected UserRepository(string apiKey) : this(apiKey, new RestClient(), new LastfmResponseParser(), new PageCalculator()) {
-      this.apiKey = apiKey;
-    }
-
-    protected UserRepository(string apiKey, IRestClient restClient, ILastfmResponseParser parser, IPageCalculator pageCalculator) {
+    protected UserRepository(string apiKey, IRestClient restClient, IPageCalculator pageCalculator) {
       this.apiKey = apiKey;
       this.restClient = restClient;
-      this.parser = parser;
       this.pageCalculator = pageCalculator;
     }
 

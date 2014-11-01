@@ -53,12 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LastfmPageScraperTests.cs" />
-    <Compile Include="Parsers\LastfmResponseParserTest.cs" />
+    <Compile Include="Parsers\AlbumResponseParserTest.cs" />
     <Compile Include="LastfmServiceEndToEndTest.cs" />
     <Compile Include="LastfmServiceTest.cs" />
     <Compile Include="PageCalculatorTest.cs" />
     <Compile Include="Parsers\LibraryAlbumsResponseParserTest.cs" />
     <Compile Include="Parsers\LibraryTracksResponseParserTest.cs" />
+    <Compile Include="Parsers\UserTopArtistResponseParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AlbumRepositoryTest.cs" />
     <Compile Include="Repositories\LibraryAlbumRepositoryTest.cs" />
@@ -111,6 +112,7 @@
     <Content Include="LastfmTestResponses\lastfmUserTopArtistsResponse.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Parsers\UserRecentTracksResponseParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -46,9 +46,12 @@
   <ItemGroup>
     <Compile Include="FailFast.cs" />
     <Compile Include="LastfmException.cs" />
-    <Compile Include="Parsers\BaseLastfmResponseParser.cs" />
+    <Compile Include="Parsers\BaseLibraryResponseParser.cs" />
+    <Compile Include="Parsers\BaseUserResponseParser.cs" />
     <Compile Include="Parsers\LibraryAlbumsResponseParser.cs" />
     <Compile Include="Parsers\LibraryTracksResponseParser.cs" />
+    <Compile Include="Parsers\UserRecentTracksResponseParser.cs" />
+    <Compile Include="Parsers\UserTopArtistResponseParser.cs" />
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\LibraryRepository.cs" />
     <Compile Include="LastfmPageScraper.cs" />
@@ -64,7 +67,7 @@
     <Compile Include="Responses\LastfmPlayingFrom.cs" />
     <Compile Include="Responses\LastfmUserItem.cs" />
     <Compile Include="Responses\LastfmUserRecentTrack.cs" />
-    <Compile Include="Parsers\LastfmResponseParser.cs" />
+    <Compile Include="Parsers\AlbumResponseParser.cs" />
     <Compile Include="LastfmService.cs" />
     <Compile Include="PageCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using LastfmClient.Responses;
 
 namespace LastfmClient.Parsers {
-  public class LibraryAlbumsResponseParser : BaseLastfmResponseParser, ILibraryResponseParser {
+  public class LibraryAlbumsResponseParser : BaseLibraryResponseParser, ILibraryResponseParser {
     protected override string CollectionElementName {
       get { return "albums"; }
     }
