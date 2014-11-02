@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using LastfmClient;
 using LastfmClient.Parsers;
 using LastfmClient.Responses;
 using NUnit.Framework;
@@ -49,6 +50,15 @@ namespace LastfmClientTests.Parsers {
       var result = new UserRecentTracksResponseParser().Parse(xelement);
       var recentTrack = result.Items.ToList().First() as LastfmUserRecentTrack;
       Assert.That(recentTrack.IsNowPlaying, Is.True);
+    }
+
+    [Test]
+    public void Parse_When_Lastfm_Error_Throw_Exception() {
+      var xelement = XElement.Load(testFilePath + "lastfmInvalidApiKey.xml");
+
+      var exception = Assert.Throws<LastfmException>(() => new UserRecentTracksResponseParser().Parse(xelement));
+      Assert.That(exception.ErrorCode, Is.EqualTo(10));
+      Assert.That(exception.Message, Is.EqualTo("Invalid API key - You must be granted a valid key by last.fm"));
     }
   }
 }

@@ -7,8 +7,10 @@ using System.Xml.Linq;
 using LastfmClient.Responses;
 
 namespace LastfmClient.Parsers {
-  public abstract class BaseUserResponseParser {
+  public abstract class BaseUserResponseParser : BaseResponseParser {
+
     public LastfmResponse<LastfmUserItem> Parse(XElement xmlResponse) {
+      ParseLfmNodeForErrors(xmlResponse);
       var tracks = xmlResponse.DescendantsAndSelf(CollectionElementName);
       var tracksElement = tracks.First();
 

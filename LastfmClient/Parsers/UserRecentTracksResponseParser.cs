@@ -8,7 +8,6 @@ using LastfmClient.Responses;
 
 namespace LastfmClient.Parsers {
   public interface IUserResponseParser {
-    //TODO combine with other interface
     LastfmResponse<LastfmUserItem> Parse(XElement xmlResponse);
   }
   public class UserRecentTracksResponseParser : BaseUserResponseParser, IUserResponseParser {

@@ -7,5 +7,7 @@ namespace LastfmClient {
     public LastfmException(string message) : base(message) { }
 
     public LastfmException(string message, Exception inner) : base(message, inner) { }
+
+    public int ErrorCode { get; set; }
   }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using LastfmClient;
 using LastfmClient.Parsers;
 using LastfmClient.Responses;
 using NUnit.Framework;
@@ -48,6 +49,15 @@ namespace LastfmClientTests.Parsers {
       Assert.That(topArtist.LargeImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/126/11251985.jpg"));
       Assert.That(topArtist.MediumImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/64/11251985.jpg"));
       Assert.That(topArtist.SmallImageLocation, Is.EqualTo("http://userserve-ak.last.fm/serve/34/11251985.jpg"));
+    }
+
+    [Test]
+    public void Parse_When_Lastfm_Error_Throw_Exception() {
+      var xelement = XElement.Load(testFilePath + "lastfmInvalidApiKey.xml");
+
+      var exception = Assert.Throws<LastfmException>(() => new UserTopArtistResponseParser().Parse(xelement));
+      Assert.That(exception.ErrorCode, Is.EqualTo(10));
+      Assert.That(exception.Message, Is.EqualTo("Invalid API key - You must be granted a valid key by last.fm"));
     }
   }
 }
