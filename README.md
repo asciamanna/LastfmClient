@@ -21,7 +21,7 @@ These are the parts of the Last.FM REST API that are currently implemented:
 
 ## Exceptions
 There are three types of exceptions you can expect to be thrown from the last.fm client:  
-1. **InvalidArgumentException** - Thrown if an API key is not specified  
+1. **ArgumentException** - Thrown if an API key is not specified  
 2. **WebException** - Thrown by the .NET WebClient if it cannot make a connection to the last.fm REST services endpoint  
 3. **LastfmException** - A custom exception thrown if a last.fm service returns a failed lfm status. It includes the error code and the message returned by the last.fm service.  
 
