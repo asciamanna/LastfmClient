@@ -1,6 +1,6 @@
 #Last.fm Client
 
-A .NET client for the Last.FM REST API.
+A .NET client for the Last.fm REST API.
 ## Build Status
 [![Build status](https://ci.appveyor.com/api/projects/status/e703ayk1nydyngqm)](https://ci.appveyor.com/project/asciamanna/lastfmclient)
 
@@ -17,8 +17,13 @@ These are the parts of the Last.FM REST API that are currently implemented:
 ##Coming Soon
 * Get artist summary from [artist.getInfo](http://www.last.fm/api/show/artist.getInfo "artist.getInfo") 
 * Page the library API method (getTracks & getAlbums) results
-* Console Application to run end-to-end testing of the client
 * Example usage of the client
+
+## Exceptions
+There are three types of exceptions you can expect to be thrown from the last.fm client:  
+1. **InvalidArgumentException** - Thrown if an API key is not specified  
+2. **WebException** - Thrown by the .NET WebClient if it cannot make a connection to the last.fm REST services endpoint  
+3. **LastfmException** - A custom exception thrown if a last.fm service returns a failed lfm status. It includes the error code and the message returned by the last.fm service.  
 
 ##Suggestions
 The last.fm API is quite large and I'm barely scratching the surface of it, implementing the parts of the API that I am currently using. 
