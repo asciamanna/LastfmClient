@@ -9,9 +9,9 @@ namespace LastfmClient {
   public class RestClient : IRestClient {
     public XElement DownloadData(string uri) {
       using (var client = new WebClient()) {
-        var rawData = client.DownloadData(uri);
+        var rawData = client.DownloadString(uri);
         if (rawData != null) {
-          return XElement.Parse(Encoding.UTF8.GetString(rawData));
+          return XElement.Parse(rawData);
         }
         return null;
       }
