@@ -15,7 +15,6 @@ namespace LastfmClient.Parsers {
       var tracksElement = tracks.First();
 
       return new LastfmResponse<LastfmUserItem> {
-        Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(tracksElement.Attribute("page").Value),
         PerPage = Int32.Parse(tracksElement.Attribute("perPage").Value),
         TotalPages = Int32.Parse(tracksElement.Attribute("totalPages").Value),

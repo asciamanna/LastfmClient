@@ -15,7 +15,6 @@ namespace LastfmClient.Parsers {
       var collectionElement = collection.First();
 
       return new LastfmResponse<LastfmLibraryItem> {
-        Status = xmlResponse.Attribute("status").Value,
         Page = Int32.Parse(collectionElement.Attribute("page").Value),
         PerPage = Int32.Parse(collectionElement.Attribute("perPage").Value),
         TotalPages = Int32.Parse(collectionElement.Attribute("totalPages").Value),

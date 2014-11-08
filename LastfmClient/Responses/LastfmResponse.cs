@@ -2,7 +2,6 @@
 
 namespace LastfmClient.Responses {
   public interface ILastfmResponse<T> {
-    string Status { get; set; }
     int Page { get; set; }
     int PerPage { get; set; }
     int TotalPages { get; set; }
@@ -11,7 +10,6 @@ namespace LastfmClient.Responses {
   }
 
   public class LastfmResponse<T>  : ILastfmResponse<T> {
-    public string Status { get; set; }
     public int Page { get; set; }
     public int PerPage { get; set; }
     public int TotalPages { get; set; }

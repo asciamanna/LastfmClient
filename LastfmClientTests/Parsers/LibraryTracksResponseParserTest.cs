@@ -14,7 +14,6 @@ namespace LastfmClientTests.Parsers {
     public void ParseTracks_Counts() {
       var xelement = XElement.Load(testFilePath + "lastfmTrackResponse.xml");
       var result = new LibraryTracksResponseParser().Parse(xelement);
-      Assert.That(result.Status, Is.EqualTo("ok"));
       Assert.That(result.Page, Is.EqualTo(1));
       Assert.That(result.PerPage, Is.EqualTo(50));
       Assert.That(result.TotalPages, Is.EqualTo(120));
