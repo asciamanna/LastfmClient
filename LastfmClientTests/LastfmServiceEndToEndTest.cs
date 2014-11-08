@@ -5,7 +5,7 @@ using LastfmClient.Responses;
 using NUnit.Framework;
 
 namespace LastfmClientTests {
-  [TestFixture, Explicit]
+  [TestFixture, Explicit, Category("EndToEnd")]
   public class LastfmServiceEndToEndTest {
     private string apiKey;
 
@@ -47,6 +47,15 @@ namespace LastfmClientTests {
       var result = service.FindAlbumInfo(artist, album);
       Assert.That(result.Artist, Is.EqualTo(artist));
       Assert.That(result.Name, Is.EqualTo(album));
+    }
+
+    [Test]
+    public void FindArtistInfo_EndToEnd() {
+      var service = new LastfmService(apiKey);
+      var artist = "Bobby Hutcherson";
+      var result = service.FindArtistInfo(artist);
+      Assert.That(result.Name, Is.EqualTo(artist));
+      Assert.That(result.BioSummary, Is.Not.Empty);
     }
   }
 }
