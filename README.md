@@ -22,11 +22,11 @@ These are the parts of the Last.FM REST API that are currently implemented:
 ## Exceptions
 There are three types of exceptions you can expect to be thrown from the last.fm client:  
 1. **ArgumentException** - Thrown if an API key is not specified  
-2. **WebException** - Thrown by the .NET WebClient if it cannot make a connection to the last.fm REST services endpoint  
+2. **WebException** - Thrown by the .NET WebClient if it cannot make a connection to the last.fm REST services   
 3. **LastfmException** - A custom exception thrown if a last.fm service returns a failed lfm status. It includes the error code and the message returned by the last.fm service.  
 
 ##End-to-End Tests
-There are a few end to end tests in the test project. These tests will call the last.fm services and verify that results are being returned. They are marked as _Explicit_ so that they are isolated from the actual unit tests (in the same project).
+There are a few XUnit style end to end tests in the test project. These tests will call the last.fm services and verify that results are being returned. They are marked as _Explicit_ so that they are isolated from the actual unit tests (in the same project).
 
 ##Example Usage
 For examples of how to use the library take a look at the End-To-End tests previously mentioned. They can be found in the LastfmServiceEndToEndTest.cs file. Each test case is an
