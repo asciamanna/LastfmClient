@@ -52,7 +52,7 @@ namespace LastfmClientTests {
     [Test]
     public void FindArtistInfo_EndToEnd() {
       var service = new LastfmService(apiKey);
-      var artist = "Bobby Hutcherson";
+      var artist = "John Coltrane";
       var result = service.FindArtistInfo(artist);
       Assert.That(result.Name, Is.EqualTo(artist));
       Assert.That(result.BioSummary, Is.Not.Empty);
