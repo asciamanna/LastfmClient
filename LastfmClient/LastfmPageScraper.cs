@@ -23,19 +23,17 @@ namespace LastfmClient {
     }
     
     private static LastfmPlayingFrom ScrapePlayingFromInfo(HtmlDocument doc) {
-      var musicServiceUrl = string.Empty;
-      var musicServiceName = string.Empty;
-
       var span = doc.DocumentNode.SelectSingleNode("//span[@class='source']");
+      return CreatePlayingFrom(span);
+    }
 
+    private static LastfmPlayingFrom CreatePlayingFrom(HtmlNode span) {
+      var playingFrom = new LastfmPlayingFrom();
       if (span != null) {
-        musicServiceUrl = FormatUrl(span.FirstChild.Attributes.Where(a => a.Name == "href").Single().Value);
-        musicServiceName = span.FirstChild.InnerText;
+        playingFrom.MusicServiceUrl = FormatUrl(span.FirstChild.Attributes.Where(a => a.Name == "href").Single().Value);
+        playingFrom.MusicServiceName = span.FirstChild.InnerText;
       }
-      return new LastfmPlayingFrom {
-        MusicServiceName = musicServiceName,
-        MusicServiceUrl = musicServiceUrl
-      };
+      return playingFrom;
     }
 
     private static string FormatUrl(string url) {
