@@ -10,7 +10,6 @@ namespace LastfmClient {
       if (numberOfTracks > response.TotalRecords) {
         return response.TotalPages;
       }
-
       var page = 1;
       while (numberOfTracks > response.PerPage * page) {
         page++;
