@@ -16,18 +16,22 @@ namespace LastfmClient.Parsers {
     protected override IEnumerable<LastfmUserItem> CreateItems(IEnumerable<XElement> items) {
       var topArtists = new List<LastfmUserItem>();
       foreach (var artistElement in items) {
-        topArtists.Add(new LastfmUserTopArtist {
-          Rank = Int32.Parse(artistElement.Attribute("rank").Value),
-          Name = artistElement.Element("name").Value,
-          PlayCount = Int32.Parse(artistElement.Element("playcount").Value),
-          MegaImageLocation = ParseImageLocation(artistElement, "mega"),
-          ExtraLargeImageLocation = ParseImageLocation(artistElement, "extralarge"),
-          LargeImageLocation = ParseImageLocation(artistElement, "large"),
-          MediumImageLocation = ParseImageLocation(artistElement, "medium"),
-          SmallImageLocation = ParseImageLocation(artistElement, "small"),
-        });
+        topArtists.Add(CreateUserTopArtist(artistElement));
       }
       return topArtists;
+    }
+
+    private LastfmUserTopArtist CreateUserTopArtist(XElement artistElement) {
+      return new LastfmUserTopArtist {
+        Rank = Int32.Parse(artistElement.Attribute("rank").Value),
+        Name = artistElement.Element("name").Value,
+        PlayCount = Int32.Parse(artistElement.Element("playcount").Value),
+        MegaImageLocation = ParseImageLocation(artistElement, "mega"),
+        ExtraLargeImageLocation = ParseImageLocation(artistElement, "extralarge"),
+        LargeImageLocation = ParseImageLocation(artistElement, "large"),
+        MediumImageLocation = ParseImageLocation(artistElement, "medium"),
+        SmallImageLocation = ParseImageLocation(artistElement, "small"),
+      };
     }
   }
 }

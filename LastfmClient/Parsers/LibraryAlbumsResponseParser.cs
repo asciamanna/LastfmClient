@@ -18,15 +18,19 @@ namespace LastfmClient.Parsers {
 
     protected override IEnumerable<LastfmLibraryItem> CreateItems(IEnumerable<XElement> items) {
       var libraryAlbums = new List<LastfmLibraryItem>();
-      foreach (var album in items) {
-        libraryAlbums.Add(new LastfmLibraryAlbum {
-          Name = album.Element("name").Value,
-          Artist = album.Element("artist").Element("name").Value,
-          PlayCount = Int32.Parse(album.Element("playcount").Value),
-          ArtworkLocation = album.Elements("image").Where(e => e.Attribute("size").Value == "extralarge").FirstOrDefault().Value
-        });
+      foreach (var albumElement in items) {
+        libraryAlbums.Add(CreateLibraryAlbum(albumElement));
       }
       return libraryAlbums;
+    }
+
+    private static LastfmLibraryAlbum CreateLibraryAlbum(XElement albumElement) {
+      return new LastfmLibraryAlbum {
+        Name = albumElement.Element("name").Value,
+        Artist = albumElement.Element("artist").Element("name").Value,
+        PlayCount = Int32.Parse(albumElement.Element("playcount").Value),
+        ArtworkLocation = albumElement.Elements("image").Where(e => e.Attribute("size").Value == "extralarge").FirstOrDefault().Value
+      };
     }
   }
 }

@@ -13,13 +13,17 @@ namespace LastfmClient.Parsers {
    
     public LastfmAlbumInfo Parse(XElement xmlResponse) {
       ParseLfmNodeForErrors(xmlResponse);
-      var albumInfo = xmlResponse.DescendantsAndSelf("album").First();
+      var albumInfoElement = xmlResponse.DescendantsAndSelf("album").First();
+      return CreateAlbumInfo(albumInfoElement);
+    }
+
+    private static LastfmAlbumInfo CreateAlbumInfo(XElement albumInfoElement) {
       return new LastfmAlbumInfo {
-        Name = albumInfo.Element("name").Value,
-        Artist = albumInfo.Element("artist").Value,
-        Mbid = albumInfo.Element("mbid").Value,
-        ReleaseDate = ParseDateString(albumInfo.Element("releasedate").Value),
-        WikiSummary = albumInfo.Descendants("wiki").First().Element("summary").Value.Trim()
+        Name = albumInfoElement.Element("name").Value,
+        Artist = albumInfoElement.Element("artist").Value,
+        Mbid = albumInfoElement.Element("mbid").Value,
+        ReleaseDate = ParseDateString(albumInfoElement.Element("releasedate").Value),
+        WikiSummary = albumInfoElement.Descendants("wiki").First().Element("summary").Value.Trim()
       };
     }
     

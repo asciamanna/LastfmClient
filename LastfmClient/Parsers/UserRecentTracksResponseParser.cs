@@ -21,20 +21,24 @@ namespace LastfmClient.Parsers {
 
     protected override IEnumerable<LastfmUserItem> CreateItems(IEnumerable<XElement> items) {
       var recentTracks = new List<LastfmUserRecentTrack>();
-      foreach (var track in items) {
-        recentTracks.Add(new LastfmUserRecentTrack {
-          IsNowPlaying = ParseNowPlayingAttribute(track),
-          Name = track.Element("name").Value,
-          Album = track.Element("album").Value,
-          Artist = track.Element("artist").Value,
-          ExtraLargeImageLocation = ParseImageLocation(track, "extralarge"),
-          LargeImageLocation = ParseImageLocation(track, "large"),
-          MediumImageLocation = ParseImageLocation(track, "medium"),
-          SmallImageLocation = ParseImageLocation(track, "small"),
-          LastPlayed = ParseDateAsUTC(track)
-        });
+      foreach (var trackElement in items) {
+        recentTracks.Add(CreateUserRecentTrack(trackElement));
       }
       return recentTracks;
+    }
+
+    private LastfmUserRecentTrack CreateUserRecentTrack(XElement trackElement) {
+      return new LastfmUserRecentTrack {
+        IsNowPlaying = ParseNowPlayingAttribute(trackElement),
+        Name = trackElement.Element("name").Value,
+        Album = trackElement.Element("album").Value,
+        Artist = trackElement.Element("artist").Value,
+        ExtraLargeImageLocation = ParseImageLocation(trackElement, "extralarge"),
+        LargeImageLocation = ParseImageLocation(trackElement, "large"),
+        MediumImageLocation = ParseImageLocation(trackElement, "medium"),
+        SmallImageLocation = ParseImageLocation(trackElement, "small"),
+        LastPlayed = ParseDateAsUTC(trackElement)
+      };
     }
 
     private static bool ParseNowPlayingAttribute(XElement track) {

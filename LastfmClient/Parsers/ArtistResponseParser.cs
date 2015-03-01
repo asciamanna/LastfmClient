@@ -13,13 +13,17 @@ namespace LastfmClient.Parsers {
    
     public LastfmArtistInfo Parse(XElement xmlResponse) {
       ParseLfmNodeForErrors(xmlResponse);
-      var artistInfo = xmlResponse.DescendantsAndSelf("artist").First();
+      var artistInfoElement = xmlResponse.DescendantsAndSelf("artist").First();
+      return CreateArtistInfo(artistInfoElement);
+    }
+
+    private LastfmArtistInfo CreateArtistInfo(XElement artistInfoElement) {
       return new LastfmArtistInfo {
-        Name = artistInfo.Element("name").Value,
-        Mbid = artistInfo.Element("mbid").Value,
-        BioSummary = ParseBioSummary(artistInfo),
-        PlaceFormed = ParsePlaceFormed(artistInfo),
-        YearFormed = ParseYearFormed(artistInfo)
+        Name = artistInfoElement.Element("name").Value,
+        Mbid = artistInfoElement.Element("mbid").Value,
+        BioSummary = ParseBioSummary(artistInfoElement),
+        PlaceFormed = ParsePlaceFormed(artistInfoElement),
+        YearFormed = ParseYearFormed(artistInfoElement)
       };
     }
 

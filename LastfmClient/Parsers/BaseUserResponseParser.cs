@@ -13,7 +13,10 @@ namespace LastfmClient.Parsers {
       ParseLfmNodeForErrors(xmlResponse);
       var tracks = xmlResponse.DescendantsAndSelf(CollectionElementName);
       var tracksElement = tracks.First();
+      return CreateUserItem(tracksElement);
+    }
 
+    private LastfmResponse<LastfmUserItem> CreateUserItem(XElement tracksElement) {
       return new LastfmResponse<LastfmUserItem> {
         Page = Int32.Parse(tracksElement.Attribute("page").Value),
         PerPage = Int32.Parse(tracksElement.Attribute("perPage").Value),

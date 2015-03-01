@@ -22,14 +22,18 @@ namespace LastfmClient.Parsers {
     protected override IEnumerable<LastfmLibraryItem> CreateItems(IEnumerable<XElement> items) {
       var libraryTracks = new List<LastfmLibraryTrack>();
       foreach (var track in items.Where(t => t.Element("album") != null)) {
-        libraryTracks.Add(new LastfmLibraryTrack {
-          Name = track.Element("name").Value,
-          Album = track.Element("album").Element("name").Value,
-          Artist = track.Element("artist").Element("name").Value,
-          PlayCount = Int32.Parse(track.Element("playcount").Value),
-        });
+        libraryTracks.Add(CreateLibraryTrack(track));
       }
       return libraryTracks;
+    }
+
+    private static LastfmLibraryTrack CreateLibraryTrack(XElement track) {
+      return new LastfmLibraryTrack {
+        Name = track.Element("name").Value,
+        Album = track.Element("album").Element("name").Value,
+        Artist = track.Element("artist").Element("name").Value,
+        PlayCount = Int32.Parse(track.Element("playcount").Value),
+      };
     }
   }
 }

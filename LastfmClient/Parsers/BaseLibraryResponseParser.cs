@@ -14,6 +14,10 @@ namespace LastfmClient.Parsers {
       var collection = xmlResponse.DescendantsAndSelf(CollectionElementName);
       var collectionElement = collection.First();
 
+      return CreateLibraryItem(collectionElement);
+    }
+
+    private LastfmResponse<LastfmLibraryItem> CreateLibraryItem(XElement collectionElement) {
       return new LastfmResponse<LastfmLibraryItem> {
         Page = Int32.Parse(collectionElement.Attribute("page").Value),
         PerPage = Int32.Parse(collectionElement.Attribute("perPage").Value),
