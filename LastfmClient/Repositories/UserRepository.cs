@@ -21,19 +21,22 @@ namespace LastfmClient.Repositories {
     }
 
     public List<LastfmUserItem> GetItems(string user, int numberOfItems) {
-      var page = 1;
-      var items = new List<LastfmUserItem>();
-      var uri = BuildUri(BaseUri, user, page);
-      var response = ParseItems(uri);
-
+      var response = GetFirstPageOfItems(user);
+      var items = response.Items.ToList();
       var numberOfPagesToRetrieve = pageCalculator.Calculate(response, numberOfItems);
-      items.AddRange(response.Items);
-
-      foreach (var pageNum in Enumerable.Range(2, numberOfPagesToRetrieve - 1)) {
-        uri = BuildUri(BaseUri, user, pageNum);
-        items.AddRange(ParseItems(uri).Items);
-      }
+      GetRemainingPagesOfItems(user, items, numberOfPagesToRetrieve);
       return items.Take(numberOfItems).ToList();
+    }
+
+    private void GetRemainingPagesOfItems(string user, List<LastfmUserItem> items, int numberOfPagesToRetrieve) {
+      foreach (var pageNum in Enumerable.Range(2, numberOfPagesToRetrieve - 1)) {
+        items.AddRange(ParseItems(BuildUri(BaseUri, user, pageNum)).Items);
+      }
+    }
+
+    private LastfmResponse<LastfmUserItem> GetFirstPageOfItems(string user) {
+      var response = ParseItems(BuildUri(BaseUri, user, page: 1));
+      return response;
     }
 
     protected abstract string BaseUri { get; }
@@ -41,7 +44,7 @@ namespace LastfmClient.Repositories {
     private LastfmResponse<LastfmUserItem> ParseItems(string uri) {
       return parser.Parse(restClient.DownloadData(uri));
     }
-    //refactor buildUri -- move to URI class.
+
     string BuildUri(string baseUri, string user, int page) {
       return string.Format(baseUri, apiKey, user, page);
     }
