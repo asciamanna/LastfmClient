@@ -20,18 +20,23 @@ namespace LastfmClient.Repositories {
     }
 
     public List<LastfmLibraryItem> GetItems(string user) {
-      var page = 1;
-      var lastfmItems = new List<LastfmLibraryItem>();
-      var uri = BuildUri(BaseUri, user, page);
-      var response = ParseItems(uri);
-      lastfmItems.AddRange(response.Items);
+      var response = GetFirstPageOfItems(user);
+      var lastfmItems = response.Items.ToList();
       var totalPages = response.TotalPages;
-      foreach (var pageNum in Enumerable.Range(2, totalPages - 1)) {
-        uri = BuildUri(BaseUri, user, pageNum);
-        lastfmItems.AddRange(ParseItems(uri).Items);
-      }
+      GetRemainingPagesOfItems(user, lastfmItems, totalPages);
       return lastfmItems;
     }
+
+    private LastfmResponse<LastfmLibraryItem> GetFirstPageOfItems(string user) {
+      return ParseItems(BuildUri(BaseUri, user, page: 1));
+    }
+
+    private void GetRemainingPagesOfItems(string user, List<LastfmLibraryItem> lastfmItems, int totalPages) {
+      foreach (var pageNum in Enumerable.Range(2, totalPages - 1)) {
+        lastfmItems.AddRange(ParseItems(BuildUri(BaseUri, user, pageNum)).Items);
+      }
+    }
+
     protected abstract string BaseUri { get; }
 
     private string BuildUri(string baseUri, string user, int page) {
