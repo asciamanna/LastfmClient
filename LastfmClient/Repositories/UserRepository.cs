@@ -28,15 +28,14 @@ namespace LastfmClient.Repositories {
       return items.Take(numberOfItems).ToList();
     }
 
+    private LastfmResponse<LastfmUserItem> GetFirstPageOfItems(string user) {
+      return ParseItems(BuildUri(BaseUri, user, page: 1));
+    }
+
     private void GetRemainingPagesOfItems(string user, List<LastfmUserItem> items, int numberOfPagesToRetrieve) {
       foreach (var pageNum in Enumerable.Range(2, numberOfPagesToRetrieve - 1)) {
         items.AddRange(ParseItems(BuildUri(BaseUri, user, pageNum)).Items);
       }
-    }
-
-    private LastfmResponse<LastfmUserItem> GetFirstPageOfItems(string user) {
-      var response = ParseItems(BuildUri(BaseUri, user, page: 1));
-      return response;
     }
 
     protected abstract string BaseUri { get; }
