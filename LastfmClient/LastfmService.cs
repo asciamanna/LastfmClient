@@ -10,7 +10,7 @@ namespace LastfmClient {
     List<LastfmLibraryAlbum> FindAllAlbums(string user);
     List<LastfmUserRecentTrack> FindRecentTracks(string user, int numberOfTracks);
     List<LastfmUserTopArtist> FindTopArtists(string user, int numberOfArtists);
-    LastfmPlayingFrom FindCurrentlyPlayingFrom(string user);
+    LastfmMusicSource FindMusicSource(string user);
     LastfmAlbumInfo FindAlbumInfo(string artist, string album);
     LastfmArtistInfo FindArtistInfo(string artist);
   }
@@ -54,8 +54,8 @@ namespace LastfmClient {
       return userTopArtistRepository.GetItems(user, numberOfArtists).Cast<LastfmUserTopArtist>().ToList();
     }
 
-    public LastfmPlayingFrom FindCurrentlyPlayingFrom(string user) {
-      return pageScraper.GetLastfmPlayingFromInfo(lastfmUserPageUrl + user);
+    public LastfmMusicSource FindMusicSource(string user) {
+      return pageScraper.GetLastfmMusicSource(lastfmUserPageUrl + user);
     }
 
     public LastfmAlbumInfo FindAlbumInfo(string artist, string album) {

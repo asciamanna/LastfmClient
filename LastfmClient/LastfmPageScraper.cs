@@ -5,35 +5,35 @@ using LastfmClient.Responses;
 
 namespace LastfmClient {
   public interface ILastfmPageScraper {
-    LastfmPlayingFrom GetLastfmPlayingFromInfo(string url);
+    LastfmMusicSource GetLastfmMusicSource(string url);
   }
 
   public class LastfmPageScraper : ILastfmPageScraper {
     private const string lastfmBaseUrl = "http://www.last.fm";
 
-    public LastfmPlayingFrom GetLastfmPlayingFromInfo(string url) {
+    public LastfmMusicSource GetLastfmMusicSource(string url) {
       var doc = new HtmlWeb().Load(url);
-      return ScrapePlayingFromInfo(doc);
+      return ScrapePageForMusicSource(doc);
     }
 
-    public LastfmPlayingFrom GetLastfmPlayingFromInfoFromFile(string path) {
+    public LastfmMusicSource GetLastfmMusicSourceFromFile(string path) {
       var doc = new HtmlDocument();
       doc.LoadHtml(File.ReadAllText(path));
-      return ScrapePlayingFromInfo(doc);
+      return ScrapePageForMusicSource(doc);
     }
     
-    private static LastfmPlayingFrom ScrapePlayingFromInfo(HtmlDocument doc) {
+    private static LastfmMusicSource ScrapePageForMusicSource(HtmlDocument doc) {
       var span = doc.DocumentNode.SelectSingleNode("//span[@class='source']");
-      return CreatePlayingFrom(span);
+      return CreateMusicSource(span);
     }
 
-    private static LastfmPlayingFrom CreatePlayingFrom(HtmlNode span) {
-      var playingFrom = new LastfmPlayingFrom();
+    private static LastfmMusicSource CreateMusicSource(HtmlNode span) {
+      var musicSource = new LastfmMusicSource();
       if (span != null) {
-        playingFrom.MusicServiceUrl = FormatUrl(span.FirstChild.Attributes.Where(a => a.Name == "href").Single().Value);
-        playingFrom.MusicServiceName = span.FirstChild.InnerText;
+        musicSource.MusicServiceUrl = FormatUrl(span.FirstChild.Attributes.Where(a => a.Name == "href").Single().Value);
+        musicSource.MusicServiceName = span.FirstChild.InnerText;
       }
-      return playingFrom;
+      return musicSource;
     }
 
     private static string FormatUrl(string url) {

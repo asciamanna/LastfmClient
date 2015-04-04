@@ -32,9 +32,9 @@ namespace LastfmClientTests {
     }
 
     [Test]
-    public void FindCurrentlyPlayingFrom_EndToEnd() {
+    public void FindMusicSource_EndToEnd() {
       var service = new LastfmService(apiKey);
-      var result = service.FindCurrentlyPlayingFrom("asciamanna");
+      var result = service.FindMusicSource("asciamanna");
       Assert.That(result.MusicServiceName, Is.Not.Null);
       Assert.That(result.MusicServiceUrl, Is.Not.Null);
     }

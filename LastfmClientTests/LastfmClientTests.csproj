@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LastfmPageScraperTests.cs" />
+    <Compile Include="LastfmPageScraperTest.cs" />
     <Compile Include="Parsers\ArtistResponseParserTest.cs" />
     <Compile Include="Parsers\AlbumResponseParserTest.cs" />
     <Compile Include="LastfmServiceEndToEndTest.cs" />

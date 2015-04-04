@@ -1,7 +1,7 @@
 ﻿
 namespace LastfmClient.Responses {
-  public class LastfmPlayingFrom {
-    public LastfmPlayingFrom() {
+  public class LastfmMusicSource {
+    public LastfmMusicSource() {
       MusicServiceName = string.Empty;
       MusicServiceUrl = string.Empty;
     }

@@ -68,7 +68,7 @@
     <Compile Include="Responses\LastfmLibraryItem.cs" />
     <Compile Include="Responses\LastfmResponse.cs" />
     <Compile Include="Responses\LastfmLibraryTrack.cs" />
-    <Compile Include="Responses\LastfmPlayingFrom.cs" />
+    <Compile Include="Responses\LastfmMusicSource.cs" />
     <Compile Include="Responses\LastfmUserItem.cs" />
     <Compile Include="Responses\LastfmUserRecentTrack.cs" />
     <Compile Include="Parsers\AlbumResponseParser.cs" />

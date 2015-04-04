@@ -32,11 +32,11 @@ namespace LastfmClientTests {
       var pageScraper = MockRepository.GenerateStub<ILastfmPageScraper>();
       var service = new LastfmService("key", pageScraper, null);
       var user = "testingUser";
-      var scraperResult = new LastfmPlayingFrom { MusicServiceName = "Spotify", MusicServiceUrl = @"http://www.spotify.com" };
+      var scraperResult = new LastfmMusicSource { MusicServiceName = "Spotify", MusicServiceUrl = @"http://www.spotify.com" };
 
-      pageScraper.Stub(ps => ps.GetLastfmPlayingFromInfo("http://www.last.fm/user/" + user)).Return(scraperResult);
+      pageScraper.Stub(ps => ps.GetLastfmMusicSource("http://www.last.fm/user/" + user)).Return(scraperResult);
 
-      var response = service.FindCurrentlyPlayingFrom(user);
+      var response = service.FindMusicSource(user);
       Assert.That(response.MusicServiceName, Is.EqualTo(scraperResult.MusicServiceName));
       Assert.That(response.MusicServiceUrl, Is.EqualTo(scraperResult.MusicServiceUrl));
     }
