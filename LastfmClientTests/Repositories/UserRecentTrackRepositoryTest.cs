@@ -23,8 +23,8 @@ namespace LastfmClientTests.Repositories {
       var response2 = new XElement("Response2");
       var firstTrack = "My Favorite Things";
       var secondTrack = "But Not For Me";
-      var lastfmResponse1 = BuildResponse(firstTrack);
-      var lastfmResponse2 = BuildResponse(secondTrack);
+      var lastfmResponse1 = TestHelper.CreateLastfmUserItemResponse<LastfmUserRecentTrack>(firstTrack);
+      var lastfmResponse2 = TestHelper.CreateLastfmUserItemResponse<LastfmUserRecentTrack>(secondTrack);
       pageCalculator.Stub(pc => pc.Calculate(lastfmResponse1, 2)).Return(2);
 
       restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response1);
@@ -53,12 +53,7 @@ namespace LastfmClientTests.Repositories {
        var response = new XElement("Response1");
        var firstTrack = "My Favorite Things";
        var secondTrack = "But Not For Me";
-       var lastfmResponse = new LastfmResponse<LastfmUserItem> {
-         Items = new List<LastfmUserItem> { 
-           new LastfmUserRecentTrack { Name = firstTrack }, 
-           new LastfmUserRecentTrack { Name = secondTrack } 
-         }
-       };
+       var lastfmResponse = TestHelper.CreateLastfmUserItemResponse<LastfmUserRecentTrack>(firstTrack, secondTrack);
        pageCalculator.Stub(pc => pc.Calculate(lastfmResponse, 1)).Return(1);
        restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response);
        parser.Expect(p => p.Parse(response)).Return(lastfmResponse);
@@ -68,9 +63,5 @@ namespace LastfmClientTests.Repositories {
        Assert.That(recentTracks.Count(), Is.EqualTo(1));
        Assert.That(recentTracks.First().Name, Is.EqualTo(firstTrack));
      }
-
-    private static LastfmResponse<LastfmUserItem> BuildResponse(string name) {
-       return new LastfmResponse<LastfmUserItem> { Items = new List<LastfmUserItem> { new LastfmUserRecentTrack { Name = name } } };
-    }
   }
 }

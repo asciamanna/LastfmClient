@@ -17,20 +17,18 @@ namespace LastfmClientTests.Parsers {
     [Test]
     public void Parse_Removes_Whitespace_from_Artwork_Location_URLs() {
       var xelement = XElement.Load(testFilePath + "lastfmUserTopArtistsResponse.xml");
+     
       var result = new UserTopArtistResponseParser().Parse(xelement);
       var topArtist = result.Items.First() as LastfmUserTopArtist;
+      
       Assert.That(topArtist.MegaImageLocation, Is.Not.StringMatching("^\\s+"));
       Assert.That(topArtist.MegaImageLocation, Is.Not.StringMatching("\\s+$"));
-
       Assert.That(topArtist.ExtraLargeImageLocation, Is.Not.StringMatching("^\\s+"));
       Assert.That(topArtist.ExtraLargeImageLocation, Is.Not.StringMatching("\\s+$"));
-
       Assert.That(topArtist.LargeImageLocation, Is.Not.StringMatching("^\\s+"));
       Assert.That(topArtist.LargeImageLocation, Is.Not.StringMatching("\\s+$"));
-
       Assert.That(topArtist.MediumImageLocation, Is.Not.StringMatching("^\\s+"));
       Assert.That(topArtist.MediumImageLocation, Is.Not.StringMatching("\\s+$"));
-
       Assert.That(topArtist.SmallImageLocation, Is.Not.StringMatching("^\\s+"));
       Assert.That(topArtist.SmallImageLocation, Is.Not.StringMatching("\\s+$"));
     }
@@ -38,6 +36,7 @@ namespace LastfmClientTests.Parsers {
     [Test]
     public void Parse() {
       var xelement = XElement.Load(testFilePath + "lastfmUserTopArtistsResponse.xml");
+      
       var result = new UserTopArtistResponseParser().Parse(xelement);
       var topArtist = result.Items.First() as LastfmUserTopArtist;
 
@@ -56,6 +55,7 @@ namespace LastfmClientTests.Parsers {
       var xelement = XElement.Load(testFilePath + "lastfmInvalidApiKey.xml");
 
       var exception = Assert.Throws<LastfmException>(() => new UserTopArtistResponseParser().Parse(xelement));
+      
       Assert.That(exception.ErrorCode, Is.EqualTo(10));
       Assert.That(exception.Message, Is.EqualTo("Invalid API key - You must be granted a valid key by last.fm"));
     }

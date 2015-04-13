@@ -13,7 +13,9 @@ namespace LastfmClientTests.Parsers {
     [Test]
     public void ParseTracks_Counts() {
       var xelement = XElement.Load(testFilePath + "lastfmTrackResponse.xml");
+      
       var result = new LibraryTracksResponseParser().Parse(xelement);
+      
       Assert.That(result.Page, Is.EqualTo(1));
       Assert.That(result.PerPage, Is.EqualTo(50));
       Assert.That(result.TotalPages, Is.EqualTo(120));
@@ -25,8 +27,10 @@ namespace LastfmClientTests.Parsers {
     [Test]
     public void ParseTracks_TrackInfo() {
       var xelement = XElement.Load(testFilePath + "lastfmTrackResponse.xml");
+
       var result = new LibraryTracksResponseParser().Parse(xelement);
       var firstTrack = result.Items.First() as LastfmLibraryTrack;
+      
       Assert.That(firstTrack.Name, Is.EqualTo("Terminal"));
       Assert.That(firstTrack.Artist, Is.EqualTo("OSI"));
       Assert.That(firstTrack.Album, Is.EqualTo("Blood"));
@@ -38,6 +42,7 @@ namespace LastfmClientTests.Parsers {
       var xelement = XElement.Load(testFilePath + "lastfmInvalidApiKey.xml");
 
       var exception = Assert.Throws<LastfmException>(() => new LibraryTracksResponseParser().Parse(xelement));
+      
       Assert.That(exception.ErrorCode, Is.EqualTo(10));
       Assert.That(exception.Message, Is.EqualTo("Invalid API key - You must be granted a valid key by last.fm"));
     }

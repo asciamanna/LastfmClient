@@ -29,6 +29,7 @@ namespace LastfmClientTests.Parsers {
       var xelement = XElement.Load(testFilePath + "lastfmArtistInfoResponseNoFormationData.xml");
 
       var result = new ArtistResponseParser().Parse(xelement);
+
       Assert.That(result.YearFormed, Is.Null);
       Assert.That(result.PlaceFormed, Is.Empty);
     }
@@ -38,6 +39,7 @@ namespace LastfmClientTests.Parsers {
       var xelement = XElement.Load(testFilePath + "lastfmInvalidApiKey.xml");
 
       var exception = Assert.Throws<LastfmException>(() => new AlbumResponseParser().Parse(xelement));
+
       Assert.That(exception.ErrorCode, Is.EqualTo(10));
       Assert.That(exception.Message, Is.EqualTo("Invalid API key - You must be granted a valid key by last.fm"));
     }

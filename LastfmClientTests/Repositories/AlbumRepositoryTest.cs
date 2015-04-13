@@ -14,19 +14,23 @@ namespace LastfmClientTests.Repositories {
     public void GetInfo_Encodes_Album_And_Artist() {
       var restClient = MockRepository.GenerateMock<IRestClient>();
       var parser = MockRepository.GenerateMock<IAlbumResponseParser>();
-      var apiKey = "key";
-      var artist = "Bobby Hutcherson";
-      var album = "San Francisco";
+      const string apiKey = "key";
+      const string artist = "Bobby Hutcherson";
+      const string album = "San Francisco";
       var response = new XElement("Response");
-      var expectedUri = string.Format(@"http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key={0}&artist={1}&album={2}",
-        apiKey, Uri.EscapeDataString(artist), Uri.EscapeDataString(album));
+      var expectedUri = CreateExpectedUri(apiKey, Uri.EscapeDataString(artist), Uri.EscapeDataString(album));
       var albumInfo = new LastfmAlbumInfo();
-      
       restClient.Stub(rc => rc.DownloadData(expectedUri)).Return(response);
       parser.Stub(p => p.Parse(response)).Return(albumInfo);
+
       var repository = new AlbumRepository(apiKey, restClient, parser);
 
       Assert.That(repository.GetInfo(artist, album), Is.SameAs(albumInfo));
+    }
+
+    private static string CreateExpectedUri(string apiKey, string artist, string album) {
+      return string.Format(@"http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key={0}&artist={1}&album={2}",
+         apiKey, artist, album);
     }
   }
 }

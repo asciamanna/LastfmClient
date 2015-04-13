@@ -11,7 +11,6 @@ using Rhino.Mocks;
 namespace LastfmClientTests.Repositories {
   [TestFixture]
   public class UserTopArtistRepositoryTest {
-
     [Test]
     public void FindTopArtists_Calls_Rest_Service_Once_For_Each_Page() {
       var parser = MockRepository.GenerateMock<IUserResponseParser>();
@@ -22,22 +21,17 @@ namespace LastfmClientTests.Repositories {
       var secondUri = @"http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=me&api_key=key&page=2";
       var response1 = new XElement("Response1");
       var response2 = new XElement("Response2");
-      var firstArtist = "Miles Davis";
-      var secondArtist = "Devo";
-      var lastfmResponse1 = CreateResponse(firstArtist);
-      var lastfmResponse2 = CreateResponse(secondArtist);
+      const string firstArtist = "Miles Davis";
+      const string secondArtist = "Devo";
+      var lastfmResponse1 = TestHelper.CreateLastfmUserItemResponse<LastfmUserTopArtist>(firstArtist);
+      var lastfmResponse2 = TestHelper.CreateLastfmUserItemResponse<LastfmUserTopArtist>(secondArtist);
       pageCalculator.Stub(pc => pc.Calculate(lastfmResponse1, 2)).Return(2);
-
-      restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response1);
-      restClient.Expect(rc => rc.DownloadData(secondUri)).Return(response2);
-
-      parser.Expect(p => p.Parse(response1)).Return(lastfmResponse1);
-      parser.Expect(p => p.Parse(response2)).Return(lastfmResponse2);
+      restClient.Stub(rc => rc.DownloadData(firstUri)).Return(response1);
+      restClient.Stub(rc => rc.DownloadData(secondUri)).Return(response2);
+      parser.Stub(p => p.Parse(response1)).Return(lastfmResponse1);
+      parser.Stub(p => p.Parse(response2)).Return(lastfmResponse2);
 
       var topArtists = new UserTopArtistRepository("key", restClient, parser, pageCalculator).GetItems("me", 2);
-
-      restClient.VerifyAllExpectations();
-      parser.VerifyAllExpectations();
 
       Assert.That(topArtists.Count(), Is.EqualTo(2));
       Assert.That(topArtists[0].Name, Is.EqualTo(firstArtist));
@@ -54,24 +48,15 @@ namespace LastfmClientTests.Repositories {
       var response = new XElement("Response1");
       var firstArtist = "Ramones";
       var secondArtist = "Misfits";
-      var lastfmResponse = new LastfmResponse<LastfmUserItem> {
-        Items = new List<LastfmUserItem> { 
-          new LastfmUserTopArtist { Name = firstArtist }, 
-          new LastfmUserTopArtist { Name = secondArtist } 
-        }
-      };
+      var lastfmResponse = TestHelper.CreateLastfmUserItemResponse<LastfmUserTopArtist>(firstArtist, secondArtist);
       pageCalculator.Stub(pc => pc.Calculate(lastfmResponse, 1)).Return(1);
-      restClient.Expect(rc => rc.DownloadData(firstUri)).Return(response);
-      parser.Expect(p => p.Parse(response)).Return(lastfmResponse);
+      restClient.Stub(rc => rc.DownloadData(firstUri)).Return(response);
+      parser.Stub(p => p.Parse(response)).Return(lastfmResponse);
 
       var topArtists = new UserTopArtistRepository("key", restClient, parser, pageCalculator).GetItems("me", 1);
 
       Assert.That(topArtists.Count(), Is.EqualTo(1));
       Assert.That(topArtists.First().Name, Is.EqualTo(firstArtist));
-    }
-
-    private static LastfmResponse<LastfmUserItem> CreateResponse(string name) {
-      return new LastfmResponse<LastfmUserItem> { Items = new List<LastfmUserItem> { new LastfmUserTopArtist { Name = name } } };
     }
   }
 }
