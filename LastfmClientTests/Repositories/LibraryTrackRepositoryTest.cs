@@ -17,8 +17,8 @@ namespace LastfmClientTests.Repositories {
       var parser = MockRepository.GenerateMock<ILibraryResponseParser>();
       var restClient = MockRepository.GenerateMock<IRestClient>();
       
-      var firstUri = @"http://ws.audioscrobbler.com/2.0/?method=library.gettracks&api_key=key&user=me&page=1";
-      var secondUri = @"http://ws.audioscrobbler.com/2.0/?method=library.gettracks&api_key=key&user=me&page=2";
+      const string firstUri = @"http://ws.audioscrobbler.com/2.0/?method=library.gettracks&api_key=key&user=me&page=1";
+      const string secondUri = @"http://ws.audioscrobbler.com/2.0/?method=library.gettracks&api_key=key&user=me&page=2";
       var response1 = new XElement("Response1");
       var response2 = new XElement("Response2");
       var lastfmResponse1 = CreateResponse("Track1");

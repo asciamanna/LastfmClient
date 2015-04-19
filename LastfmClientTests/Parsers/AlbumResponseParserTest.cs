@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Xml.Linq;
 using LastfmClient;
 using LastfmClient.Parsers;
-using LastfmClient.Responses;
 using NUnit.Framework;
 
 namespace LastfmClientTests.Parsers {
   [TestFixture]
   public class AlbumResponseParserTest {
-    private string testFilePath = TestHelper.TestFilePath;
+    private readonly string testFilePath = TestHelper.TestFilePath;
 
     [Test]
     public void ParseAlbumInfo() {

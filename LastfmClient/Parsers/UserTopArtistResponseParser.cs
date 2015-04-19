@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using LastfmClient.Responses;
 
@@ -14,11 +15,7 @@ namespace LastfmClient.Parsers {
     }
 
     protected override IEnumerable<LastfmUserItem> CreateItems(IEnumerable<XElement> items) {
-      var topArtists = new List<LastfmUserItem>();
-      foreach (var artistElement in items) {
-        topArtists.Add(CreateUserTopArtist(artistElement));
-      }
-      return topArtists;
+      return items.Select(CreateUserTopArtist).Cast<LastfmUserItem>().ToList();
     }
 
     private LastfmUserTopArtist CreateUserTopArtist(XElement artistElement) {

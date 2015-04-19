@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace LastfmClientTests.Parsers {
   [TestFixture]
   public class UserRecentTracksResponseParserTest {
-    private string testFilePath = TestHelper.TestFilePath;
+    private readonly string testFilePath = TestHelper.TestFilePath;
 
     [Test]
     public void Parse_Removes_Whitespace_from_Artwork_Location_URLs() {

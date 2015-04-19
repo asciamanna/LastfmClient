@@ -15,12 +15,12 @@ namespace LastfmClientTests.Repositories {
     public void GetItems_Calls_Rest_Service_Once_For_Each_Page() {
       var parser = MockRepository.GenerateMock<ILibraryResponseParser>();
       var restClient = MockRepository.GenerateMock<IRestClient>();
-      var firstUri = @"http://ws.audioscrobbler.com/2.0/?method=library.getalbums&api_key=key&user=me&page=1";
-      var secondUri = @"http://ws.audioscrobbler.com/2.0/?method=library.getalbums&api_key=key&user=me&page=2";
+      const string firstUri = @"http://ws.audioscrobbler.com/2.0/?method=library.getalbums&api_key=key&user=me&page=1";
+      const string secondUri = @"http://ws.audioscrobbler.com/2.0/?method=library.getalbums&api_key=key&user=me&page=2";
       var response1 = new XElement("Response1");
       var response2 = new XElement("Response2");
-      var firstAlbum = "Dexter Calling...";
-      var secondAlbum = "Our Man In Paris";
+      const string firstAlbum = "Dexter Calling...";
+      const string secondAlbum = "Our Man In Paris";
       var lastfmResponse1 = CreateResponse(firstAlbum);
       var lastfmResponse2 = CreateResponse(secondAlbum);
 

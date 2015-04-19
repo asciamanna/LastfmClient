@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace LastfmClientTests.Parsers {
   [TestFixture]
   public class LibraryTracksResponseParserTest {
-    private string testFilePath = TestHelper.TestFilePath;
+    private readonly string testFilePath = TestHelper.TestFilePath;
     
     [Test]
     public void ParseTracks_Counts() {

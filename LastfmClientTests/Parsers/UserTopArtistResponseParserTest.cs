@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Xml.Linq;
 using LastfmClient;
 using LastfmClient.Parsers;
@@ -12,7 +8,7 @@ using NUnit.Framework;
 namespace LastfmClientTests.Parsers {
   [TestFixture]
   public class UserTopArtistResponseParserTest {
-    private string testFilePath = TestHelper.TestFilePath;
+    private readonly string testFilePath = TestHelper.TestFilePath;
 
     [Test]
     public void Parse_Removes_Whitespace_from_Artwork_Location_URLs() {

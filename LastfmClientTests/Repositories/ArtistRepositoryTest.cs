@@ -14,8 +14,8 @@ namespace LastfmClientTests.Repositories {
     public void GetInfo_Encodes_Artist() {
       var restClient = MockRepository.GenerateMock<IRestClient>();
       var parser = MockRepository.GenerateMock<IArtistResponseParser>();
-      var apiKey = "key";
-      var artist = "Bobby Hutcherson";
+      const string apiKey = "key";
+      const string artist = "Bobby Hutcherson";
       var response = new XElement("Response");
       var expectedUri = CreateExpectedUri(apiKey, Uri.EscapeDataString(artist));
       var artistInfo = new LastfmArtistInfo();

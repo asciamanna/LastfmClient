@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace LastfmClientTests.Parsers {
   [TestFixture]
   public class LibraryAlbumsResponseParserTest {
-    private string testFilePath = TestHelper.TestFilePath;
+    private readonly string testFilePath = TestHelper.TestFilePath;
 
     [Test]
     public void ParseAlbums_Counts() {

@@ -1,5 +1,4 @@
 ﻿using LastfmClient.Parsers;
-using LastfmClient.Responses;
 
 namespace LastfmClient.Repositories {
   public class UserTopArtistRepository : UserRepository {

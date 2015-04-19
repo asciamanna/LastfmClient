@@ -18,11 +18,7 @@ namespace LastfmClient.Parsers {
     }
 
     protected override IEnumerable<LastfmLibraryItem> CreateItems(IEnumerable<XElement> items) {
-      var libraryTracks = new List<LastfmLibraryTrack>();
-      foreach (var track in items.Where(t => t.Element("album") != null)) {
-        libraryTracks.Add(CreateLibraryTrack(track));
-      }
-      return libraryTracks;
+      return items.Where(t => t.Element("album") != null).Select(CreateLibraryTrack).ToList();
     }
 
     private static LastfmLibraryTrack CreateLibraryTrack(XElement track) {

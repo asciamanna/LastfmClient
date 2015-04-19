@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using LastfmClient.Responses;
 
@@ -17,11 +18,7 @@ namespace LastfmClient.Parsers {
     }
 
     protected override IEnumerable<LastfmUserItem> CreateItems(IEnumerable<XElement> items) {
-      var recentTracks = new List<LastfmUserRecentTrack>();
-      foreach (var trackElement in items) {
-        recentTracks.Add(CreateUserRecentTrack(trackElement));
-      }
-      return recentTracks;
+      return items.Select(CreateUserRecentTrack).ToList();
     }
 
     private LastfmUserRecentTrack CreateUserRecentTrack(XElement trackElement) {

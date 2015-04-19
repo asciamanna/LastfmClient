@@ -1,12 +1,11 @@
-﻿using System;
-using LastfmClient;
+﻿using LastfmClient;
 using NUnit.Framework;
 
 namespace LastfmClientTests {
   [TestFixture]
   public class LastfmPageScraperTest {
     private LastfmPageScraper scraper;
-    private string testFilePath = TestHelper.TestFilePath;
+    private readonly string testFilePath = TestHelper.TestFilePath;
 
     [SetUp]
     public void SetUp() {
@@ -31,9 +30,9 @@ namespace LastfmClientTests {
 
     [Test]
     public void GetLastfmMusicSourceFromFile_Translates_Lastfm_Relative_URLs() {
-      var listeningFrom = scraper.GetLastfmMusicSourceFromFile(testFilePath + "lastfmUserPageWithRelativeUrl.html");
+      var musicSource = scraper.GetLastfmMusicSourceFromFile(testFilePath + "lastfmUserPageWithRelativeUrl.html");
       
-      Assert.That(listeningFrom.MusicServiceUrl, Is.EqualTo(@"http://www.last.fm/download"));
+      Assert.That(musicSource.MusicServiceUrl, Is.EqualTo(@"http://www.last.fm/download"));
     }
 
     [Test, Category("Integration")]

@@ -30,7 +30,7 @@ namespace LastfmClient {
     private static LastfmMusicSource CreateMusicSource(HtmlNode span) {
       var musicSource = new LastfmMusicSource();
       if (span != null) {
-        musicSource.MusicServiceUrl = FormatUrl(span.FirstChild.Attributes.Where(a => a.Name == "href").Single().Value);
+        musicSource.MusicServiceUrl = FormatUrl(span.FirstChild.Attributes.Single(a => a.Name == "href").Value);
         musicSource.MusicServiceName = span.FirstChild.InnerText;
       }
       return musicSource;
