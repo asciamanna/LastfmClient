@@ -1,3 +1,4 @@
+#TODO
 1. Call Last.fm JSON api instead of XML api.
 2. Convert parsers to JSON parsers
 3. Implement async httpclient and chain async/await up to the external
