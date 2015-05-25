@@ -6,6 +6,7 @@ namespace LastfmClient {
   public interface IRestClient {
     XElement DownloadData(string uri);
   }
+
   public class RestClient : IRestClient {
     public XElement DownloadData(string uri) {
       using (var client = new WebClient()) {

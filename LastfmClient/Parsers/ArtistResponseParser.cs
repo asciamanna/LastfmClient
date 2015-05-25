@@ -45,20 +45,9 @@ namespace LastfmClient.Parsers {
 
     private int? ParseYearFormed(XElement artistInfo) {
       var bioNode = artistInfo.Descendants("bio").FirstOrDefault();
-      if (bioNode != null) {
-        var yearFormedElement = bioNode.Element("yearformed");
-        if (yearFormedElement != null) {
-          return int.Parse(yearFormedElement.Value.Trim());
-        }
-      }
-      return null;
-    }
-
-    private static DateTime? ParseDateString(string date) {
-      if (string.IsNullOrWhiteSpace(date)) {
-        return null;
-      }
-      return DateTime.Parse(date);
+      if (bioNode == null) return null;
+      var yearFormedElement = bioNode.Element("yearformed");
+      return yearFormedElement != null ? (int?) int.Parse(yearFormedElement.Value.Trim()) : null;
     }
   }
 }

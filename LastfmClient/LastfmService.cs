@@ -19,7 +19,7 @@ namespace LastfmClient {
     readonly ILastfmPageScraper pageScraper;
     readonly IRepositoryFactory repositoryFactory;
     readonly string apiKey;
-    const string lastfmUserPageUrl = @"http://www.last.fm/user/";
+    const string LastfmUserPageUrl = @"http://www.last.fm/user/";
 
     public LastfmService(string apiKey) : this(apiKey, new LastfmPageScraper(), new RepositoryFactory()) { }
 
@@ -55,7 +55,7 @@ namespace LastfmClient {
     }
 
     public LastfmMusicSource FindMusicSource(string user) {
-      return pageScraper.GetLastfmMusicSource(lastfmUserPageUrl + user);
+      return pageScraper.GetLastfmMusicSource(LastfmUserPageUrl + user);
     }
 
     public LastfmAlbumInfo FindAlbumInfo(string artist, string album) {

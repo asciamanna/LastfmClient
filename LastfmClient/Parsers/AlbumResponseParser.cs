@@ -27,10 +27,7 @@ namespace LastfmClient.Parsers {
     }
     
     private static DateTime? ParseDateString(string date) {
-      if (string.IsNullOrWhiteSpace(date)) {
-        return null;
-      }
-      return DateTime.Parse(date);
+      return string.IsNullOrWhiteSpace(date) ? (DateTime?) null : DateTime.Parse(date);
     }
   }
 }

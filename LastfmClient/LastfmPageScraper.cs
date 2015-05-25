@@ -9,7 +9,7 @@ namespace LastfmClient {
   }
 
   public class LastfmPageScraper : ILastfmPageScraper {
-    private const string lastfmBaseUrl = "http://www.last.fm";
+    private const string LastfmBaseUrl = "http://www.last.fm";
 
     public LastfmMusicSource GetLastfmMusicSource(string url) {
       var doc = new HtmlWeb().Load(url);
@@ -37,7 +37,7 @@ namespace LastfmClient {
     }
 
     private static string FormatUrl(string url) {
-      return url.StartsWith("/") ? lastfmBaseUrl + url : url;
+      return url.StartsWith("/") ? LastfmBaseUrl + url : url;
     }
   }
 }
