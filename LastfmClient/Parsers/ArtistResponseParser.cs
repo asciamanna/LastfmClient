@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Xml.Linq;
 using LastfmClient.Responses;
 
@@ -9,9 +8,16 @@ namespace LastfmClient.Parsers {
   }
 
   public class ArtistResponseParser : BaseResponseParser, IArtistResponseParser {
-   
+    private readonly ILfmNodeErrorParser lfmNodeErrorParser;
+
+    public ArtistResponseParser() : this(new LfmNodeErrorParser()) { }
+
+    public ArtistResponseParser(ILfmNodeErrorParser lfmNodeErrorParser) {
+      this.lfmNodeErrorParser = lfmNodeErrorParser;
+    }
+
     public LastfmArtistInfo Parse(XElement xmlResponse) {
-      ParseLfmNodeForErrors(xmlResponse);
+      lfmNodeErrorParser.Parse(xmlResponse);
       var artistInfoElement = xmlResponse.DescendantsAndSelf("artist").First();
       return CreateArtistInfo(artistInfoElement);
     }

@@ -6,9 +6,16 @@ using LastfmClient.Responses;
 
 namespace LastfmClient.Parsers {
   public abstract class BaseLibraryResponseParser : BaseResponseParser {
+    private readonly ILfmNodeErrorParser lfmNodeErrorParser;
+
+    protected BaseLibraryResponseParser(ILfmNodeErrorParser lfmNodeErrorParser) {
+      this.lfmNodeErrorParser = lfmNodeErrorParser;
+    }
+
+    protected BaseLibraryResponseParser() : this(new LfmNodeErrorParser()) {}
 
     public LastfmResponse<LastfmLibraryItem> Parse(XElement xmlResponse) {
-      ParseLfmNodeForErrors(xmlResponse);
+      lfmNodeErrorParser.Parse(xmlResponse);
       var collection = xmlResponse.DescendantsAndSelf(CollectionElementName);
       var collectionElement = collection.First();
 

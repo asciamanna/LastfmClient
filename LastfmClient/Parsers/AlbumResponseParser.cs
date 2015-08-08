@@ -9,9 +9,16 @@ namespace LastfmClient.Parsers {
   }
 
   public class AlbumResponseParser : BaseResponseParser, IAlbumResponseParser {
-   
+    private readonly ILfmNodeErrorParser errorParser;
+
+    public AlbumResponseParser() : this(new LfmNodeErrorParser()) { }
+
+    public AlbumResponseParser(ILfmNodeErrorParser errorParser) {
+      this.errorParser = errorParser;
+    }
+
     public LastfmAlbumInfo Parse(XElement xmlResponse) {
-      ParseLfmNodeForErrors(xmlResponse);
+      errorParser.Parse(xmlResponse);
       var albumInfoElement = xmlResponse.DescendantsAndSelf("album").First();
       return CreateAlbumInfo(albumInfoElement);
     }
