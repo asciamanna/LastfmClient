@@ -48,7 +48,6 @@
     <Compile Include="LastfmException.cs" />
     <Compile Include="Parsers\ArtistResponseParser.cs" />
     <Compile Include="Parsers\BaseLibraryResponseParser.cs" />
-    <Compile Include="Parsers\BaseResponseParser.cs" />
     <Compile Include="Parsers\BaseUserResponseParser.cs" />
     <Compile Include="Parsers\LfmNodeErrorParser.cs" />
     <Compile Include="Parsers\LibraryAlbumsResponseParser.cs" />
