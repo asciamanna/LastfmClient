@@ -8,7 +8,7 @@ namespace LastfmClient.Parsers {
     LastfmAlbumInfo Parse(XElement xmlResponse);
   }
 
-  public class AlbumResponseParser : BaseResponseParser, IAlbumResponseParser {
+  public class AlbumResponseParser : IAlbumResponseParser {
     private readonly ILfmNodeErrorParser errorParser;
 
     public AlbumResponseParser() : this(new LfmNodeErrorParser()) { }

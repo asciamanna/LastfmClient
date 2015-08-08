@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using LastfmClient.Responses;
 
 namespace LastfmClient.Parsers {
-  public abstract class BaseLibraryResponseParser : BaseResponseParser {
+  public abstract class BaseLibraryResponseParser {
     private readonly ILfmNodeErrorParser lfmNodeErrorParser;
 
     protected BaseLibraryResponseParser(ILfmNodeErrorParser lfmNodeErrorParser) {

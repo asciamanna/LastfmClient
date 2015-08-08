@@ -7,7 +7,7 @@ namespace LastfmClient.Parsers {
     LastfmArtistInfo Parse(XElement xmlResponse);
   }
 
-  public class ArtistResponseParser : BaseResponseParser, IArtistResponseParser {
+  public class ArtistResponseParser : IArtistResponseParser {
     private readonly ILfmNodeErrorParser lfmNodeErrorParser;
 
     public ArtistResponseParser() : this(new LfmNodeErrorParser()) { }

@@ -5,10 +5,17 @@ using System.Xml.Linq;
 using LastfmClient.Responses;
 
 namespace LastfmClient.Parsers {
-  public abstract class BaseUserResponseParser : BaseResponseParser {
+  public abstract class BaseUserResponseParser {
+    private readonly LfmNodeErrorParser lfmNodeErrorParser;
+
+    protected BaseUserResponseParser() : this(new LfmNodeErrorParser()) { }
+    
+    protected BaseUserResponseParser(LfmNodeErrorParser lfmNodeErrorParser) {
+      this.lfmNodeErrorParser = lfmNodeErrorParser;
+    }
 
     public LastfmResponse<LastfmUserItem> Parse(XElement xmlResponse) {
-      ParseLfmNodeForErrors(xmlResponse);
+      lfmNodeErrorParser.Parse(xmlResponse);
       var tracks = xmlResponse.DescendantsAndSelf(CollectionElementName);
       var tracksElement = tracks.First();
       return CreateUserItem(tracksElement);
