@@ -6,4 +6,7 @@
 	2.  Can implement generics on repositories so casting is no longer necessary
 4. Implement async httpclient and chain async/await up to the external
 interface
+5. Add paging support 
+	1. Library get requests (tracks & albums)
+	2. User get requests (recent tracks & top artists)
 
