@@ -10,22 +10,31 @@ using Rhino.Mocks;
 namespace LastfmClientTests.Repositories {
   [TestFixture]
   public class AlbumRepositoryTest {
+    private const string ApiKey = "API Key";
+    private IRestClient restClient;
+    private IAlbumResponseParser albumResponseParser;
+    private AlbumRepository subject;
+
+    [SetUp]
+    public void SetUp() {
+      restClient = MockRepository.GenerateStub<IRestClient>();
+      albumResponseParser = MockRepository.GenerateStub<IAlbumResponseParser>();
+      subject = new AlbumRepository(ApiKey, restClient, albumResponseParser);
+    }
+
     [Test]
     public void GetInfo_Encodes_Album_And_Artist() {
-      var restClient = MockRepository.GenerateMock<IRestClient>();
-      var parser = MockRepository.GenerateMock<IAlbumResponseParser>();
-      const string apiKey = "key";
       const string artist = "Bobby Hutcherson";
       const string album = "San Francisco";
-      var response = new XElement("Response");
-      var expectedUri = CreateExpectedUri(apiKey, Uri.EscapeDataString(artist), Uri.EscapeDataString(album));
+      var response = new XElement("XMLResponse");
+      var expectedUri = CreateExpectedUri(ApiKey, Uri.EscapeDataString(artist), Uri.EscapeDataString(album));
       var albumInfo = new LastfmAlbumInfo();
       restClient.Stub(rc => rc.DownloadData(expectedUri)).Return(response);
-      parser.Stub(p => p.Parse(response)).Return(albumInfo);
+      albumResponseParser.Stub(p => p.Parse(response)).Return(albumInfo);
 
-      var repository = new AlbumRepository(apiKey, restClient, parser);
+      var result = subject.GetInfo(artist, album);
 
-      Assert.That(repository.GetInfo(artist, album), Is.SameAs(albumInfo));
+      Assert.That(result, Is.SameAs(albumInfo));
     }
 
     private static string CreateExpectedUri(string apiKey, string artist, string album) {
